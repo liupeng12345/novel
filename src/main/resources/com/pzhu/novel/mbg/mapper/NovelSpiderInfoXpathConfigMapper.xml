@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzhu.novel.mbg.mapper.NovelSpiderInfoXpathConfigMapper">
+  <resultMap id="BaseResultMap" type="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="web_site_id" jdbcType="INTEGER" property="webSiteId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="word_count" jdbcType="VARCHAR" property="wordCount" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="briefIntroduction" jdbcType="VARCHAR" property="briefintroduction" />
+    <result column="latest_chapter" jdbcType="VARCHAR" property="latestChapter" />
+    <result column="latest_chapter_url" jdbcType="VARCHAR" property="latestChapterUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="last_update_time" jdbcType="VARCHAR" property="lastUpdateTime" />
+    <result column="chapter_list" jdbcType="VARCHAR" property="chapterList" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, web_site_id, type, author, word_count, img_url, briefIntroduction, latest_chapter, 
+    latest_chapter_url, status, last_update_time, chapter_list
+  </sql>
+  <select id="selectByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from novel_spider_info_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from novel_spider_info_xpath_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from novel_spider_info_xpath_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfigExample">
+    delete from novel_spider_info_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into novel_spider_info_xpath_config (web_site_id, type, author, 
+      word_count, img_url, briefIntroduction, 
+      latest_chapter, latest_chapter_url, status, 
+      last_update_time, chapter_list)
+    values (#{webSiteId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{wordCount,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{briefintroduction,jdbcType=VARCHAR}, 
+      #{latestChapter,jdbcType=VARCHAR}, #{latestChapterUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{lastUpdateTime,jdbcType=VARCHAR}, #{chapterList,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into novel_spider_info_xpath_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="webSiteId != null">
+        web_site_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="wordCount != null">
+        word_count,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="briefintroduction != null">
+        briefIntroduction,
+      </if>
+      <if test="latestChapter != null">
+        latest_chapter,
+      </if>
+      <if test="latestChapterUrl != null">
+        latest_chapter_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="chapterList != null">
+        chapter_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="webSiteId != null">
+        #{webSiteId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null">
+        #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="latestChapter != null">
+        #{latestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="latestChapterUrl != null">
+        #{latestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterList != null">
+        #{chapterList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfigExample" resultType="java.lang.Integer">
+    select count(*) from novel_spider_info_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update novel_spider_info_xpath_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.webSiteId != null">
+        web_site_id = #{record.webSiteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordCount != null">
+        word_count = #{record.wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.briefintroduction != null">
+        briefIntroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestChapter != null">
+        latest_chapter = #{record.latestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestChapterUrl != null">
+        latest_chapter_url = #{record.latestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        last_update_time = #{record.lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterList != null">
+        chapter_list = #{record.chapterList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update novel_spider_info_xpath_config
+    set id = #{record.id,jdbcType=INTEGER},
+      web_site_id = #{record.webSiteId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      word_count = #{record.wordCount,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      briefIntroduction = #{record.briefintroduction,jdbcType=VARCHAR},
+      latest_chapter = #{record.latestChapter,jdbcType=VARCHAR},
+      latest_chapter_url = #{record.latestChapterUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      last_update_time = #{record.lastUpdateTime,jdbcType=VARCHAR},
+      chapter_list = #{record.chapterList,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfig">
+    update novel_spider_info_xpath_config
+    <set>
+      <if test="webSiteId != null">
+        web_site_id = #{webSiteId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        word_count = #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="briefintroduction != null">
+        briefIntroduction = #{briefintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="latestChapter != null">
+        latest_chapter = #{latestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="latestChapterUrl != null">
+        latest_chapter_url = #{latestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterList != null">
+        chapter_list = #{chapterList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pzhu.novel.mbg.model.NovelSpiderInfoXpathConfig">
+    update novel_spider_info_xpath_config
+    set web_site_id = #{webSiteId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      word_count = #{wordCount,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      briefIntroduction = #{briefintroduction,jdbcType=VARCHAR},
+      latest_chapter = #{latestChapter,jdbcType=VARCHAR},
+      latest_chapter_url = #{latestChapterUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=VARCHAR},
+      chapter_list = #{chapterList,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
