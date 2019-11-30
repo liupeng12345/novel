@@ -3,8 +3,7 @@ package com.pzhu.novel.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.pzhu.novel.dao.Admindto;
-import com.pzhu.novel.mbg.mapper.AdminMapper;
+import com.pzhu.novel.dao.AdminDao;
 import com.pzhu.novel.mbg.model.Admin;
 import com.pzhu.novel.mbg.model.AdminExample;
 import com.pzhu.novel.mbg.model.Permission;
@@ -38,10 +37,10 @@ public class AdminServiceImpl implements AdminService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private AdminMapper adminMapper;
+    private com.pzhu.novel.mbg.mapper.AdminMapper adminMapper;
 
     @Autowired
-    private Admindto admindto;
+    private AdminDao admindto;
 
     @Override
     public Admin getAdminByUsername(String username) {

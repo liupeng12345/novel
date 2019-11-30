@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AdmindtoTest {
 
     @Autowired
-    private Admindto admindto;
+    private AdminDao admindto;
 
     @Test
     public void getPermissionsByAdminId() {

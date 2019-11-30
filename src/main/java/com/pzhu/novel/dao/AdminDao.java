@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
  * @author 刘鹏 liupeng
  * @date 2019/10/4
  **/
-public interface Admindto {
+public interface AdminDao {
     /**
      *  通过adminId 获取相关权限
      * @param id
