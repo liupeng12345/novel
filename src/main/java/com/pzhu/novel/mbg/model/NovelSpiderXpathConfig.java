@@ -6,9 +6,6 @@ import java.io.Serializable;
 public class NovelSpiderXpathConfig implements Serializable {
     private Integer id;
 
-    @ApiModelProperty(value = "搜索地址")
-    private String searchUrl;
-
     @ApiModelProperty(value = "小说站点名")
     private String websiteName;
 
@@ -17,6 +14,9 @@ public class NovelSpiderXpathConfig implements Serializable {
 
     @ApiModelProperty(value = "小说站点图标")
     private String websiteImg;
+
+    @ApiModelProperty(value = "搜索地址")
+    private String searchUrl;
 
     @ApiModelProperty(value = "搜索结果")
     private String searchInfo;
@@ -34,10 +34,10 @@ public class NovelSpiderXpathConfig implements Serializable {
     private String novelImgUrl;
 
     @ApiModelProperty(value = "内容简介")
-    private String novelBriefintroduction;
+    private String novelDescription;
 
     @ApiModelProperty(value = "最新章节")
-    private String noveLatestChapter;
+    private String novelLatestChapter;
 
     @ApiModelProperty(value = "最新章节地址")
     private String novelLatestChapterUrl;
@@ -69,6 +69,15 @@ public class NovelSpiderXpathConfig implements Serializable {
     @ApiModelProperty(value = "下一页url")
     private String contentNextPage;
 
+    @ApiModelProperty(value = "小说名字")
+    private String novelName;
+
+    @ApiModelProperty(value = "小说链接")
+    private String novelUrl;
+
+    @ApiModelProperty(value = "编码")
+    private String code;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -77,14 +86,6 @@ public class NovelSpiderXpathConfig implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getSearchUrl() {
-        return searchUrl;
-    }
-
-    public void setSearchUrl(String searchUrl) {
-        this.searchUrl = searchUrl;
     }
 
     public String getWebsiteName() {
@@ -109,6 +110,14 @@ public class NovelSpiderXpathConfig implements Serializable {
 
     public void setWebsiteImg(String websiteImg) {
         this.websiteImg = websiteImg;
+    }
+
+    public String getSearchUrl() {
+        return searchUrl;
+    }
+
+    public void setSearchUrl(String searchUrl) {
+        this.searchUrl = searchUrl;
     }
 
     public String getSearchInfo() {
@@ -151,20 +160,20 @@ public class NovelSpiderXpathConfig implements Serializable {
         this.novelImgUrl = novelImgUrl;
     }
 
-    public String getNovelBriefintroduction() {
-        return novelBriefintroduction;
+    public String getNovelDescription() {
+        return novelDescription;
     }
 
-    public void setNovelBriefintroduction(String novelBriefintroduction) {
-        this.novelBriefintroduction = novelBriefintroduction;
+    public void setNovelDescription(String novelDescription) {
+        this.novelDescription = novelDescription;
     }
 
-    public String getNoveLatestChapter() {
-        return noveLatestChapter;
+    public String getNovelLatestChapter() {
+        return novelLatestChapter;
     }
 
-    public void setNoveLatestChapter(String noveLatestChapter) {
-        this.noveLatestChapter = noveLatestChapter;
+    public void setNovelLatestChapter(String novelLatestChapter) {
+        this.novelLatestChapter = novelLatestChapter;
     }
 
     public String getNovelLatestChapterUrl() {
@@ -247,6 +256,30 @@ public class NovelSpiderXpathConfig implements Serializable {
         this.contentNextPage = contentNextPage;
     }
 
+    public String getNovelName() {
+        return novelName;
+    }
+
+    public void setNovelName(String novelName) {
+        this.novelName = novelName;
+    }
+
+    public String getNovelUrl() {
+        return novelUrl;
+    }
+
+    public void setNovelUrl(String novelUrl) {
+        this.novelUrl = novelUrl;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -254,17 +287,17 @@ public class NovelSpiderXpathConfig implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", searchUrl=").append(searchUrl);
         sb.append(", websiteName=").append(websiteName);
         sb.append(", websiteUrl=").append(websiteUrl);
         sb.append(", websiteImg=").append(websiteImg);
+        sb.append(", searchUrl=").append(searchUrl);
         sb.append(", searchInfo=").append(searchInfo);
         sb.append(", novelType=").append(novelType);
         sb.append(", novelAuthor=").append(novelAuthor);
         sb.append(", wordCount=").append(wordCount);
         sb.append(", novelImgUrl=").append(novelImgUrl);
-        sb.append(", novelBriefintroduction=").append(novelBriefintroduction);
-        sb.append(", noveLatestChapter=").append(noveLatestChapter);
+        sb.append(", novelDescription=").append(novelDescription);
+        sb.append(", novelLatestChapter=").append(novelLatestChapter);
         sb.append(", novelLatestChapterUrl=").append(novelLatestChapterUrl);
         sb.append(", novelStatus=").append(novelStatus);
         sb.append(", novelLastUpdateTime=").append(novelLastUpdateTime);
@@ -275,6 +308,9 @@ public class NovelSpiderXpathConfig implements Serializable {
         sb.append(", contentInfo=").append(contentInfo);
         sb.append(", contentPreviousPage=").append(contentPreviousPage);
         sb.append(", contentNextPage=").append(contentNextPage);
+        sb.append(", novelName=").append(novelName);
+        sb.append(", novelUrl=").append(novelUrl);
+        sb.append(", code=").append(code);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

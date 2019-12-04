@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequestMapping("/novel/spider/config")
-@Api("小说爬虫配置")
+@Api(tags = "NovelSpiderConfigController", value = "小说爬虫配置")
 public class NovelSpiderConfigController {
 
     @Autowired
@@ -25,24 +25,26 @@ public class NovelSpiderConfigController {
 
     @ApiOperation("分页查询")
     @GetMapping("/{pageNum}/{pageSize}")
-    public CommonPage<NovelSpiderXpathConfig> pageNCommonResult(@PathVariable("pageNum") Integer pageNum,
-                                                                @PathVariable("pageSize") Integer pageSize,
-                                                                NovelSpiderXpathConfig novelSpiderXpathConfig) {
+    public CommonResult<CommonPage<NovelSpiderXpathConfig>> pageNCommonResult(@PathVariable("pageNum") Integer pageNum,
+                                                                              @PathVariable("pageSize") Integer pageSize,
+                                                                              NovelSpiderXpathConfig novelSpiderXpathConfig) {
         List<NovelSpiderXpathConfig> novelSpiderXpathConfigList = novelSpiderXpathConfigService
                 .findPage(pageNum, pageSize, novelSpiderXpathConfig);
-        return CommonPage.restPage(novelSpiderXpathConfigList);
+        CommonPage<NovelSpiderXpathConfig> novelSpiderXpathConfigCommonPage = CommonPage.restPage(novelSpiderXpathConfigList);
+        return CommonResult.success(novelSpiderXpathConfigCommonPage, "查询成功");
+
     }
 
     @ApiOperation("添加小说爬虫站点")
     @PostMapping
-    public CommonResult add(NovelSpiderXpathConfig novelSpiderXpathConfig) {
+    public CommonResult add(@RequestBody NovelSpiderXpathConfig novelSpiderXpathConfig) {
         novelSpiderXpathConfigService.insert(novelSpiderXpathConfig);
         return CommonResult.success(novelSpiderXpathConfig, "添加成功");
     }
 
     @ApiOperation("修改小说爬虫配置")
     @PutMapping
-    public CommonResult update(NovelSpiderXpathConfig novelSpiderXpathConfig) {
+    public CommonResult update(@RequestBody NovelSpiderXpathConfig novelSpiderXpathConfig) {
         novelSpiderXpathConfigService.update(novelSpiderXpathConfig);
         return CommonResult.success(novelSpiderXpathConfig, "更新成功");
     }

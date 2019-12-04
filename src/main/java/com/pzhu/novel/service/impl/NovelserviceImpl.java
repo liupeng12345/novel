@@ -72,7 +72,7 @@ public class NovelserviceImpl implements Novelservice {
         Boolean islock = stringRedisTemplate.opsForValue().setIfAbsent(key, valueJson);
         if (islock) {
             //没有请求过
-            stringRedisTemplate.expire(key, 60 * 60 * 72, TimeUnit.SECONDS);
+            stringRedisTemplate.expire(key, 30, TimeUnit.SECONDS);
             Socket socket = new Socket(ip, port);
             OutputStream os = socket.getOutputStream();
             key = key + "key";
@@ -93,7 +93,6 @@ public class NovelserviceImpl implements Novelservice {
 
     @Override
     public void delete(String novelId) {
-
         novelDocumnetRepository.deleteById(novelId);
     }
 
@@ -138,7 +137,7 @@ public class NovelserviceImpl implements Novelservice {
             Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(chaptersUrlLock, valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(chaptersUrlLock, 60 * 60 * 72, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(chaptersUrlLock, 30, TimeUnit.SECONDS);
                 Socket socket = new Socket(ip, port);
                 OutputStream os = socket.getOutputStream();
                 chaptersUrl = "chapter" + chaptersUrl;
@@ -154,7 +153,7 @@ public class NovelserviceImpl implements Novelservice {
     }
 
     @Override
-    public NovelContent findContent(String contentUrl) throws IOException {
+    public NovelContent findContent(String contentUrl) throws IOException, InterruptedException {
         //请求过
         String key = contentUrl;
         String contentJsonStr = stringRedisTemplate.opsForValue().get(key);
@@ -164,7 +163,7 @@ public class NovelserviceImpl implements Novelservice {
             Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock, valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(contentUrlLock, 60 * 60 * 72, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(contentUrlLock, 30, TimeUnit.SECONDS);
                 Socket socket = new Socket(ip, port);
                 OutputStream os = socket.getOutputStream();
                 contentUrl = "content" + contentUrl;
@@ -172,12 +171,38 @@ public class NovelserviceImpl implements Novelservice {
                 os.write(bytes);
                 os.flush();
                 os.close();
+                Thread.sleep(1000);
+                return findContent(key);
             }
+        }
+        if (contentJsonStr == null) {
+            Thread.sleep(1000);
+            return findContent(key);
         }
         NovelContent novelContent = JSON.parseObject(contentJsonStr, NovelContent.class);
         return novelContent;
 
 
+    }
+
+    @Override
+    public List<NovelDocumnet> findTop() {
+        return novelDocumnetRepository.findTop12By();
+    }
+
+    @Override
+    public List<NovelDocumnet> findRotate() {
+        return novelDocumnetRepository.findTop5By();
+    }
+
+    @Override
+    public List<NovelDocumnet> findTop10ByUpdate() {
+        return novelDocumnetRepository.findTop12ByOrderByUpdateTimeDesc();
+    }
+
+    @Override
+    public List<NovelDocumnet> findTop10ByWordCount() {
+        return novelDocumnetRepository.findTop12ByOrderByWordCountDesc();
     }
 
 

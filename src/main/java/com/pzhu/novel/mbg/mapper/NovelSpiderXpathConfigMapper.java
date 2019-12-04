@@ -10,7 +10,7 @@ public interface NovelSpiderXpathConfigMapper {
 
     int deleteByExample(NovelSpiderXpathConfigExample example);
 
-    int deleteByPrimaryKey(@Param("id") Integer id, @Param("searchUrl") String searchUrl);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(NovelSpiderXpathConfig record);
 
@@ -18,7 +18,7 @@ public interface NovelSpiderXpathConfigMapper {
 
     List<NovelSpiderXpathConfig> selectByExample(NovelSpiderXpathConfigExample example);
 
-    NovelSpiderXpathConfig selectByPrimaryKey(@Param("id") Integer id, @Param("searchUrl") String searchUrl);
+    NovelSpiderXpathConfig selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") NovelSpiderXpathConfig record, @Param("example") NovelSpiderXpathConfigExample example);
 

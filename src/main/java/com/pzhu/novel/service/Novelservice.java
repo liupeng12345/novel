@@ -53,5 +53,13 @@ public interface Novelservice {
 
     List<ChapterVO> findChapters(String chaptersUrl) throws IOException;
 
-    NovelContent findContent(String contentUrl) throws IOException;
+    NovelContent findContent(String contentUrl) throws IOException, InterruptedException;
+
+    List<NovelDocumnet> findTop();
+
+    List<NovelDocumnet> findRotate();
+
+    List<NovelDocumnet> findTop10ByUpdate();
+
+    List<NovelDocumnet> findTop10ByWordCount();
 }

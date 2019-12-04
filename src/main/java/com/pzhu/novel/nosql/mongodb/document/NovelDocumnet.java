@@ -24,4 +24,7 @@ public class NovelDocumnet {
     private String img;
     private String type;
     private String synopsis;
+    private String status;
+    private String website;
+    private String chaptersUrl;
 }

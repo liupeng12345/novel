@@ -6,6 +6,7 @@ import com.pzhu.novel.common.api.CommonPage;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.mbg.model.ProxySpiderXpathConfig;
 import com.pzhu.novel.service.ProxySpiderXpathConfigService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequestMapping("/proxy/spider/config")
+@Api(tags = "ProxySpiderConfigController",description = "代理爬虫配置")
 public class ProxySpiderConfigController {
 
     @Autowired

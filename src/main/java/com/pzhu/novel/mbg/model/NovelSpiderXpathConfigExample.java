@@ -164,76 +164,6 @@ public class NovelSpiderXpathConfigExample {
             return (Criteria) this;
         }
 
-        public Criteria andSearchUrlIsNull() {
-            addCriterion("search_url is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlIsNotNull() {
-            addCriterion("search_url is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlEqualTo(String value) {
-            addCriterion("search_url =", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlNotEqualTo(String value) {
-            addCriterion("search_url <>", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlGreaterThan(String value) {
-            addCriterion("search_url >", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("search_url >=", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlLessThan(String value) {
-            addCriterion("search_url <", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlLessThanOrEqualTo(String value) {
-            addCriterion("search_url <=", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlLike(String value) {
-            addCriterion("search_url like", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlNotLike(String value) {
-            addCriterion("search_url not like", value, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlIn(List<String> values) {
-            addCriterion("search_url in", values, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlNotIn(List<String> values) {
-            addCriterion("search_url not in", values, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlBetween(String value1, String value2) {
-            addCriterion("search_url between", value1, value2, "searchUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andSearchUrlNotBetween(String value1, String value2) {
-            addCriterion("search_url not between", value1, value2, "searchUrl");
-            return (Criteria) this;
-        }
-
         public Criteria andWebsiteNameIsNull() {
             addCriterion("website_name is null");
             return (Criteria) this;
@@ -441,6 +371,76 @@ public class NovelSpiderXpathConfigExample {
 
         public Criteria andWebsiteImgNotBetween(String value1, String value2) {
             addCriterion("website_img not between", value1, value2, "websiteImg");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlIsNull() {
+            addCriterion("search_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlIsNotNull() {
+            addCriterion("search_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlEqualTo(String value) {
+            addCriterion("search_url =", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlNotEqualTo(String value) {
+            addCriterion("search_url <>", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlGreaterThan(String value) {
+            addCriterion("search_url >", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("search_url >=", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlLessThan(String value) {
+            addCriterion("search_url <", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlLessThanOrEqualTo(String value) {
+            addCriterion("search_url <=", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlLike(String value) {
+            addCriterion("search_url like", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlNotLike(String value) {
+            addCriterion("search_url not like", value, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlIn(List<String> values) {
+            addCriterion("search_url in", values, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlNotIn(List<String> values) {
+            addCriterion("search_url not in", values, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlBetween(String value1, String value2) {
+            addCriterion("search_url between", value1, value2, "searchUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andSearchUrlNotBetween(String value1, String value2) {
+            addCriterion("search_url not between", value1, value2, "searchUrl");
             return (Criteria) this;
         }
 
@@ -794,143 +794,143 @@ public class NovelSpiderXpathConfigExample {
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionIsNull() {
-            addCriterion("novel_briefIntroduction is null");
+        public Criteria andNovelDescriptionIsNull() {
+            addCriterion("novel_description is null");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionIsNotNull() {
-            addCriterion("novel_briefIntroduction is not null");
+        public Criteria andNovelDescriptionIsNotNull() {
+            addCriterion("novel_description is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionEqualTo(String value) {
-            addCriterion("novel_briefIntroduction =", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionEqualTo(String value) {
+            addCriterion("novel_description =", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionNotEqualTo(String value) {
-            addCriterion("novel_briefIntroduction <>", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionNotEqualTo(String value) {
+            addCriterion("novel_description <>", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionGreaterThan(String value) {
-            addCriterion("novel_briefIntroduction >", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionGreaterThan(String value) {
+            addCriterion("novel_description >", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionGreaterThanOrEqualTo(String value) {
-            addCriterion("novel_briefIntroduction >=", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("novel_description >=", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionLessThan(String value) {
-            addCriterion("novel_briefIntroduction <", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionLessThan(String value) {
+            addCriterion("novel_description <", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionLessThanOrEqualTo(String value) {
-            addCriterion("novel_briefIntroduction <=", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("novel_description <=", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionLike(String value) {
-            addCriterion("novel_briefIntroduction like", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionLike(String value) {
+            addCriterion("novel_description like", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionNotLike(String value) {
-            addCriterion("novel_briefIntroduction not like", value, "novelBriefintroduction");
+        public Criteria andNovelDescriptionNotLike(String value) {
+            addCriterion("novel_description not like", value, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionIn(List<String> values) {
-            addCriterion("novel_briefIntroduction in", values, "novelBriefintroduction");
+        public Criteria andNovelDescriptionIn(List<String> values) {
+            addCriterion("novel_description in", values, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionNotIn(List<String> values) {
-            addCriterion("novel_briefIntroduction not in", values, "novelBriefintroduction");
+        public Criteria andNovelDescriptionNotIn(List<String> values) {
+            addCriterion("novel_description not in", values, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionBetween(String value1, String value2) {
-            addCriterion("novel_briefIntroduction between", value1, value2, "novelBriefintroduction");
+        public Criteria andNovelDescriptionBetween(String value1, String value2) {
+            addCriterion("novel_description between", value1, value2, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNovelBriefintroductionNotBetween(String value1, String value2) {
-            addCriterion("novel_briefIntroduction not between", value1, value2, "novelBriefintroduction");
+        public Criteria andNovelDescriptionNotBetween(String value1, String value2) {
+            addCriterion("novel_description not between", value1, value2, "novelDescription");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterIsNull() {
-            addCriterion("nove_latest_chapter is null");
+        public Criteria andNovelLatestChapterIsNull() {
+            addCriterion("novel_latest_chapter is null");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterIsNotNull() {
-            addCriterion("nove_latest_chapter is not null");
+        public Criteria andNovelLatestChapterIsNotNull() {
+            addCriterion("novel_latest_chapter is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterEqualTo(String value) {
-            addCriterion("nove_latest_chapter =", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterEqualTo(String value) {
+            addCriterion("novel_latest_chapter =", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterNotEqualTo(String value) {
-            addCriterion("nove_latest_chapter <>", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterNotEqualTo(String value) {
+            addCriterion("novel_latest_chapter <>", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterGreaterThan(String value) {
-            addCriterion("nove_latest_chapter >", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterGreaterThan(String value) {
+            addCriterion("novel_latest_chapter >", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterGreaterThanOrEqualTo(String value) {
-            addCriterion("nove_latest_chapter >=", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterGreaterThanOrEqualTo(String value) {
+            addCriterion("novel_latest_chapter >=", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterLessThan(String value) {
-            addCriterion("nove_latest_chapter <", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterLessThan(String value) {
+            addCriterion("novel_latest_chapter <", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterLessThanOrEqualTo(String value) {
-            addCriterion("nove_latest_chapter <=", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterLessThanOrEqualTo(String value) {
+            addCriterion("novel_latest_chapter <=", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterLike(String value) {
-            addCriterion("nove_latest_chapter like", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterLike(String value) {
+            addCriterion("novel_latest_chapter like", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterNotLike(String value) {
-            addCriterion("nove_latest_chapter not like", value, "noveLatestChapter");
+        public Criteria andNovelLatestChapterNotLike(String value) {
+            addCriterion("novel_latest_chapter not like", value, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterIn(List<String> values) {
-            addCriterion("nove_latest_chapter in", values, "noveLatestChapter");
+        public Criteria andNovelLatestChapterIn(List<String> values) {
+            addCriterion("novel_latest_chapter in", values, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterNotIn(List<String> values) {
-            addCriterion("nove_latest_chapter not in", values, "noveLatestChapter");
+        public Criteria andNovelLatestChapterNotIn(List<String> values) {
+            addCriterion("novel_latest_chapter not in", values, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterBetween(String value1, String value2) {
-            addCriterion("nove_latest_chapter between", value1, value2, "noveLatestChapter");
+        public Criteria andNovelLatestChapterBetween(String value1, String value2) {
+            addCriterion("novel_latest_chapter between", value1, value2, "novelLatestChapter");
             return (Criteria) this;
         }
 
-        public Criteria andNoveLatestChapterNotBetween(String value1, String value2) {
-            addCriterion("nove_latest_chapter not between", value1, value2, "noveLatestChapter");
+        public Criteria andNovelLatestChapterNotBetween(String value1, String value2) {
+            addCriterion("novel_latest_chapter not between", value1, value2, "novelLatestChapter");
             return (Criteria) this;
         }
 
@@ -1631,6 +1631,216 @@ public class NovelSpiderXpathConfigExample {
 
         public Criteria andContentNextPageNotBetween(String value1, String value2) {
             addCriterion("content_next_page not between", value1, value2, "contentNextPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameIsNull() {
+            addCriterion("novel_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameIsNotNull() {
+            addCriterion("novel_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameEqualTo(String value) {
+            addCriterion("novel_name =", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameNotEqualTo(String value) {
+            addCriterion("novel_name <>", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameGreaterThan(String value) {
+            addCriterion("novel_name >", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameGreaterThanOrEqualTo(String value) {
+            addCriterion("novel_name >=", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameLessThan(String value) {
+            addCriterion("novel_name <", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameLessThanOrEqualTo(String value) {
+            addCriterion("novel_name <=", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameLike(String value) {
+            addCriterion("novel_name like", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameNotLike(String value) {
+            addCriterion("novel_name not like", value, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameIn(List<String> values) {
+            addCriterion("novel_name in", values, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameNotIn(List<String> values) {
+            addCriterion("novel_name not in", values, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameBetween(String value1, String value2) {
+            addCriterion("novel_name between", value1, value2, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelNameNotBetween(String value1, String value2) {
+            addCriterion("novel_name not between", value1, value2, "novelName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlIsNull() {
+            addCriterion("novel_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlIsNotNull() {
+            addCriterion("novel_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlEqualTo(String value) {
+            addCriterion("novel_url =", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlNotEqualTo(String value) {
+            addCriterion("novel_url <>", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlGreaterThan(String value) {
+            addCriterion("novel_url >", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("novel_url >=", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlLessThan(String value) {
+            addCriterion("novel_url <", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlLessThanOrEqualTo(String value) {
+            addCriterion("novel_url <=", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlLike(String value) {
+            addCriterion("novel_url like", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlNotLike(String value) {
+            addCriterion("novel_url not like", value, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlIn(List<String> values) {
+            addCriterion("novel_url in", values, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlNotIn(List<String> values) {
+            addCriterion("novel_url not in", values, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlBetween(String value1, String value2) {
+            addCriterion("novel_url between", value1, value2, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andNovelUrlNotBetween(String value1, String value2) {
+            addCriterion("novel_url not between", value1, value2, "novelUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIsNull() {
+            addCriterion("code is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIsNotNull() {
+            addCriterion("code is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("code =", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("code <>", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("code >", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("code >=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("code <", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("code <=", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeLike(String value) {
+            addCriterion("code like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("code not like", value, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("code in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("code not in", values, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("code between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("code not between", value1, value2, "code");
             return (Criteria) this;
         }
     }
