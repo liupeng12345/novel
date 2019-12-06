@@ -1,8 +1,6 @@
 package com.pzhu.novel.service.impl;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson.JSON;
+import com.pzhu.novel.common.client.SpiderTcpClient;
+import com.pzhu.novel.common.client.SpiderTcpClientPool;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
 import com.pzhu.novel.service.Novelservice;
@@ -17,7 +17,6 @@ import com.pzhu.novel.vo.ChapterVO;
 import com.pzhu.novel.vo.NovelContent;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -35,10 +34,6 @@ public class NovelserviceImpl implements Novelservice {
 
     @Autowired
     private NovelDocumnetRepository novelDocumnetRepository;
-    @Value("${serchServe.ip}")
-    private String ip;
-    @Value("${serchServe.port}")
-    private Integer port;
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -46,6 +41,8 @@ public class NovelserviceImpl implements Novelservice {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    private SpiderTcpClientPool spiderTcpClientPool;
 
     @Override
     public List<NovelDocumnet> getNovels() {
@@ -73,13 +70,11 @@ public class NovelserviceImpl implements Novelservice {
         if (islock) {
             //没有请求过
             stringRedisTemplate.expire(key, 30, TimeUnit.SECONDS);
-            Socket socket = new Socket(ip, port);
-            OutputStream os = socket.getOutputStream();
-            key = key + "key";
-            byte[] bytes = key.getBytes("utf-8");
-            os.write(bytes);
-            os.flush();
-            os.close();
+            String msg = "key" + key;
+            SpiderTcpClient client = spiderTcpClientPool.getClient();
+            client.sendMessages(msg);
+            spiderTcpClientPool.closeClient(client);
+
         }
         return key;
     }
@@ -138,13 +133,11 @@ public class NovelserviceImpl implements Novelservice {
             if (isLock) {
                 //没有请求过
                 stringRedisTemplate.expire(chaptersUrlLock, 30, TimeUnit.SECONDS);
-                Socket socket = new Socket(ip, port);
-                OutputStream os = socket.getOutputStream();
                 chaptersUrl = "chapter" + chaptersUrl;
-                byte[] bytes = chaptersUrl.getBytes("utf-8");
-                os.write(bytes);
-                os.flush();
-                os.close();
+                SpiderTcpClient client = spiderTcpClientPool.getClient();
+                client.sendMessages(chaptersUrl);
+                spiderTcpClientPool.closeClient(client);
+
             }
         }
         List<ChapterVO> chapterVOS = JSON.parseArray(chapterListStrJsonStr, ChapterVO.class);
@@ -164,13 +157,10 @@ public class NovelserviceImpl implements Novelservice {
             if (isLock) {
                 //没有请求过
                 stringRedisTemplate.expire(contentUrlLock, 30, TimeUnit.SECONDS);
-                Socket socket = new Socket(ip, port);
-                OutputStream os = socket.getOutputStream();
                 contentUrl = "content" + contentUrl;
-                byte[] bytes = contentUrl.getBytes("utf-8");
-                os.write(bytes);
-                os.flush();
-                os.close();
+                SpiderTcpClient client = spiderTcpClientPool.getClient();
+                client.sendMessages(contentUrl);
+                spiderTcpClientPool.closeClient(client);
                 Thread.sleep(1000);
                 return findContent(key);
             }
