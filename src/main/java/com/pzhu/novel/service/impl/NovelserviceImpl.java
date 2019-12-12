@@ -1,15 +1,9 @@
 package com.pzhu.novel.service.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson.JSON;
-import com.pzhu.novel.common.client.SpiderTcpClient;
-import com.pzhu.novel.common.client.SpiderTcpClientPool;
+import com.pzhu.novel.common.api.CommonResult;
+import com.pzhu.novel.message.RabbitSender;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
 import com.pzhu.novel.service.Novelservice;
@@ -17,6 +11,8 @@ import com.pzhu.novel.vo.ChapterVO;
 import com.pzhu.novel.vo.NovelContent;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,6 +20,10 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author 刘鹏 liupeng
@@ -41,42 +41,45 @@ public class NovelserviceImpl implements Novelservice {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+
     @Autowired
-    private SpiderTcpClientPool spiderTcpClientPool;
+    private RabbitSender rabbitSender;
 
     @Override
     public List<NovelDocumnet> getNovels() {
         return novelDocumnetRepository.findAll();
     }
 
-    @Override
-    public Page<NovelDocumnet> getNovels(String search, Integer page, Integer limit) {
-        Page<NovelDocumnet> novelDocumnets;
-        if (search == null) {
-            novelDocumnets = novelDocumnetRepository.findAll(PageRequest.of(page, limit));
-        } else {
-            novelDocumnets = (Page<NovelDocumnet>) novelDocumnetRepository.findAllByNameIsLike(search,
-                    PageRequest.of(page, limit));
-        }
 
+    @Override
+    public Page<NovelDocumnet> getNovels(NovelDocumnet search, Integer page, Integer limit) {
+        Page<NovelDocumnet> novelDocumnets;
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+                .withMatcher("website", ExampleMatcher.GenericPropertyMatchers.exact())
+                .withMatcher("type", ExampleMatcher.GenericPropertyMatchers.exact())
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("author", ExampleMatcher.GenericPropertyMatchers.contains());
+        Example<NovelDocumnet> ex = Example.of(search, exampleMatcher);
+        novelDocumnets = novelDocumnetRepository
+                .findAll(ex, PageRequest.of(page, limit));
         return novelDocumnets;
     }
 
     @Override
-    public String search(String key) throws IOException {
+    public CommonResult<List<NovelDocumnet>> search(String key) throws IOException {
         //请求
         String valueJson = JSON.toJSONString(key);
         Boolean islock = stringRedisTemplate.opsForValue().setIfAbsent(key, valueJson);
         if (islock) {
             //没有请求过
-            stringRedisTemplate.expire(key, 30, TimeUnit.SECONDS);
+            stringRedisTemplate.expire(key, 30*60, TimeUnit.SECONDS);
             String msg = "key" + key;
-            SpiderTcpClient client = spiderTcpClientPool.getClient();
-            client.sendMessages(msg);
-            spiderTcpClientPool.closeClient(client);
-
+//            SpiderTcpClient client = spiderTcpClientPool.getClient();
+//            client.sendMessages(msg);
+//            spiderTcpClientPool.closeClient(client);
+            rabbitSender.sendMessage(msg);
         }
-        return key;
+        return null;
     }
 
     @Override
@@ -124,19 +127,20 @@ public class NovelserviceImpl implements Novelservice {
 
     @Override
     public List<ChapterVO> findChapters(String chaptersUrl) throws IOException {
-        String chapterListStrJsonStr = stringRedisTemplate.opsForValue().get(chaptersUrl);
+        String chapterListStrJsonStr = stringRedisTemplate.opsForValue().get(chaptersUrl.replace("/", ":"));
         if (StringUtils.isBlank(chapterListStrJsonStr)) {
             //如果为空，代表redis中没有
             String valueJson = JSON.toJSONString(chaptersUrl);
             String chaptersUrlLock = chaptersUrl + "lock";
-            Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(chaptersUrlLock, valueJson);
+            Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(chaptersUrlLock.replace("/", ":"), valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(chaptersUrlLock, 30, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(chaptersUrlLock.replace("/", ":"), 30*60, TimeUnit.SECONDS);
                 chaptersUrl = "chapter" + chaptersUrl;
-                SpiderTcpClient client = spiderTcpClientPool.getClient();
-                client.sendMessages(chaptersUrl);
-                spiderTcpClientPool.closeClient(client);
+                rabbitSender.sendMessage(chaptersUrl);
+//                SpiderTcpClient client = spiderTcpClientPool.getClient();
+//                client.sendMessages(chaptersUrl);
+//                spiderTcpClientPool.closeClient(client);
 
             }
         }
@@ -149,18 +153,19 @@ public class NovelserviceImpl implements Novelservice {
     public NovelContent findContent(String contentUrl) throws IOException, InterruptedException {
         //请求过
         String key = contentUrl;
-        String contentJsonStr = stringRedisTemplate.opsForValue().get(key);
+        String contentJsonStr = stringRedisTemplate.opsForValue().get(key.replace("/", ":"));
         if (StringUtils.isBlank(contentJsonStr)) {
             String valueJson = JSON.toJSONString(contentUrl);
             String contentUrlLock = contentUrl + "lock";
-            Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock, valueJson);
+            Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(contentUrlLock, 30, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30*60, TimeUnit.SECONDS);
                 contentUrl = "content" + contentUrl;
-                SpiderTcpClient client = spiderTcpClientPool.getClient();
-                client.sendMessages(contentUrl);
-                spiderTcpClientPool.closeClient(client);
+//                SpiderTcpClient client = spiderTcpClientPool.getClient();
+//                client.sendMessages(contentUrl);
+//                spiderTcpClientPool.closeClient(client);
+                rabbitSender.sendMessage(contentUrl);
                 Thread.sleep(1000);
                 return findContent(key);
             }
@@ -193,6 +198,42 @@ public class NovelserviceImpl implements Novelservice {
     @Override
     public List<NovelDocumnet> findTop10ByWordCount() {
         return novelDocumnetRepository.findTop12ByOrderByWordCountDesc();
+    }
+
+    @Override
+    public List<String> getSites() {
+        Aggregation agg = Aggregation.newAggregation(
+                Aggregation.project("website"),
+                Aggregation.group("website"),
+                Aggregation.project("website")
+
+        );
+        AggregationResults<JSONObject> results = mongoTemplate.aggregate(agg, NovelDocumnet.class, JSONObject.class);
+        List<String> types = new ArrayList<>(results.getMappedResults().size());
+        for (Iterator<JSONObject> iterator = results.iterator(); iterator.hasNext(); ) {
+            JSONObject obj = iterator.next();
+            types.add(obj.getStr("_id"));
+        }
+        return types;
+    }
+
+    @Override
+    public List<Map<String, String>> findNumberOfType() {
+        Aggregation agg = Aggregation.newAggregation(
+                // 选定字段
+                Aggregation.group("type").count().as("num"),
+                Aggregation.project("_id", "type", "num")
+        );
+        AggregationResults<JSONObject> results = mongoTemplate.aggregate(agg, NovelDocumnet.class, JSONObject.class);
+        List<Map<String, String>> types = new ArrayList<>(results.getMappedResults().size());
+        for (Iterator<JSONObject> iterator = results.iterator(); iterator.hasNext(); ) {
+            JSONObject obj = iterator.next();
+            Map<String, String> type = new HashMap<>();
+            type.put("type", obj.getStr("_id"));
+            type.put("num", String.valueOf(obj.getInt("num")));
+            types.add(type);
+        }
+        return types;
     }
 
 

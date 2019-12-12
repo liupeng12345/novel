@@ -18,7 +18,7 @@ public class RabbitSenderTest {
     @Test
     public void contextLoads() {
         for (int i = 0; i < 100; i++)
-            rabbitSender.sendMessage(123123L, 123123L);
+            rabbitSender.sendMessage("adsfsdf");
     }
 
     @Autowired

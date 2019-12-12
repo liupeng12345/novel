@@ -1,12 +1,14 @@
 package com.pzhu.novel.service;
 
-import java.io.IOException;
-import java.util.List;
-
+import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.vo.ChapterVO;
 import com.pzhu.novel.vo.NovelContent;
 import org.springframework.data.domain.Page;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author 刘鹏 liupeng
@@ -28,7 +30,7 @@ public interface Novelservice {
      * @param limit
      * @return
      */
-    Page<NovelDocumnet> getNovels(String search, Integer page, Integer limit);
+    Page<NovelDocumnet> getNovels(NovelDocumnet search, Integer page, Integer limit);
 
     /**
      * 套接字请求python服务
@@ -37,7 +39,7 @@ public interface Novelservice {
      * @return
      * @throws IOException
      */
-    String search(String key) throws IOException;
+    CommonResult<List<NovelDocumnet>> search(String key) throws IOException;
 
     /**
      * 更新小说信息
@@ -62,4 +64,8 @@ public interface Novelservice {
     List<NovelDocumnet> findTop10ByUpdate();
 
     List<NovelDocumnet> findTop10ByWordCount();
+
+    List<String> getSites();
+
+    List<Map<String, String>> findNumberOfType();
 }

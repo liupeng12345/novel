@@ -30,4 +30,4 @@ public enum QueueEnum {
         this.name = name;
         this.routeKey = routeKey;
     }
-    }
+}

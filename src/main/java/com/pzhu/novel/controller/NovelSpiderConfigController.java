@@ -1,15 +1,14 @@
 package com.pzhu.novel.controller;
 
-import java.util.List;
-
 import com.pzhu.novel.common.api.CommonPage;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.mbg.model.NovelSpiderXpathConfig;
 import com.pzhu.novel.service.NovelSpiderXpathConfigService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author 刘鹏 liupeng
@@ -20,8 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "NovelSpiderConfigController", value = "小说爬虫配置")
 public class NovelSpiderConfigController {
 
-    @Autowired
-    private NovelSpiderXpathConfigService novelSpiderXpathConfigService;
+    private final NovelSpiderXpathConfigService novelSpiderXpathConfigService;
+
+    public NovelSpiderConfigController(NovelSpiderXpathConfigService novelSpiderXpathConfigService) {
+        this.novelSpiderXpathConfigService = novelSpiderXpathConfigService;
+    }
 
     @ApiOperation("分页查询")
     @GetMapping("/{pageNum}/{pageSize}")

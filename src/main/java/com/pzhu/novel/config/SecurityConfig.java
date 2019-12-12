@@ -29,7 +29,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * SpringSecurity的配置
- * Created by macro on 2018/4/26.
  */
 @Configuration
 @EnableWebSecurity
@@ -59,7 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js",
                         "/swagger-resources/**",
                         "/v2/api-docs/**",
-                        "webjars/**"
+                        "webjars/**",
+                        "/ws/**",
+                        "/api/ws/**"
                 )
                 .permitAll()
                 .antMatchers("/admin/login", "/admin/register")// 对登录注册要允许匿名访问

@@ -1,10 +1,5 @@
 package com.pzhu.novel.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.dto.AdminLoginParam;
 import com.pzhu.novel.mbg.model.Admin;
@@ -13,10 +8,14 @@ import com.pzhu.novel.service.AdminService;
 import com.pzhu.novel.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 后台用户管理
@@ -26,15 +25,18 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "AdminController", description = "后台管理员登录管理")
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private final AdminService adminService;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+
+    public AdminController(AdminService adminService, JwtTokenUtil jwtTokenUtil) {
+        this.adminService = adminService;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @ApiOperation(value = "用户注册")
     @PostMapping(value = "/register")
