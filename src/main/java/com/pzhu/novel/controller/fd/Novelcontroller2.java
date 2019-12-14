@@ -29,6 +29,13 @@ public class Novelcontroller2 {
         this.novelservice = novelservice;
     }
 
+    /**
+     *
+     * @param fun 搜索方法 1，查询 mongodb 2 。执行爬虫
+     * @param key 小说名或作者 关键字
+     * @return
+     * @throws IOException
+     */
     @GetMapping("/{fun}")
     @ApiOperation("搜索小说")
     public CommonResult<List<NovelDocumnet>> findNovel(@PathVariable("fun") String fun, String key) throws IOException {

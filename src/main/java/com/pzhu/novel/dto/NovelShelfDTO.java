@@ -1,12 +1,13 @@
 package com.pzhu.novel.dto;
 
-import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
+import com.pzhu.novel.mbg.model.NovelShelf;
+import com.pzhu.novel.mbg.model.NovelShelfRow;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class NovelShelfDTO {
-    private UserDTO userDTO;
-    private List<NovelDocumnet> novelDocumnetList;
+    private NovelShelf novelShelf;
+    private List<NovelShelfRow> novelShelfList;
 }
