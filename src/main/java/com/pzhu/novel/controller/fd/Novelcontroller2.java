@@ -8,6 +8,7 @@ import com.pzhu.novel.vo.NovelContent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,10 +29,10 @@ public class Novelcontroller2 {
         this.novelservice = novelservice;
     }
 
-    @GetMapping
+    @GetMapping("/{fun}")
     @ApiOperation("搜索小说")
-    public CommonResult<List<NovelDocumnet>> findNovel(String key) throws IOException {
-        return novelservice.search(key);
+    public CommonResult<List<NovelDocumnet>> findNovel(@PathVariable("fun") String fun, String key) throws IOException {
+        return novelservice.search(fun,key);
     }
 
     /**
@@ -42,7 +43,7 @@ public class Novelcontroller2 {
      */
     @GetMapping("/chapter")
     @ApiOperation("检索章节")
-    public CommonResult findChapters(String chaptersUrl ) throws IOException {
+    public CommonResult findChapters(String chaptersUrl) throws IOException {
         List<ChapterVO> chapters = novelservice.findChapters(chaptersUrl);
         if (chapters == null) {
             return CommonResult.success(null, "正在检索章节列表");
@@ -61,7 +62,7 @@ public class Novelcontroller2 {
     @ApiOperation("小说内容检索")
     public CommonResult<NovelContent> getContent(String contentUrl) throws IOException, InterruptedException {
         NovelContent content = novelservice.findContent(contentUrl);
-        return CommonResult.success(content,"正在检索内容");
+        return CommonResult.success(content, "正在检索内容");
     }
 
 
@@ -103,5 +104,4 @@ public class Novelcontroller2 {
 //      types.stream().sorted(Comparator.comparing())
         return CommonResult.success(types);
     }
-
 }

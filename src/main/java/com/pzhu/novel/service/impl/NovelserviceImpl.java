@@ -31,7 +31,9 @@ import java.util.concurrent.TimeUnit;
  **/
 @Service
 public class NovelserviceImpl implements Novelservice {
-
+    private static final String FUN1 = "1";
+    private static final String FUN2 = "2";
+    private static final String SEARCH_KEY_PREFIX = "novel:";
     @Autowired
     private NovelDocumnetRepository novelDocumnetRepository;
 
@@ -72,7 +74,7 @@ public class NovelserviceImpl implements Novelservice {
         Boolean islock = stringRedisTemplate.opsForValue().setIfAbsent(key, valueJson);
         if (islock) {
             //没有请求过
-            stringRedisTemplate.expire(key, 30*60, TimeUnit.SECONDS);
+            stringRedisTemplate.expire(key, 30 * 60, TimeUnit.SECONDS);
             String msg = "key" + key;
 //            SpiderTcpClient client = spiderTcpClientPool.getClient();
 //            client.sendMessages(msg);
@@ -135,7 +137,7 @@ public class NovelserviceImpl implements Novelservice {
             Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(chaptersUrlLock.replace("/", ":"), valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(chaptersUrlLock.replace("/", ":"), 30*60, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(chaptersUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
                 chaptersUrl = "chapter" + chaptersUrl;
                 rabbitSender.sendMessage(chaptersUrl);
 //                SpiderTcpClient client = spiderTcpClientPool.getClient();
@@ -160,7 +162,7 @@ public class NovelserviceImpl implements Novelservice {
             Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson);
             if (isLock) {
                 //没有请求过
-                stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30*60, TimeUnit.SECONDS);
+                stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
                 contentUrl = "content" + contentUrl;
 //                SpiderTcpClient client = spiderTcpClientPool.getClient();
 //                client.sendMessages(contentUrl);
@@ -176,8 +178,6 @@ public class NovelserviceImpl implements Novelservice {
         }
         NovelContent novelContent = JSON.parseObject(contentJsonStr, NovelContent.class);
         return novelContent;
-
-
     }
 
     @Override
@@ -234,6 +234,28 @@ public class NovelserviceImpl implements Novelservice {
             types.add(type);
         }
         return types;
+    }
+
+    @Override
+    public CommonResult<List<NovelDocumnet>> search(String fun, String key) throws IOException {
+        List<NovelDocumnet> novels = null;
+        String searchKey = SEARCH_KEY_PREFIX + key;
+        Set<String> novelJsons = stringRedisTemplate.opsForSet().members(searchKey);
+        if (!novelJsons.isEmpty()) {
+            for (String novelJson: novelJsons) {
+                NovelDocumnet novelDocumnet = JSON.parseObject(novelJson, NovelDocumnet.class);
+                novels.add(novelDocumnet);
+            }
+            return  CommonResult.success(novels);
+        }
+        //1. 查mongo
+        if (StringUtils.equals(FUN1, fun)) {
+            novels = novelDocumnetRepository.findAllByAuthorIsLikeOrNameIsLike(key, key);
+        } else {
+            search(key);
+            return search(FUN1, key);
+        }
+        return CommonResult.success(novels);
     }
 
 

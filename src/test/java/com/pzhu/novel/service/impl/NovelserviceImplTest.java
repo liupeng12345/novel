@@ -1,14 +1,14 @@
 package com.pzhu.novel.service.impl;
 
 
-import java.util.Map;
-
 import com.pzhu.novel.service.Novelservice;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -23,11 +23,7 @@ public class NovelserviceImplTest {
     }
 
     @Test
-    public void  Test(){
-        Map<String, String> numberOfType = (Map<String, String>) novelservice.findNumberOfType();
-        numberOfType.forEach((key,v)-> {
-            System.out.println(key+"::"+v);
-        });
-
+    public void  Test() throws IOException {
+        novelservice.search("1","龙");
     }
 }

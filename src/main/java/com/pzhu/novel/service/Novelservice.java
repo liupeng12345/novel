@@ -68,4 +68,6 @@ public interface Novelservice {
     List<String> getSites();
 
     List<Map<String, String>> findNumberOfType();
+
+    CommonResult<List<NovelDocumnet>> search(String fun, String key) throws IOException;
 }

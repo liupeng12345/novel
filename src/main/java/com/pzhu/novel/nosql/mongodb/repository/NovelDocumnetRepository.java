@@ -20,5 +20,7 @@ public interface NovelDocumnetRepository extends MongoRepository<NovelDocumnet, 
 
     List<NovelDocumnet> findTop12ByOrderByWordCountDesc();
 
+    List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLike(String s, String key);
+
 
 }
