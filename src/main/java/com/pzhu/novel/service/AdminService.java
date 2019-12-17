@@ -17,7 +17,4 @@ public interface AdminService
 
     List<Permission> getPermissionList(Long id);
 
-    Admin register(Admin adminParam);
-
-    String login(String username, String password);
 }

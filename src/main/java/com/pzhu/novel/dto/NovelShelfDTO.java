@@ -9,5 +9,5 @@ import java.util.List;
 @Data
 public class NovelShelfDTO {
     private NovelShelf novelShelf;
-    private List<NovelShelfRow> novelShelfList;
+    private List<NovelShelfRow> novelShelfRowList;
 }

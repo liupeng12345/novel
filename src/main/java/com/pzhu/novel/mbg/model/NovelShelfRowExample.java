@@ -305,76 +305,6 @@ public class NovelShelfRowExample {
             return (Criteria) this;
         }
 
-        public Criteria andReadChapterIdIsNull() {
-            addCriterion("read_chapter_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdIsNotNull() {
-            addCriterion("read_chapter_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdEqualTo(String value) {
-            addCriterion("read_chapter_id =", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdNotEqualTo(String value) {
-            addCriterion("read_chapter_id <>", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdGreaterThan(String value) {
-            addCriterion("read_chapter_id >", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdGreaterThanOrEqualTo(String value) {
-            addCriterion("read_chapter_id >=", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdLessThan(String value) {
-            addCriterion("read_chapter_id <", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdLessThanOrEqualTo(String value) {
-            addCriterion("read_chapter_id <=", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdLike(String value) {
-            addCriterion("read_chapter_id like", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdNotLike(String value) {
-            addCriterion("read_chapter_id not like", value, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdIn(List<String> values) {
-            addCriterion("read_chapter_id in", values, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdNotIn(List<String> values) {
-            addCriterion("read_chapter_id not in", values, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdBetween(String value1, String value2) {
-            addCriterion("read_chapter_id between", value1, value2, "readChapterId");
-            return (Criteria) this;
-        }
-
-        public Criteria andReadChapterIdNotBetween(String value1, String value2) {
-            addCriterion("read_chapter_id not between", value1, value2, "readChapterId");
-            return (Criteria) this;
-        }
-
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -435,66 +365,6 @@ public class NovelShelfRowExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNull() {
-            addCriterion("update_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeIsNotNull() {
-            addCriterion("update_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeEqualTo(Date value) {
-            addCriterion("update_time =", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeNotEqualTo(Date value) {
-            addCriterion("update_time <>", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeGreaterThan(Date value) {
-            addCriterion("update_time >", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("update_time >=", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeLessThan(Date value) {
-            addCriterion("update_time <", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("update_time <=", value, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeIn(List<Date> values) {
-            addCriterion("update_time in", values, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeNotIn(List<Date> values) {
-            addCriterion("update_time not in", values, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
-            addCriterion("update_time between", value1, value2, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("update_time not between", value1, value2, "updateTime");
-            return (Criteria) this;
-        }
-
         public Criteria andNovelShelfIdIsNull() {
             addCriterion("novel_shelf_id is null");
             return (Criteria) this;
@@ -552,6 +422,66 @@ public class NovelShelfRowExample {
 
         public Criteria andNovelShelfIdNotBetween(Integer value1, Integer value2) {
             addCriterion("novel_shelf_id not between", value1, value2, "novelShelfId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdIsNull() {
+            addCriterion("read_log_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdIsNotNull() {
+            addCriterion("read_log_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdEqualTo(Integer value) {
+            addCriterion("read_log_id =", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdNotEqualTo(Integer value) {
+            addCriterion("read_log_id <>", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdGreaterThan(Integer value) {
+            addCriterion("read_log_id >", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("read_log_id >=", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdLessThan(Integer value) {
+            addCriterion("read_log_id <", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdLessThanOrEqualTo(Integer value) {
+            addCriterion("read_log_id <=", value, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdIn(List<Integer> values) {
+            addCriterion("read_log_id in", values, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdNotIn(List<Integer> values) {
+            addCriterion("read_log_id not in", values, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdBetween(Integer value1, Integer value2) {
+            addCriterion("read_log_id between", value1, value2, "readLogId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReadLogIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("read_log_id not between", value1, value2, "readLogId");
             return (Criteria) this;
         }
     }

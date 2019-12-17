@@ -1,6 +1,5 @@
 package com.pzhu.novel.config;
 
-import java.util.List;
 
 import com.pzhu.novel.component.JwtAuthenticationTokenFilter;
 import com.pzhu.novel.component.RestAuthenticationEntryPoint;
@@ -9,7 +8,6 @@ import com.pzhu.novel.dto.AdminUserDetails;
 import com.pzhu.novel.mbg.model.Admin;
 import com.pzhu.novel.mbg.model.Permission;
 import com.pzhu.novel.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +24,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.List;
+
 
 /**
  * SpringSecurity的配置
@@ -34,12 +34,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private final AdminService adminService;
+    private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    public SecurityConfig(AdminService adminService, RestfulAccessDeniedHandler restfulAccessDeniedHandler, RestAuthenticationEntryPoint restAuthenticationEntryPoint) {
+        this.adminService = adminService;
+        this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
+        this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

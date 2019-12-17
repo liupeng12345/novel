@@ -13,17 +13,14 @@ public class NovelShelfRow implements Serializable {
     @ApiModelProperty(value = "小说在数据库id")
     private String novelId;
 
-    @ApiModelProperty(value = "小说阅读到的章节Id")
-    private String readChapterId;
-
     @ApiModelProperty(value = "加入书单时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "阅读记录刷新时间")
-    private Date updateTime;
-
     @ApiModelProperty(value = "书架id")
     private Integer novelShelfId;
+
+    @ApiModelProperty(value = "阅读记录id")
+    private Integer readLogId;
 
     private static final long serialVersionUID = 1L;
 
@@ -51,14 +48,6 @@ public class NovelShelfRow implements Serializable {
         this.novelId = novelId;
     }
 
-    public String getReadChapterId() {
-        return readChapterId;
-    }
-
-    public void setReadChapterId(String readChapterId) {
-        this.readChapterId = readChapterId;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -67,20 +56,20 @@ public class NovelShelfRow implements Serializable {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Integer getNovelShelfId() {
         return novelShelfId;
     }
 
     public void setNovelShelfId(Integer novelShelfId) {
         this.novelShelfId = novelShelfId;
+    }
+
+    public Integer getReadLogId() {
+        return readLogId;
+    }
+
+    public void setReadLogId(Integer readLogId) {
+        this.readLogId = readLogId;
     }
 
     @Override
@@ -92,10 +81,9 @@ public class NovelShelfRow implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", novelName=").append(novelName);
         sb.append(", novelId=").append(novelId);
-        sb.append(", readChapterId=").append(readChapterId);
         sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
         sb.append(", novelShelfId=").append(novelShelfId);
+        sb.append(", readLogId=").append(readLogId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

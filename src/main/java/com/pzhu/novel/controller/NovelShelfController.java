@@ -2,11 +2,9 @@ package com.pzhu.novel.controller;
 
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.dto.NovelShelfDTO;
-import com.pzhu.novel.mbg.model.NovelShelf;
 import com.pzhu.novel.service.NovelShelfService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,30 +18,33 @@ import java.util.List;
 @Api(tags = "NovelShelfController", description = "书架接口")
 public class NovelShelfController {
 
-    @Autowired
-    private NovelShelfService novelShelfService;
+    private final NovelShelfService novelShelfService;
+
+    public NovelShelfController(NovelShelfService novelShelfService) {
+        this.novelShelfService = novelShelfService;
+    }
 
     @PostMapping
     @ApiOperation("创建书架")
-    public CommonResult add(NovelShelf novelShelf) {
-        novelShelfService.add(novelShelf);
-        return CommonResult.success(novelShelf);
+    public CommonResult add(NovelShelfDTO novelShelfDTO) {
+        novelShelfService.add(novelShelfDTO);
+        return CommonResult.success(novelShelfDTO);
     }
 
     @PutMapping
     @ApiOperation("修改书架")
-    public  CommonResult updateShelf(NovelShelf novelShelf)
+    public  CommonResult updateShelf(NovelShelfDTO novelShelfDTO)
     {
-        novelShelfService.update(novelShelf);
-        return  CommonResult.success(novelShelf);
+        novelShelfService.update(novelShelfDTO);
+        return  CommonResult.success(novelShelfDTO);
     }
 
     @DeleteMapping("{shelfId}")
     @ApiOperation("删除书架")
     public CommonResult deleteShelf(@PathVariable("shelfId") Integer shelfId)
     {
-        NovelShelf novelShelf  =  novelShelfService.delete(shelfId);
-        return CommonResult.success(novelShelf);
+        NovelShelfDTO novelShelfDTO  =  novelShelfService.delete(shelfId);
+        return CommonResult.success(novelShelfDTO);
     }
 
     @GetMapping("{userId}")

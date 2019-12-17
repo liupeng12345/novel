@@ -1,14 +1,22 @@
 package com.pzhu.novel.service;
 
-import java.util.List;
-
 import com.pzhu.novel.dto.UserDTO;
+import com.pzhu.novel.mbg.model.Admin;
+
+import java.util.List;
 
 /**
  * @author 刘鹏 liupeng
  * @date 2019/10/8
  **/
 public interface UserService {
+
+
+
+    Admin register(Admin adminParam);
+
+    String login(String username, String password);
+
     /**
      * 通过 用户id获取用户信息
      *

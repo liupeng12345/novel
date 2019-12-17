@@ -1,16 +1,15 @@
 package com.pzhu.novel.service;
 
 import com.pzhu.novel.dto.NovelShelfDTO;
-import com.pzhu.novel.mbg.model.NovelShelf;
 
 import java.util.List;
 
 public interface NovelShelfService {
-    void add(NovelShelf novelShelf);
+    void add(NovelShelfDTO novelShelfDTO);
 
-    void update(NovelShelf novelShelf);
+    void update(NovelShelfDTO novelShelfDTO);
 
-    NovelShelf delete(Integer shelfId);
+    NovelShelfDTO delete(Integer shelfId);
 
     List<NovelShelfDTO> getNovelShelfOfUser(Integer userId);
 }
