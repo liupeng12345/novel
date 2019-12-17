@@ -1,8 +1,5 @@
 package com.pzhu.novel.config;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,15 +14,20 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Swagger2API文档的配置
+ *
  * @author lp
  */
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
@@ -40,41 +42,67 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("SwaggerUI演示")
-                .description("mall-tiny")
-                .contact("macro")
+                .title("小说爬虫项目")
+                .description("novel")
                 .version("1.0")
                 .build();
     }
 
+
+//    private List<ApiKey> securitySchemes() {
+//        //设置请求头信息
+//        List<ApiKey> result = new ArrayList<>();
+//        ApiKey apiKey = new ApiKey("Authorization", "Authorization", "header");
+//        result.add(apiKey);
+//        return result;
+//    }
+//
+//    private List<SecurityContext> securityContexts() {
+//        //设置需要登录认证的路径
+//        List<SecurityContext> result = new ArrayList<>();
+//        //result.add(getContextByPath("/brand/.*"));
+//        return result;
+//    }
+//
+//    private SecurityContext getContextByPath(String pathRegex) {
+//        return SecurityContext.builder()
+//                .securityReferences(defaultAuth())
+//                .forPaths(PathSelectors.regex(pathRegex))
+//                .build();
+//    }
+//
+//    private List<SecurityReference> defaultAuth() {
+//        List<SecurityReference> result = new ArrayList<>();
+//        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+//        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+//        authorizationScopes[0] = authorizationScope;
+//        result.add(new SecurityReference("Authorization", authorizationScopes));
+//        return result;
+//    }
+
+
     private List<ApiKey> securitySchemes() {
-        //设置请求头信息
-        List<ApiKey> result = new ArrayList<>();
-        ApiKey apiKey = new ApiKey("Authorization", "Authorization", "header");
-        result.add(apiKey);
-        return result;
+
+        return new ArrayList(
+                Collections.singleton(new ApiKey("Authorization", "Authorization", "header")));
     }
 
     private List<SecurityContext> securityContexts() {
-        //设置需要登录认证的路径
-        List<SecurityContext> result = new ArrayList<>();
-        //result.add(getContextByPath("/brand/.*"));
-        return result;
+        return new ArrayList(
+                Collections.singleton(SecurityContext.builder()
+                        .securityReferences(defaultAuth())
+                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
+                        .build())
+        );
     }
 
-    private SecurityContext getContextByPath(String pathRegex){
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex(pathRegex))
-                .build();
-    }
-
-    private List<SecurityReference> defaultAuth() {
-        List<SecurityReference> result = new ArrayList<>();
+    List<SecurityReference> defaultAuth() {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        result.add(new SecurityReference("Authorization", authorizationScopes));
-        return result;
+        return new ArrayList(
+                Collections.singleton(new SecurityReference("Authorization", authorizationScopes)));
     }
+
+
 }
