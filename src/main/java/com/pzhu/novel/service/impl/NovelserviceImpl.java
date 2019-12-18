@@ -128,7 +128,7 @@ public class NovelserviceImpl implements Novelservice {
     }
 
     @Override
-    public List<ChapterVO> findChapters(String chaptersUrl) throws IOException {
+    public List<ChapterVO> findChapters(String chaptersUrl) throws IOException, InterruptedException {
         String chapterListStrJsonStr = stringRedisTemplate.opsForValue().get(chaptersUrl.replace("/", ":"));
         if (StringUtils.isBlank(chapterListStrJsonStr)) {
             //如果为空，代表redis中没有
@@ -138,13 +138,14 @@ public class NovelserviceImpl implements Novelservice {
             if (isLock) {
                 //没有请求过
                 stringRedisTemplate.expire(chaptersUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
-                chaptersUrl = "chapter" + chaptersUrl;
-                rabbitSender.sendMessage(chaptersUrl);
+                String tchaptersUrl = "chapter" + chaptersUrl;
+                rabbitSender.sendMessage(tchaptersUrl);
 //                SpiderTcpClient client = spiderTcpClientPool.getClient();
 //                client.sendMessages(chaptersUrl);
 //                spiderTcpClientPool.closeClient(client);
-
+                Thread.sleep(1000);
             }
+            return findChapters(chaptersUrl);
         }
         List<ChapterVO> chapterVOS = JSON.parseArray(chapterListStrJsonStr, ChapterVO.class);
         return chapterVOS;
@@ -242,11 +243,11 @@ public class NovelserviceImpl implements Novelservice {
         String searchKey = SEARCH_KEY_PREFIX + key;
         Set<String> novelJsons = stringRedisTemplate.opsForSet().members(searchKey);
         if (!novelJsons.isEmpty()) {
-            for (String novelJson: novelJsons) {
+            for (String novelJson : novelJsons) {
                 NovelDocumnet novelDocumnet = JSON.parseObject(novelJson, NovelDocumnet.class);
                 novels.add(novelDocumnet);
             }
-            return  CommonResult.success(novels);
+            return CommonResult.success(novels);
         }
         //1. 查mongo
         if (StringUtils.equals(FUN1, fun)) {
@@ -256,6 +257,17 @@ public class NovelserviceImpl implements Novelservice {
             return search(FUN1, key);
         }
         return CommonResult.success(novels);
+    }
+
+    @Override
+    public List<NovelDocumnet> getTypeByTypeName(String typeName) {
+        return novelDocumnetRepository.findAllByTypeEquals(typeName);
+    }
+
+    @Override
+    public NovelDocumnet getNovelByNovelId(String novelId) {
+        Optional<NovelDocumnet> optional = novelDocumnetRepository.findById(novelId);
+        return optional.isPresent() ? optional.get() : null;
     }
 
 

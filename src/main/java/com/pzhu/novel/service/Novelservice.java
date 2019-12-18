@@ -53,7 +53,7 @@ public interface Novelservice {
 
     List<String> getTypes();
 
-    List<ChapterVO> findChapters(String chaptersUrl) throws IOException;
+    List<ChapterVO> findChapters(String chaptersUrl) throws IOException, InterruptedException;
 
     NovelContent findContent(String contentUrl) throws IOException, InterruptedException;
 
@@ -70,4 +70,8 @@ public interface Novelservice {
     List<Map<String, String>> findNumberOfType();
 
     CommonResult<List<NovelDocumnet>> search(String fun, String key) throws IOException;
+
+    List<NovelDocumnet> getTypeByTypeName(String typeName);
+
+    NovelDocumnet getNovelByNovelId(String novelId);
 }

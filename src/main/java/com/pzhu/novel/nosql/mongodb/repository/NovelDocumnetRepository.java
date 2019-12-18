@@ -22,5 +22,8 @@ public interface NovelDocumnetRepository extends MongoRepository<NovelDocumnet, 
 
     List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLike(String s, String key);
 
+    List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLikeAndTypeEquals(String s, String key, String type);
+
+    List<NovelDocumnet> findAllByTypeEquals(String type);
 
 }

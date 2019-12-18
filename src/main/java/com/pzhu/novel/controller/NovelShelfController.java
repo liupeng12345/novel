@@ -47,7 +47,7 @@ public class NovelShelfController {
         return CommonResult.success(novelShelfDTO);
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("/userId/{userId}")
     @ApiOperation("查询用户的书架")
     public CommonResult getNovelShelf(@PathVariable("userId") Integer userId)
     {

@@ -78,7 +78,7 @@ public class AdminController {
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());
             String userName = jwtTokenUtil.getUserNameFromToken(authToken);
-            admin.setUsername(userName);
+            admin = adminService.getAdminByUsername(userName);
         }
         return CommonResult.success(admin);
     }

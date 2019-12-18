@@ -30,7 +30,6 @@ public class MongoConfig {
 
         // Don't save _class to mongo 不使用_class 字段
         mappingConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
         return mappingConverter;
     }
 

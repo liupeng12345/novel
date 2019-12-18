@@ -30,16 +30,15 @@ public class Novelcontroller2 {
     }
 
     /**
-     *
      * @param fun 搜索方法 1，查询 mongodb 2 。执行爬虫
      * @param key 小说名或作者 关键字
      * @return
      * @throws IOException
      */
-    @GetMapping("/{fun}")
+    @GetMapping("/fun/{fun}")
     @ApiOperation("搜索小说")
     public CommonResult<List<NovelDocumnet>> findNovel(@PathVariable("fun") String fun, String key) throws IOException {
-        return novelservice.search(fun,key);
+        return novelservice.search(fun, key);
     }
 
     /**
@@ -50,7 +49,7 @@ public class Novelcontroller2 {
      */
     @GetMapping("/chapter")
     @ApiOperation("检索章节")
-    public CommonResult findChapters(String chaptersUrl) throws IOException {
+    public CommonResult findChapters(String chaptersUrl) throws IOException, InterruptedException {
         List<ChapterVO> chapters = novelservice.findChapters(chaptersUrl);
         if (chapters == null) {
             return CommonResult.success(null, "正在检索章节列表");
@@ -110,5 +109,19 @@ public class Novelcontroller2 {
         List<String> types = novelservice.getTypes();
 //      types.stream().sorted(Comparator.comparing())
         return CommonResult.success(types);
+    }
+
+    @GetMapping("type/{typeName}")
+    @ApiOperation("根据小说类别查询")
+    public CommonResult getTypeByName(@PathVariable("typeName") String typeName) {
+        List<NovelDocumnet> novelDocumnets = novelservice.getTypeByTypeName(typeName);
+        return CommonResult.success(novelDocumnets);
+    }
+
+    @GetMapping("{novelId}")
+    @ApiOperation("根据小说Id查找小说")
+    public CommonResult getNovelByNovelName(@PathVariable("novelId") String novelId) {
+        NovelDocumnet novelDocumnet = novelservice.getNovelByNovelId(novelId);
+        return  CommonResult.success(novelDocumnet);
     }
 }
