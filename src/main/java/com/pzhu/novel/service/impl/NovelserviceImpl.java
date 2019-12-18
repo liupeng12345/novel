@@ -239,7 +239,7 @@ public class NovelserviceImpl implements Novelservice {
 
     @Override
     public CommonResult<List<NovelDocumnet>> search(String fun, String key) throws IOException {
-        List<NovelDocumnet> novels = null;
+        List<NovelDocumnet> novels = new ArrayList<>();
         String searchKey = SEARCH_KEY_PREFIX + key;
         Set<String> novelJsons = stringRedisTemplate.opsForSet().members(searchKey);
         if (!novelJsons.isEmpty()) {
@@ -254,7 +254,7 @@ public class NovelserviceImpl implements Novelservice {
             novels = novelDocumnetRepository.findAllByAuthorIsLikeOrNameIsLike(key, key);
         } else {
             search(key);
-            return search(FUN1, key);
+            return CommonResult.success(null);
         }
         return CommonResult.success(novels);
     }
