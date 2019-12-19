@@ -295,73 +295,73 @@ public class ReadLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdIsNull() {
-            addCriterion("chapter_id is null");
+        public Criteria andChapterUrlIsNull() {
+            addCriterion("chapter_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdIsNotNull() {
-            addCriterion("chapter_id is not null");
+        public Criteria andChapterUrlIsNotNull() {
+            addCriterion("chapter_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdEqualTo(String value) {
-            addCriterion("chapter_id =", value, "chapterId");
+        public Criteria andChapterUrlEqualTo(String value) {
+            addCriterion("chapter_url =", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotEqualTo(String value) {
-            addCriterion("chapter_id <>", value, "chapterId");
+        public Criteria andChapterUrlNotEqualTo(String value) {
+            addCriterion("chapter_url <>", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdGreaterThan(String value) {
-            addCriterion("chapter_id >", value, "chapterId");
+        public Criteria andChapterUrlGreaterThan(String value) {
+            addCriterion("chapter_url >", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdGreaterThanOrEqualTo(String value) {
-            addCriterion("chapter_id >=", value, "chapterId");
+        public Criteria andChapterUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("chapter_url >=", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdLessThan(String value) {
-            addCriterion("chapter_id <", value, "chapterId");
+        public Criteria andChapterUrlLessThan(String value) {
+            addCriterion("chapter_url <", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdLessThanOrEqualTo(String value) {
-            addCriterion("chapter_id <=", value, "chapterId");
+        public Criteria andChapterUrlLessThanOrEqualTo(String value) {
+            addCriterion("chapter_url <=", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdLike(String value) {
-            addCriterion("chapter_id like", value, "chapterId");
+        public Criteria andChapterUrlLike(String value) {
+            addCriterion("chapter_url like", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotLike(String value) {
-            addCriterion("chapter_id not like", value, "chapterId");
+        public Criteria andChapterUrlNotLike(String value) {
+            addCriterion("chapter_url not like", value, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdIn(List<String> values) {
-            addCriterion("chapter_id in", values, "chapterId");
+        public Criteria andChapterUrlIn(List<String> values) {
+            addCriterion("chapter_url in", values, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotIn(List<String> values) {
-            addCriterion("chapter_id not in", values, "chapterId");
+        public Criteria andChapterUrlNotIn(List<String> values) {
+            addCriterion("chapter_url not in", values, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdBetween(String value1, String value2) {
-            addCriterion("chapter_id between", value1, value2, "chapterId");
+        public Criteria andChapterUrlBetween(String value1, String value2) {
+            addCriterion("chapter_url between", value1, value2, "chapterUrl");
             return (Criteria) this;
         }
 
-        public Criteria andChapterIdNotBetween(String value1, String value2) {
-            addCriterion("chapter_id not between", value1, value2, "chapterId");
+        public Criteria andChapterUrlNotBetween(String value1, String value2) {
+            addCriterion("chapter_url not between", value1, value2, "chapterUrl");
             return (Criteria) this;
         }
 

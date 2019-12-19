@@ -1,6 +1,7 @@
 package com.pzhu.novel.controller;
 
 import com.pzhu.novel.common.api.CommonResult;
+import com.pzhu.novel.dto.ReadLogDTO;
 import com.pzhu.novel.mbg.model.ReadLog;
 import com.pzhu.novel.service.ReadLogService;
 import io.swagger.annotations.Api;
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(tags = "AdminController", description = "阅读记录管理")
-@RequestMapping("/readLog")
+@Api(tags = "ReadLogController", description = "阅读记录管理")
+@RequestMapping("/api/readLog")
 public class ReadLogController {
     @Autowired
     private ReadLogService readLogService;
@@ -26,12 +27,12 @@ public class ReadLogController {
     }
 
     // 查询 阅读记录
-    @GetMapping
+    @GetMapping("/userId/{userId}")
     @ApiOperation("查询阅读记录")
-    public CommonResult query() {
-        List<ReadLog> readLogList = readLogService.query();
+    public CommonResult query(@PathVariable("userId") Integer userId) {
+        List<ReadLogDTO> readLogDTOList = readLogService.query(userId);
 
-        return CommonResult.success(readLogList);
+        return CommonResult.success(readLogDTOList);
     }
 
     // 删除 阅读记录

@@ -26,4 +26,6 @@ public interface NovelDocumnetRepository extends MongoRepository<NovelDocumnet, 
 
     List<NovelDocumnet> findAllByTypeEquals(String type);
 
+    List<NovelDocumnet> findAllByChaptersUrlEquals(String chapterUrl);
+
 }

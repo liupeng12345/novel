@@ -14,8 +14,8 @@ public class ReadLog implements Serializable {
     @ApiModelProperty(value = "小说id")
     private String novelId;
 
-    @ApiModelProperty(value = "章节id")
-    private String chapterId;
+    @ApiModelProperty(value = "阅读到的章节")
+    private String chapterUrl;
 
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
@@ -49,12 +49,12 @@ public class ReadLog implements Serializable {
         this.novelId = novelId;
     }
 
-    public String getChapterId() {
-        return chapterId;
+    public String getChapterUrl() {
+        return chapterUrl;
     }
 
-    public void setChapterId(String chapterId) {
-        this.chapterId = chapterId;
+    public void setChapterUrl(String chapterUrl) {
+        this.chapterUrl = chapterUrl;
     }
 
     public Date getUpdateTime() {
@@ -82,7 +82,7 @@ public class ReadLog implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", userId=").append(userId);
         sb.append(", novelId=").append(novelId);
-        sb.append(", chapterId=").append(chapterId);
+        sb.append(", chapterUrl=").append(chapterUrl);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

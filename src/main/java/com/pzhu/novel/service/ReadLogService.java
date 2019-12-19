@@ -1,5 +1,6 @@
 package com.pzhu.novel.service;
 
+import com.pzhu.novel.dto.ReadLogDTO;
 import com.pzhu.novel.mbg.model.ReadLog;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 public interface ReadLogService {
     void add(ReadLog readLog);
 
-    List<ReadLog> query();
+    List<ReadLogDTO> query(Integer userId);
 
     void delete(Integer readLogId);
 

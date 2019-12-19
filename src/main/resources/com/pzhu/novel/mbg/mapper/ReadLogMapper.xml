@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="novel_id" jdbcType="VARCHAR" property="novelId" />
-    <result column="chapter_id" jdbcType="VARCHAR" property="chapterId" />
+    <result column="chapter_url" jdbcType="VARCHAR" property="chapterUrl" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, novel_id, chapter_id, update_time, create_time
+    id, user_id, novel_id, chapter_url, update_time, create_time
   </sql>
   <select id="selectByExample" parameterType="com.pzhu.novel.mbg.model.ReadLogExample" resultMap="BaseResultMap">
     select
@@ -104,9 +104,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into read_log (user_id, novel_id, chapter_id, 
+    insert into read_log (user_id, novel_id, chapter_url, 
       update_time, create_time)
-    values (#{userId,jdbcType=INTEGER}, #{novelId,jdbcType=VARCHAR}, #{chapterId,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{novelId,jdbcType=VARCHAR}, #{chapterUrl,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.pzhu.novel.mbg.model.ReadLog">
@@ -121,8 +121,8 @@
       <if test="novelId != null">
         novel_id,
       </if>
-      <if test="chapterId != null">
-        chapter_id,
+      <if test="chapterUrl != null">
+        chapter_url,
       </if>
       <if test="updateTime != null">
         update_time,
@@ -138,8 +138,8 @@
       <if test="novelId != null">
         #{novelId,jdbcType=VARCHAR},
       </if>
-      <if test="chapterId != null">
-        #{chapterId,jdbcType=VARCHAR},
+      <if test="chapterUrl != null">
+        #{chapterUrl,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
@@ -167,8 +167,8 @@
       <if test="record.novelId != null">
         novel_id = #{record.novelId,jdbcType=VARCHAR},
       </if>
-      <if test="record.chapterId != null">
-        chapter_id = #{record.chapterId,jdbcType=VARCHAR},
+      <if test="record.chapterUrl != null">
+        chapter_url = #{record.chapterUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -186,7 +186,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       novel_id = #{record.novelId,jdbcType=VARCHAR},
-      chapter_id = #{record.chapterId,jdbcType=VARCHAR},
+      chapter_url = #{record.chapterUrl,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -202,8 +202,8 @@
       <if test="novelId != null">
         novel_id = #{novelId,jdbcType=VARCHAR},
       </if>
-      <if test="chapterId != null">
-        chapter_id = #{chapterId,jdbcType=VARCHAR},
+      <if test="chapterUrl != null">
+        chapter_url = #{chapterUrl,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -218,7 +218,7 @@
     update read_log
     set user_id = #{userId,jdbcType=INTEGER},
       novel_id = #{novelId,jdbcType=VARCHAR},
-      chapter_id = #{chapterId,jdbcType=VARCHAR},
+      chapter_url = #{chapterUrl,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

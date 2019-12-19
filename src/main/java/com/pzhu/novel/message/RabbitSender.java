@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @Component
@@ -23,6 +24,18 @@ public class RabbitSender {
         //给延迟队列发送消息
         rabbitTemplate.convertAndSend(QueueEnum.QUEUE_SPIDER_CANCEL.getExchange(), QueueEnum.QUEUE_SPIDER_CANCEL.getRouteKey(), message.getBytes(Charset.forName("utf-8")));
         LOGGER.info("send delay message orderId:{}", message);
+    }
+
+    public void sendReadLogInsert(String url, String  userName) {
+        QueueEnum readLogInsertQueue = QueueEnum.QUEUE_READ_LOG_INSERT;
+        String msg = url + "," + userName;
+        rabbitTemplate.convertAndSend(readLogInsertQueue.getExchange(), readLogInsertQueue.getRouteKey(), msg.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public void sendReadLogUpdate(String url, String  userName) {
+        QueueEnum readLogInsertQueue = QueueEnum.QUEUE_READ_LOG_UPDATE;
+        String msg = url + "," + userName;
+        rabbitTemplate.convertAndSend(readLogInsertQueue.getExchange(), readLogInsertQueue.getRouteKey(), msg.getBytes(StandardCharsets.UTF_8));
     }
 
 }

@@ -17,7 +17,7 @@ public class NovelShelf implements Serializable {
     private Date updateTime;
 
     @ApiModelProperty(value = "主人")
-    private Integer owner;
+    private String owner;
 
     @ApiModelProperty(value = "介绍")
     private String introduction;
@@ -56,11 +56,11 @@ public class NovelShelf implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(Integer owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 

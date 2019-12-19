@@ -6,7 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="owner" jdbcType="INTEGER" property="owner" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pzhu.novel.mbg.model.NovelShelf">
     <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
@@ -130,7 +130,7 @@
     insert into novel_shelf (name, create_time, update_time, 
       owner, introduction)
     values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{owner,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR})
+      #{owner,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.pzhu.novel.mbg.model.NovelShelf">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -165,7 +165,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="owner != null">
-        #{owner,jdbcType=INTEGER},
+        #{owner,jdbcType=VARCHAR},
       </if>
       <if test="introduction != null">
         #{introduction,jdbcType=LONGVARCHAR},
@@ -194,7 +194,7 @@
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.owner != null">
-        owner = #{record.owner,jdbcType=INTEGER},
+        owner = #{record.owner,jdbcType=VARCHAR},
       </if>
       <if test="record.introduction != null">
         introduction = #{record.introduction,jdbcType=LONGVARCHAR},
@@ -210,7 +210,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      owner = #{record.owner,jdbcType=INTEGER},
+      owner = #{record.owner,jdbcType=VARCHAR},
       introduction = #{record.introduction,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -222,7 +222,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      owner = #{record.owner,jdbcType=INTEGER}
+      owner = #{record.owner,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -240,7 +240,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="owner != null">
-        owner = #{owner,jdbcType=INTEGER},
+        owner = #{owner,jdbcType=VARCHAR},
       </if>
       <if test="introduction != null">
         introduction = #{introduction,jdbcType=LONGVARCHAR},
@@ -253,7 +253,7 @@
     set name = #{name,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      owner = #{owner,jdbcType=INTEGER},
+      owner = #{owner,jdbcType=VARCHAR},
       introduction = #{introduction,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -262,7 +262,7 @@
     set name = #{name,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      owner = #{owner,jdbcType=INTEGER}
+      owner = #{owner,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

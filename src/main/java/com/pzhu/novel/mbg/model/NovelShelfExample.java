@@ -365,52 +365,62 @@ public class NovelShelfExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwnerEqualTo(Integer value) {
+        public Criteria andOwnerEqualTo(String value) {
             addCriterion("owner =", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotEqualTo(Integer value) {
+        public Criteria andOwnerNotEqualTo(String value) {
             addCriterion("owner <>", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerGreaterThan(Integer value) {
+        public Criteria andOwnerGreaterThan(String value) {
             addCriterion("owner >", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOwnerGreaterThanOrEqualTo(String value) {
             addCriterion("owner >=", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLessThan(Integer value) {
+        public Criteria andOwnerLessThan(String value) {
             addCriterion("owner <", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerLessThanOrEqualTo(Integer value) {
+        public Criteria andOwnerLessThanOrEqualTo(String value) {
             addCriterion("owner <=", value, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIn(List<Integer> values) {
+        public Criteria andOwnerLike(String value) {
+            addCriterion("owner like", value, "owner");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwnerNotLike(String value) {
+            addCriterion("owner not like", value, "owner");
+            return (Criteria) this;
+        }
+
+        public Criteria andOwnerIn(List<String> values) {
             addCriterion("owner in", values, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotIn(List<Integer> values) {
+        public Criteria andOwnerNotIn(List<String> values) {
             addCriterion("owner not in", values, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerBetween(Integer value1, Integer value2) {
+        public Criteria andOwnerBetween(String value1, String value2) {
             addCriterion("owner between", value1, value2, "owner");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerNotBetween(Integer value1, Integer value2) {
+        public Criteria andOwnerNotBetween(String value1, String value2) {
             addCriterion("owner not between", value1, value2, "owner");
             return (Criteria) this;
         }

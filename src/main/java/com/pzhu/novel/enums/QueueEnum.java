@@ -11,7 +11,9 @@ public enum QueueEnum {
     /**
      * 消息通知队列
      */
-    QUEUE_SPIDER_CANCEL("novel.spider.direct", "novel.spider.cancel", "novel.spider.cancel");
+    QUEUE_SPIDER_CANCEL("novel.spider.direct", "novel.spider.cancel", "novel.spider.cancel"),
+    QUEUE_READ_LOG_INSERT("novel.readLog.direct", "novel.readLog.insert", "insert"),
+    QUEUE_READ_LOG_UPDATE("novel.readLog.direct", "novel.readLog.update", "update");
     /**
      * 交换名称
      */

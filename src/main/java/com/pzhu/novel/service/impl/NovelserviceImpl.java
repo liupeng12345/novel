@@ -2,7 +2,9 @@ package com.pzhu.novel.service.impl;
 
 import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson.JSON;
+import com.pzhu.novel.annotations.ReadLog;
 import com.pzhu.novel.common.api.CommonResult;
+import com.pzhu.novel.enums.ReadLogType;
 import com.pzhu.novel.message.RabbitSender;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
@@ -128,6 +130,7 @@ public class NovelserviceImpl implements Novelservice {
     }
 
     @Override
+    @ReadLog(type = ReadLogType.INSERT)
     public List<ChapterVO> findChapters(String chaptersUrl) throws IOException, InterruptedException {
         String chapterListStrJsonStr = stringRedisTemplate.opsForValue().get(chaptersUrl.replace("/", ":"));
         if (StringUtils.isBlank(chapterListStrJsonStr)) {
@@ -153,6 +156,7 @@ public class NovelserviceImpl implements Novelservice {
     }
 
     @Override
+    @ReadLog(type = ReadLogType.UPDATE)
     public NovelContent findContent(String contentUrl) throws IOException, InterruptedException {
         //请求过
         String key = contentUrl;
