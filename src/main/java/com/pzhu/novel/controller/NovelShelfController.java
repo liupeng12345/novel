@@ -3,9 +3,12 @@ package com.pzhu.novel.controller;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.dto.NovelShelfDTO;
 import com.pzhu.novel.mbg.model.NovelShelf;
+import com.pzhu.novel.mbg.model.NovelShelfRow;
+import com.pzhu.novel.service.NovelShelfRowService;
 import com.pzhu.novel.service.NovelShelfService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +23,9 @@ import java.util.List;
 public class NovelShelfController {
 
     private final NovelShelfService novelShelfService;
+
+    @Autowired
+    private NovelShelfRowService novelShelfRowService;
 
     public NovelShelfController(NovelShelfService novelShelfService) {
         this.novelShelfService = novelShelfService;
@@ -57,6 +63,9 @@ public class NovelShelfController {
     @GetMapping("/row/{shelfId}")
     @ApiOperation("查询书架下的书架行")
     public CommonResult getNovelShelf(@PathVariable("shelfId") Integer shelfId) {
-        return null;
+        List<NovelShelfRow> novelShelfRows = novelShelfRowService.getRowsByShelfId(shelfId);
+        return CommonResult.success(novelShelfRows);
+
+
     }
 }
