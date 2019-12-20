@@ -146,9 +146,12 @@ public class NovelserviceImpl implements Novelservice {
 //                SpiderTcpClient client = spiderTcpClientPool.getClient();
 //                client.sendMessages(chaptersUrl);
 //                spiderTcpClientPool.closeClient(client);
-                Thread.sleep(1000);
+                Thread.sleep(300);
             }
-            return findChapters(chaptersUrl);
+            if (chapterListStrJsonStr == null) {
+                Thread.sleep(300);
+                return findChapters(chaptersUrl);
+            }
         }
         List<ChapterVO> chapterVOS = JSON.parseArray(chapterListStrJsonStr, ChapterVO.class);
         return chapterVOS;
@@ -173,7 +176,7 @@ public class NovelserviceImpl implements Novelservice {
 //                client.sendMessages(contentUrl);
 //                spiderTcpClientPool.closeClient(client);
                 rabbitSender.sendMessage(contentUrl);
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 return findContent(key);
             }
         }
