@@ -65,7 +65,5 @@ public class NovelShelfController {
     public CommonResult getNovelShelf(@PathVariable("shelfId") Integer shelfId) {
         List<NovelShelfRow> novelShelfRows = novelShelfRowService.getRowsByShelfId(shelfId);
         return CommonResult.success(novelShelfRows);
-
-
     }
 }

@@ -124,7 +124,9 @@ public class NovelserviceImpl implements Novelservice {
         List<String> types = new ArrayList<>(results.getMappedResults().size());
         for (Iterator<JSONObject> iterator = results.iterator(); iterator.hasNext(); ) {
             JSONObject obj = iterator.next();
-            types.add(obj.getStr("_id"));
+            String type = obj.getStr("_id");
+            if (StringUtils.isNotBlank(type))
+                types.add(type);
         }
         return types;
     }
