@@ -1,16 +1,22 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="AdminPermissionRelation")
 public class AdminPermissionRelation implements Serializable {
+    @ApiModelProperty(value="",name="id",dataType="Long")
     private Long id;
 
+    @ApiModelProperty(value="",name="adminId",dataType="Long")
     private Long adminId;
 
+    @ApiModelProperty(value="",name="permissionId",dataType="Long")
     private Long permissionId;
 
-    private Integer type;
+    @ApiModelProperty(value="",name="type",dataType="Long")
+    private Long type;
 
     private static final long serialVersionUID = 1L;
 
@@ -38,11 +44,11 @@ public class AdminPermissionRelation implements Serializable {
         this.permissionId = permissionId;
     }
 
-    public Integer getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(Long type) {
         this.type = type;
     }
 

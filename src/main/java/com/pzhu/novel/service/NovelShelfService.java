@@ -10,7 +10,7 @@ public interface NovelShelfService {
 
     void update(NovelShelfDTO novelShelfDTO);
 
-    NovelShelfDTO delete(Integer shelfId);
+    NovelShelfDTO delete(Long shelfId);
 
     List<NovelShelf> getNovelShelfOfUser();
 }

@@ -1,7 +1,7 @@
 package com.pzhu.novel.mbg.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class NovelMarkExample {
@@ -12,7 +12,7 @@ public class NovelMarkExample {
     protected List<Criteria> oredCriteria;
 
     public NovelMarkExample() {
-        oredCriteria = new ArrayList<Criteria>();
+        oredCriteria = new ArrayList<>();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -69,7 +69,7 @@ public class NovelMarkExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<Criterion>();
+            criteria = new ArrayList<>();
         }
 
         public boolean isValid() {
@@ -115,52 +115,52 @@ public class NovelMarkExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class NovelMarkExample {
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdEqualTo(Integer value) {
+        public Criteria andNovelIdEqualTo(Long value) {
             addCriterion("novel_id =", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdNotEqualTo(Integer value) {
+        public Criteria andNovelIdNotEqualTo(Long value) {
             addCriterion("novel_id <>", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdGreaterThan(Integer value) {
+        public Criteria andNovelIdGreaterThan(Long value) {
             addCriterion("novel_id >", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andNovelIdGreaterThanOrEqualTo(Long value) {
             addCriterion("novel_id >=", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdLessThan(Integer value) {
+        public Criteria andNovelIdLessThan(Long value) {
             addCriterion("novel_id <", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdLessThanOrEqualTo(Integer value) {
+        public Criteria andNovelIdLessThanOrEqualTo(Long value) {
             addCriterion("novel_id <=", value, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdIn(List<Integer> values) {
+        public Criteria andNovelIdIn(List<Long> values) {
             addCriterion("novel_id in", values, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdNotIn(List<Integer> values) {
+        public Criteria andNovelIdNotIn(List<Long> values) {
             addCriterion("novel_id not in", values, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdBetween(Integer value1, Integer value2) {
+        public Criteria andNovelIdBetween(Long value1, Long value2) {
             addCriterion("novel_id between", value1, value2, "novelId");
             return (Criteria) this;
         }
 
-        public Criteria andNovelIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andNovelIdNotBetween(Long value1, Long value2) {
             addCriterion("novel_id not between", value1, value2, "novelId");
             return (Criteria) this;
         }
@@ -235,52 +235,52 @@ public class NovelMarkExample {
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdEqualTo(Integer value) {
+        public Criteria andRaterIdEqualTo(Long value) {
             addCriterion("rater_id =", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdNotEqualTo(Integer value) {
+        public Criteria andRaterIdNotEqualTo(Long value) {
             addCriterion("rater_id <>", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdGreaterThan(Integer value) {
+        public Criteria andRaterIdGreaterThan(Long value) {
             addCriterion("rater_id >", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andRaterIdGreaterThanOrEqualTo(Long value) {
             addCriterion("rater_id >=", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdLessThan(Integer value) {
+        public Criteria andRaterIdLessThan(Long value) {
             addCriterion("rater_id <", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdLessThanOrEqualTo(Integer value) {
+        public Criteria andRaterIdLessThanOrEqualTo(Long value) {
             addCriterion("rater_id <=", value, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdIn(List<Integer> values) {
+        public Criteria andRaterIdIn(List<Long> values) {
             addCriterion("rater_id in", values, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdNotIn(List<Integer> values) {
+        public Criteria andRaterIdNotIn(List<Long> values) {
             addCriterion("rater_id not in", values, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdBetween(Integer value1, Integer value2) {
+        public Criteria andRaterIdBetween(Long value1, Long value2) {
             addCriterion("rater_id between", value1, value2, "raterId");
             return (Criteria) this;
         }
 
-        public Criteria andRaterIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andRaterIdNotBetween(Long value1, Long value2) {
             addCriterion("rater_id not between", value1, value2, "raterId");
             return (Criteria) this;
         }
@@ -295,52 +295,52 @@ public class NovelMarkExample {
             return (Criteria) this;
         }
 
-        public Criteria andScoreEqualTo(Integer value) {
+        public Criteria andScoreEqualTo(Long value) {
             addCriterion("score =", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreNotEqualTo(Integer value) {
+        public Criteria andScoreNotEqualTo(Long value) {
             addCriterion("score <>", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreGreaterThan(Integer value) {
+        public Criteria andScoreGreaterThan(Long value) {
             addCriterion("score >", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreGreaterThanOrEqualTo(Integer value) {
+        public Criteria andScoreGreaterThanOrEqualTo(Long value) {
             addCriterion("score >=", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreLessThan(Integer value) {
+        public Criteria andScoreLessThan(Long value) {
             addCriterion("score <", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreLessThanOrEqualTo(Integer value) {
+        public Criteria andScoreLessThanOrEqualTo(Long value) {
             addCriterion("score <=", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreIn(List<Integer> values) {
+        public Criteria andScoreIn(List<Long> values) {
             addCriterion("score in", values, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreNotIn(List<Integer> values) {
+        public Criteria andScoreNotIn(List<Long> values) {
             addCriterion("score not in", values, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreBetween(Integer value1, Integer value2) {
+        public Criteria andScoreBetween(Long value1, Long value2) {
             addCriterion("score between", value1, value2, "score");
             return (Criteria) this;
         }
 
-        public Criteria andScoreNotBetween(Integer value1, Integer value2) {
+        public Criteria andScoreNotBetween(Long value1, Long value2) {
             addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
@@ -355,59 +355,58 @@ public class NovelMarkExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
+        public Criteria andCreateTimeEqualTo(LocalDateTime value) {
             addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
+        public Criteria andCreateTimeNotEqualTo(LocalDateTime value) {
             addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
+        public Criteria andCreateTimeGreaterThan(LocalDateTime value) {
             addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
+        public Criteria andCreateTimeLessThan(LocalDateTime value) {
             addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
+        public Criteria andCreateTimeIn(List<LocalDateTime> values) {
             addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
+        public Criteria andCreateTimeNotIn(List<LocalDateTime> values) {
             addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }
 
     public static class Criteria extends GeneratedCriteria {
-
         protected Criteria() {
             super();
         }

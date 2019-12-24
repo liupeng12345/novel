@@ -1,24 +1,27 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="Carousel")
 public class Carousel implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "图片url地址")
+    @ApiModelProperty(value="图片url地址",name="imgUrl",dataType="String")
     private String imgUrl;
 
-    @ApiModelProperty(value = "小说的链接")
+    @ApiModelProperty(value="小说的链接",name="novelUrl",dataType="String")
     private String novelUrl;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,13 +1,18 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="AdminRoleRelation")
 public class AdminRoleRelation implements Serializable {
+    @ApiModelProperty(value="",name="id",dataType="Long")
     private Long id;
 
+    @ApiModelProperty(value="",name="adminId",dataType="Long")
     private Long adminId;
 
+    @ApiModelProperty(value="",name="roleId",dataType="Long")
     private Long roleId;
 
     private static final long serialVersionUID = 1L;

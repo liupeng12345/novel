@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ProxySpiderXpathConfigMapper {
-    int countByExample(ProxySpiderXpathConfigExample example);
+    long countByExample(ProxySpiderXpathConfigExample example);
 
     int deleteByExample(ProxySpiderXpathConfigExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(ProxySpiderXpathConfig record);
 
@@ -18,7 +18,7 @@ public interface ProxySpiderXpathConfigMapper {
 
     List<ProxySpiderXpathConfig> selectByExample(ProxySpiderXpathConfigExample example);
 
-    ProxySpiderXpathConfig selectByPrimaryKey(Integer id);
+    ProxySpiderXpathConfig selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") ProxySpiderXpathConfig record, @Param("example") ProxySpiderXpathConfigExample example);
 

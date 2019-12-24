@@ -29,7 +29,7 @@ public class ReadLogController {
     // 查询 阅读记录
     @GetMapping("/userId/{userId}")
     @ApiOperation("查询阅读记录")
-    public CommonResult query(@PathVariable("userId") Integer userId) {
+    public CommonResult query(@PathVariable("userId") Long userId) {
         List<ReadLogDTO> readLogDTOList = readLogService.query(userId);
 
         return CommonResult.success(readLogDTOList);
@@ -38,7 +38,7 @@ public class ReadLogController {
     // 删除 阅读记录
     @DeleteMapping("{readLogId}")
     @ApiOperation("删除阅读记录")
-    public CommonResult deleteOne(@PathVariable("readLogId") Integer readLogId) {
+    public CommonResult deleteOne(@PathVariable("readLogId") Long readLogId) {
         readLogService.delete(readLogId);
         return CommonResult.success(readLogId);
     }

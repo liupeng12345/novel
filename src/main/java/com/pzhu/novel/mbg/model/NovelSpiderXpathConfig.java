@@ -1,90 +1,93 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="NovelSpiderXpathConfig")
 public class NovelSpiderXpathConfig implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "小说站点名")
+    @ApiModelProperty(value="小说站点名",name="websiteName",dataType="String")
     private String websiteName;
 
-    @ApiModelProperty(value = "小说爬虫站点url")
+    @ApiModelProperty(value="小说爬虫站点url",name="websiteUrl",dataType="String")
     private String websiteUrl;
 
-    @ApiModelProperty(value = "小说站点图标")
+    @ApiModelProperty(value="小说站点图标",name="websiteImg",dataType="String")
     private String websiteImg;
 
-    @ApiModelProperty(value = "搜索地址")
+    @ApiModelProperty(value="搜索地址",name="searchUrl",dataType="String")
     private String searchUrl;
 
-    @ApiModelProperty(value = "搜索结果")
+    @ApiModelProperty(value="搜索结果",name="searchInfo",dataType="String")
     private String searchInfo;
 
-    @ApiModelProperty(value = "文章类型")
+    @ApiModelProperty(value="文章类型",name="novelType",dataType="String")
     private String novelType;
 
-    @ApiModelProperty(value = "文章作者")
+    @ApiModelProperty(value="文章作者",name="novelAuthor",dataType="String")
     private String novelAuthor;
 
-    @ApiModelProperty(value = "字数")
+    @ApiModelProperty(value="字数",name="wordCount",dataType="String")
     private String wordCount;
 
-    @ApiModelProperty(value = "封面")
+    @ApiModelProperty(value="封面",name="novelImgUrl",dataType="String")
     private String novelImgUrl;
 
-    @ApiModelProperty(value = "内容简介")
+    @ApiModelProperty(value="内容简介",name="novelDescription",dataType="String")
     private String novelDescription;
 
-    @ApiModelProperty(value = "最新章节")
+    @ApiModelProperty(value="最新章节",name="novelLatestChapter",dataType="String")
     private String novelLatestChapter;
 
-    @ApiModelProperty(value = "最新章节地址")
+    @ApiModelProperty(value="最新章节地址",name="novelLatestChapterUrl",dataType="String")
     private String novelLatestChapterUrl;
 
-    @ApiModelProperty(value = "文章状态")
+    @ApiModelProperty(value="文章状态",name="novelStatus",dataType="String")
     private String novelStatus;
 
-    @ApiModelProperty(value = "最后更新时间")
+    @ApiModelProperty(value="最后更新时间",name="novelLastUpdateTime",dataType="String")
     private String novelLastUpdateTime;
 
-    @ApiModelProperty(value = "章节列表")
+    @ApiModelProperty(value="章节列表",name="novelChaptersUrl",dataType="String")
     private String novelChaptersUrl;
 
-    @ApiModelProperty(value = "小说章节列表信息")
+    @ApiModelProperty(value="小说章节列表信息",name="chapterListInfo",dataType="String")
     private String chapterListInfo;
 
-    @ApiModelProperty(value = "章节名信息")
+    @ApiModelProperty(value="章节名信息",name="chapterName",dataType="String")
     private String chapterName;
 
-    @ApiModelProperty(value = "章节链接")
+    @ApiModelProperty(value="章节链接",name="chapterUrl",dataType="String")
     private String chapterUrl;
 
-    @ApiModelProperty(value = "小说内容")
+    @ApiModelProperty(value="小说内容",name="contentInfo",dataType="String")
     private String contentInfo;
 
-    @ApiModelProperty(value = "上一页url")
+    @ApiModelProperty(value="上一页url",name="contentPreviousPage",dataType="String")
     private String contentPreviousPage;
 
-    @ApiModelProperty(value = "下一页url")
+    @ApiModelProperty(value="下一页url",name="contentNextPage",dataType="String")
     private String contentNextPage;
 
-    @ApiModelProperty(value = "小说名字")
+    @ApiModelProperty(value="小说名字",name="novelName",dataType="String")
     private String novelName;
 
-    @ApiModelProperty(value = "小说链接")
+    @ApiModelProperty(value="小说链接",name="novelUrl",dataType="String")
     private String novelUrl;
 
-    @ApiModelProperty(value = "编码")
+    @ApiModelProperty(value="编码",name="code",dataType="String")
     private String code;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

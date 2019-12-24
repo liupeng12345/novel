@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RolePermissionRelationMapper {
-    int countByExample(RolePermissionRelationExample example);
+    long countByExample(RolePermissionRelationExample example);
 
     int deleteByExample(RolePermissionRelationExample example);
 

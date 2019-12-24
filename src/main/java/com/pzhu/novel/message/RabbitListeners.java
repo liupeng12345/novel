@@ -12,7 +12,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +49,7 @@ public class RabbitListeners {
         //判断阅读记录是否存在
         ReadLogExample readLogExample = new ReadLogExample();
         ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
-        readLogCriteria.andUserIdEqualTo(admins.get(0).getId().intValue());
+        readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
         readLogCriteria.andNovelIdEqualTo(novel.get_id());
         List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
         if (readLogList.size() > 0) {
@@ -58,10 +58,10 @@ public class RabbitListeners {
             return;
         }
         ReadLog readLog = new ReadLog();
-        readLog.setUserId(admins.get(0).getId().intValue());
+        readLog.setUserId(admins.get(0).getId());
         readLog.setNovelId(novel.get_id());
-        readLog.setCreateTime(new Date());
-        readLog.setUpdateTime(new Date());
+        readLog.setCreateTime(LocalDateTime.now());
+        readLog.setUpdateTime(LocalDateTime.now());
         readLogMapper.insert(readLog);
     }
 
@@ -78,13 +78,13 @@ public class RabbitListeners {
 
         ReadLogExample readLogExample = new ReadLogExample();
         ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
-        readLogCriteria.andUserIdEqualTo(admins.get(0).getId().intValue());
+        readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
         List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
         readLogList.forEach(readLog -> {
             Optional<NovelDocumnet> optional = novelDocumnetRepository.findById(readLog.getNovelId());
             if (url.contains(optional.get().getChaptersUrl())) {
                 readLog.setChapterUrl(url);
-                readLog.setUpdateTime(new Date());
+                readLog.setUpdateTime(LocalDateTime.now());
                 readLogMapper.updateByPrimaryKeySelective(readLog);
             }
         });

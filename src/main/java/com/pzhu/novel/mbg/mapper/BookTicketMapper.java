@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface BookTicketMapper {
-    int countByExample(BookTicketExample example);
+    long countByExample(BookTicketExample example);
 
     int deleteByExample(BookTicketExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(BookTicket record);
 
@@ -18,7 +18,7 @@ public interface BookTicketMapper {
 
     List<BookTicket> selectByExample(BookTicketExample example);
 
-    BookTicket selectByPrimaryKey(Integer id);
+    BookTicket selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") BookTicket record, @Param("example") BookTicketExample example);
 

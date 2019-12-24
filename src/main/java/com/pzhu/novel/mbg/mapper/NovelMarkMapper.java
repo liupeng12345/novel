@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface NovelMarkMapper {
-    int countByExample(NovelMarkExample example);
+    long countByExample(NovelMarkExample example);
 
     int deleteByExample(NovelMarkExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(NovelMark record);
 
@@ -18,7 +18,7 @@ public interface NovelMarkMapper {
 
     List<NovelMark> selectByExample(NovelMarkExample example);
 
-    NovelMark selectByPrimaryKey(Integer id);
+    NovelMark selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") NovelMark record, @Param("example") NovelMarkExample example);
 

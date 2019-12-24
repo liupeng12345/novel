@@ -31,7 +31,7 @@ public class ProxySpiderXpathConfigServiceImpl implements ProxySpiderXpathConfig
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         proxySpiderXpathConfigMapper.deleteByPrimaryKey(id);
     }
 

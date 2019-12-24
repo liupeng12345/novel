@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface NovelShelfMapper {
-    int countByExample(NovelShelfExample example);
+    long countByExample(NovelShelfExample example);
 
     int deleteByExample(NovelShelfExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(NovelShelf record);
 
@@ -20,7 +20,7 @@ public interface NovelShelfMapper {
 
     List<NovelShelf> selectByExample(NovelShelfExample example);
 
-    NovelShelf selectByPrimaryKey(Integer id);
+    NovelShelf selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") NovelShelf record, @Param("example") NovelShelfExample example);
 

@@ -1,7 +1,5 @@
 package com.pzhu.novel.controller;
 
-import java.util.List;
-
 import com.pzhu.novel.common.api.CommonPage;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.mbg.model.ProxySpiderXpathConfig;
@@ -10,6 +8,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author 刘鹏 liupeng
@@ -55,7 +55,7 @@ public class ProxySpiderConfigController {
 
     @ApiOperation("代理怕从配置删除")
     @DeleteMapping
-    public CommonResult delete(Integer id) {
+    public CommonResult delete(Long id) {
         proxySpiderXpathConfigService.delete(id);
         return CommonResult.success(null, "删除成功");
     }

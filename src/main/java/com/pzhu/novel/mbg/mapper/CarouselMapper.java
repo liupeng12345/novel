@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CarouselMapper {
-    int countByExample(CarouselExample example);
+    long countByExample(CarouselExample example);
 
     int deleteByExample(CarouselExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Carousel record);
 
@@ -18,7 +18,7 @@ public interface CarouselMapper {
 
     List<Carousel> selectByExample(CarouselExample example);
 
-    Carousel selectByPrimaryKey(Integer id);
+    Carousel selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Carousel record, @Param("example") CarouselExample example);
 

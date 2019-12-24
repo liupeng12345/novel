@@ -1,38 +1,41 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="Permission")
 public class Permission implements Serializable {
+    @ApiModelProperty(value="",name="id",dataType="Long")
     private Long id;
 
-    @ApiModelProperty(value = "父级权限id")
+    @ApiModelProperty(value="父级权限id",name="pid",dataType="Long")
     private Long pid;
 
-    @ApiModelProperty(value = "名称")
+    @ApiModelProperty(value="名称",name="name",dataType="String")
     private String name;
 
-    @ApiModelProperty(value = "权限值")
+    @ApiModelProperty(value="权限值",name="value",dataType="String")
     private String value;
 
-    @ApiModelProperty(value = "图标")
+    @ApiModelProperty(value="图标",name="icon",dataType="String")
     private String icon;
 
-    @ApiModelProperty(value = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）")
-    private Integer type;
+    @ApiModelProperty(value="权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）",name="type",dataType="Long")
+    private Long type;
 
-    @ApiModelProperty(value = "前端资源路径")
+    @ApiModelProperty(value="前端资源路径",name="uri",dataType="String")
     private String uri;
 
-    @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
-    private Integer status;
+    @ApiModelProperty(value="启用状态；0->禁用；1->启用",name="status",dataType="Long")
+    private Long status;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "排序")
-    private Integer sort;
+    @ApiModelProperty(value="排序",name="sort",dataType="Long")
+    private Long sort;
 
     private static final long serialVersionUID = 1L;
 
@@ -76,11 +79,11 @@ public class Permission implements Serializable {
         this.icon = icon;
     }
 
-    public Integer getType() {
+    public Long getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(Long type) {
         this.type = type;
     }
 
@@ -92,27 +95,27 @@ public class Permission implements Serializable {
         this.uri = uri;
     }
 
-    public Integer getStatus() {
+    public Long getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getSort() {
+    public Long getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
+    public void setSort(Long sort) {
         this.sort = sort;
     }
 

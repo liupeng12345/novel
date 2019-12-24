@@ -1,7 +1,7 @@
 package com.pzhu.novel.mbg.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PermissionExample {
@@ -12,7 +12,7 @@ public class PermissionExample {
     protected List<Criteria> oredCriteria;
 
     public PermissionExample() {
-        oredCriteria = new ArrayList<Criteria>();
+        oredCriteria = new ArrayList<>();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -69,7 +69,7 @@ public class PermissionExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<Criterion>();
+            criteria = new ArrayList<>();
         }
 
         public boolean isValid() {
@@ -445,52 +445,52 @@ public class PermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
+        public Criteria andTypeEqualTo(Long value) {
             addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
+        public Criteria andTypeNotEqualTo(Long value) {
             addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
+        public Criteria andTypeGreaterThan(Long value) {
             addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTypeGreaterThanOrEqualTo(Long value) {
             addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
+        public Criteria andTypeLessThan(Long value) {
             addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andTypeLessThanOrEqualTo(Long value) {
             addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
+        public Criteria andTypeIn(List<Long> values) {
             addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
+        public Criteria andTypeNotIn(List<Long> values) {
             addCriterion("type not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
+        public Criteria andTypeBetween(Long value1, Long value2) {
             addCriterion("type between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andTypeNotBetween(Long value1, Long value2) {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
@@ -575,52 +575,52 @@ public class PermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Integer value) {
+        public Criteria andStatusEqualTo(Long value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Integer value) {
+        public Criteria andStatusNotEqualTo(Long value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Integer value) {
+        public Criteria andStatusGreaterThan(Long value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Long value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Integer value) {
+        public Criteria andStatusLessThan(Long value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+        public Criteria andStatusLessThanOrEqualTo(Long value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Integer> values) {
+        public Criteria andStatusIn(List<Long> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Integer> values) {
+        public Criteria andStatusNotIn(List<Long> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
+        public Criteria andStatusBetween(Long value1, Long value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+        public Criteria andStatusNotBetween(Long value1, Long value2) {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
@@ -635,52 +635,52 @@ public class PermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
+        public Criteria andCreateTimeEqualTo(LocalDateTime value) {
             addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
+        public Criteria andCreateTimeNotEqualTo(LocalDateTime value) {
             addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
+        public Criteria andCreateTimeGreaterThan(LocalDateTime value) {
             addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
+        public Criteria andCreateTimeLessThan(LocalDateTime value) {
             addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
+        public Criteria andCreateTimeIn(List<LocalDateTime> values) {
             addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
+        public Criteria andCreateTimeNotIn(List<LocalDateTime> values) {
             addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
@@ -695,59 +695,58 @@ public class PermissionExample {
             return (Criteria) this;
         }
 
-        public Criteria andSortEqualTo(Integer value) {
+        public Criteria andSortEqualTo(Long value) {
             addCriterion("sort =", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortNotEqualTo(Integer value) {
+        public Criteria andSortNotEqualTo(Long value) {
             addCriterion("sort <>", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThan(Integer value) {
+        public Criteria andSortGreaterThan(Long value) {
             addCriterion("sort >", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSortGreaterThanOrEqualTo(Long value) {
             addCriterion("sort >=", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThan(Integer value) {
+        public Criteria andSortLessThan(Long value) {
             addCriterion("sort <", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortLessThanOrEqualTo(Integer value) {
+        public Criteria andSortLessThanOrEqualTo(Long value) {
             addCriterion("sort <=", value, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortIn(List<Integer> values) {
+        public Criteria andSortIn(List<Long> values) {
             addCriterion("sort in", values, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortNotIn(List<Integer> values) {
+        public Criteria andSortNotIn(List<Long> values) {
             addCriterion("sort not in", values, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortBetween(Integer value1, Integer value2) {
+        public Criteria andSortBetween(Long value1, Long value2) {
             addCriterion("sort between", value1, value2, "sort");
             return (Criteria) this;
         }
 
-        public Criteria andSortNotBetween(Integer value1, Integer value2) {
+        public Criteria andSortNotBetween(Long value1, Long value2) {
             addCriterion("sort not between", value1, value2, "sort");
             return (Criteria) this;
         }
     }
 
     public static class Criteria extends GeneratedCriteria {
-
         protected Criteria() {
             super();
         }

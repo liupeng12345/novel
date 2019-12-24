@@ -7,11 +7,11 @@ import java.util.List;
 public interface CarouselService {
     List<Carousel> queryCarousel();
 
-    Carousel getCarouselById(Integer carouselId);
+    Carousel getCarouselById(Long carouselId);
 
     void update(Carousel carousel);
 
-    void delete(Integer carouselId);
+    void delete(Long carouselId);
 
     void save(Carousel carousel);
 }

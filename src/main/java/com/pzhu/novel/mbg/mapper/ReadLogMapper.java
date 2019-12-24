@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ReadLogMapper {
-    int countByExample(ReadLogExample example);
+    long countByExample(ReadLogExample example);
 
     int deleteByExample(ReadLogExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(ReadLog record);
 
@@ -18,7 +18,7 @@ public interface ReadLogMapper {
 
     List<ReadLog> selectByExample(ReadLogExample example);
 
-    ReadLog selectByPrimaryKey(Integer id);
+    ReadLog selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") ReadLog record, @Param("example") ReadLogExample example);
 

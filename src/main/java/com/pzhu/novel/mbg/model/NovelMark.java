@@ -1,63 +1,66 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="NovelMark")
 public class NovelMark implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "小说id")
-    private Integer novelId;
+    @ApiModelProperty(value="小说id",name="novelId",dataType="Long")
+    private Long novelId;
 
-    @ApiModelProperty(value = "评分者")
-    private Integer raterId;
+    @ApiModelProperty(value="评分者",name="raterId",dataType="Long")
+    private Long raterId;
 
-    @ApiModelProperty(value = "评分数")
-    private Integer score;
+    @ApiModelProperty(value="评分数",name="score",dataType="Long")
+    private Long score;
 
-    @ApiModelProperty(value = "评分时间")
-    private Date createTime;
+    @ApiModelProperty(value="评分时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getNovelId() {
+    public Long getNovelId() {
         return novelId;
     }
 
-    public void setNovelId(Integer novelId) {
+    public void setNovelId(Long novelId) {
         this.novelId = novelId;
     }
 
-    public Integer getRaterId() {
+    public Long getRaterId() {
         return raterId;
     }
 
-    public void setRaterId(Integer raterId) {
+    public void setRaterId(Long raterId) {
         this.raterId = raterId;
     }
 
-    public Integer getScore() {
+    public Long getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(Long score) {
         this.score = score;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

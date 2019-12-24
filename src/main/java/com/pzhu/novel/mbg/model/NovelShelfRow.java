@@ -1,34 +1,37 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="NovelShelfRow")
 public class NovelShelfRow implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "书籍名")
+    @ApiModelProperty(value="书籍名",name="novelName",dataType="String")
     private String novelName;
 
-    @ApiModelProperty(value = "小说在数据库id")
+    @ApiModelProperty(value="小说在数据库id",name="novelId",dataType="String")
     private String novelId;
 
-    @ApiModelProperty(value = "加入书单时间")
-    private Date createTime;
+    @ApiModelProperty(value="加入书单时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "书架id")
-    private Integer novelShelfId;
+    @ApiModelProperty(value="书架id",name="novelShelfId",dataType="Long")
+    private Long novelShelfId;
 
-    @ApiModelProperty(value = "阅读记录id")
-    private Integer readLogId;
+    @ApiModelProperty(value="阅读记录id",name="readLogId",dataType="Long")
+    private Long readLogId;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,27 +51,27 @@ public class NovelShelfRow implements Serializable {
         this.novelId = novelId;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getNovelShelfId() {
+    public Long getNovelShelfId() {
         return novelShelfId;
     }
 
-    public void setNovelShelfId(Integer novelShelfId) {
+    public void setNovelShelfId(Long novelShelfId) {
         this.novelShelfId = novelShelfId;
     }
 
-    public Integer getReadLogId() {
+    public Long getReadLogId() {
         return readLogId;
     }
 
-    public void setReadLogId(Integer readLogId) {
+    public void setReadLogId(Long readLogId) {
         this.readLogId = readLogId;
     }
 

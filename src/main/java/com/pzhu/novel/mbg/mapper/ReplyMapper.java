@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ReplyMapper {
-    int countByExample(ReplyExample example);
+    long countByExample(ReplyExample example);
 
     int deleteByExample(ReplyExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Reply record);
 
@@ -20,7 +20,7 @@ public interface ReplyMapper {
 
     List<Reply> selectByExample(ReplyExample example);
 
-    Reply selectByPrimaryKey(Integer id);
+    Reply selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Reply record, @Param("example") ReplyExample example);
 

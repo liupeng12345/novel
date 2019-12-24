@@ -1,7 +1,7 @@
 package com.pzhu.novel.mbg.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AdminExample {
@@ -12,7 +12,7 @@ public class AdminExample {
     protected List<Criteria> oredCriteria;
 
     public AdminExample() {
-        oredCriteria = new ArrayList<Criteria>();
+        oredCriteria = new ArrayList<>();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -69,7 +69,7 @@ public class AdminExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<Criterion>();
+            criteria = new ArrayList<>();
         }
 
         public boolean isValid() {
@@ -595,52 +595,52 @@ public class AdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
+        public Criteria andCreateTimeEqualTo(LocalDateTime value) {
             addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
+        public Criteria andCreateTimeNotEqualTo(LocalDateTime value) {
             addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
+        public Criteria andCreateTimeGreaterThan(LocalDateTime value) {
             addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
+        public Criteria andCreateTimeLessThan(LocalDateTime value) {
             addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+        public Criteria andCreateTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
+        public Criteria andCreateTimeIn(List<LocalDateTime> values) {
             addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
+        public Criteria andCreateTimeNotIn(List<LocalDateTime> values) {
             addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+        public Criteria andCreateTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
@@ -655,52 +655,52 @@ public class AdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeEqualTo(Date value) {
+        public Criteria andLoginTimeEqualTo(LocalDateTime value) {
             addCriterion("login_time =", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeNotEqualTo(Date value) {
+        public Criteria andLoginTimeNotEqualTo(LocalDateTime value) {
             addCriterion("login_time <>", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeGreaterThan(Date value) {
+        public Criteria andLoginTimeGreaterThan(LocalDateTime value) {
             addCriterion("login_time >", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andLoginTimeGreaterThanOrEqualTo(LocalDateTime value) {
             addCriterion("login_time >=", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeLessThan(Date value) {
+        public Criteria andLoginTimeLessThan(LocalDateTime value) {
             addCriterion("login_time <", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeLessThanOrEqualTo(Date value) {
+        public Criteria andLoginTimeLessThanOrEqualTo(LocalDateTime value) {
             addCriterion("login_time <=", value, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeIn(List<Date> values) {
+        public Criteria andLoginTimeIn(List<LocalDateTime> values) {
             addCriterion("login_time in", values, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeNotIn(List<Date> values) {
+        public Criteria andLoginTimeNotIn(List<LocalDateTime> values) {
             addCriterion("login_time not in", values, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeBetween(Date value1, Date value2) {
+        public Criteria andLoginTimeBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("login_time between", value1, value2, "loginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLoginTimeNotBetween(Date value1, Date value2) {
+        public Criteria andLoginTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
             addCriterion("login_time not between", value1, value2, "loginTime");
             return (Criteria) this;
         }
@@ -715,59 +715,58 @@ public class AdminExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Integer value) {
+        public Criteria andStatusEqualTo(Boolean value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Integer value) {
+        public Criteria andStatusNotEqualTo(Boolean value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Integer value) {
+        public Criteria andStatusGreaterThan(Boolean value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Integer value) {
+        public Criteria andStatusLessThan(Boolean value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Integer> values) {
+        public Criteria andStatusIn(List<Boolean> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Integer> values) {
+        public Criteria andStatusNotIn(List<Boolean> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
+        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }
 
     public static class Criteria extends GeneratedCriteria {
-
         protected Criteria() {
             super();
         }

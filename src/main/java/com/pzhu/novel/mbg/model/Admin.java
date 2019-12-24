@@ -1,36 +1,41 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="Admin")
 public class Admin implements Serializable {
+    @ApiModelProperty(value="",name="id",dataType="Long")
     private Long id;
 
+    @ApiModelProperty(value="",name="username",dataType="String")
     private String username;
 
+    @ApiModelProperty(value="",name="password",dataType="String")
     private String password;
 
-    @ApiModelProperty(value = "头像")
+    @ApiModelProperty(value="头像",name="icon",dataType="String")
     private String icon;
 
-    @ApiModelProperty(value = "邮箱")
+    @ApiModelProperty(value="邮箱",name="email",dataType="String")
     private String email;
 
-    @ApiModelProperty(value = "昵称")
+    @ApiModelProperty(value="昵称",name="nickName",dataType="String")
     private String nickName;
 
-    @ApiModelProperty(value = "备注信息")
+    @ApiModelProperty(value="备注信息",name="note",dataType="String")
     private String note;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "最后登录时间")
-    private Date loginTime;
+    @ApiModelProperty(value="最后登录时间",name="loginTime",dataType="LocalDateTime")
+    private LocalDateTime loginTime;
 
-    @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
-    private Integer status;
+    @ApiModelProperty(value="帐号启用状态：0->禁用；1->启用",name="status",dataType="Boolean")
+    private Boolean status;
 
     private static final long serialVersionUID = 1L;
 
@@ -90,27 +95,27 @@ public class Admin implements Serializable {
         this.note = note;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getLoginTime() {
+    public LocalDateTime getLoginTime() {
         return loginTime;
     }
 
-    public void setLoginTime(Date loginTime) {
+    public void setLoginTime(LocalDateTime loginTime) {
         this.loginTime = loginTime;
     }
 
-    public Integer getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

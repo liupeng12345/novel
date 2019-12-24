@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AdminPermissionRelationMapper {
-    int countByExample(AdminPermissionRelationExample example);
+    long countByExample(AdminPermissionRelationExample example);
 
     int deleteByExample(AdminPermissionRelationExample example);
 

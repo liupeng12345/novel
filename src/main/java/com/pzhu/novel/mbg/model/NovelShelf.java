@@ -1,34 +1,37 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="NovelShelf")
 public class NovelShelf implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "书架名")
+    @ApiModelProperty(value="书架名",name="name",dataType="String")
     private String name;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
+    @ApiModelProperty(value="更新时间",name="updateTime",dataType="LocalDateTime")
+    private LocalDateTime updateTime;
 
-    @ApiModelProperty(value = "主人")
+    @ApiModelProperty(value="主人",name="owner",dataType="String")
     private String owner;
 
-    @ApiModelProperty(value = "介绍")
+    @ApiModelProperty(value="介绍",name="introduction",dataType="String")
     private String introduction;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -40,19 +43,19 @@ public class NovelShelf implements Serializable {
         this.name = name;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

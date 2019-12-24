@@ -1,43 +1,45 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="ReadLog")
 public class ReadLog implements Serializable {
-    @ApiModelProperty(value = "阅读记录表")
-    private Integer id;
+    @ApiModelProperty(value="阅读记录表",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "读者")
-    private Integer userId;
+    @ApiModelProperty(value="读者",name="userId",dataType="Long")
+    private Long userId;
 
-    @ApiModelProperty(value = "小说id")
+    @ApiModelProperty(value="小说id",name="novelId",dataType="String")
     private String novelId;
 
-    @ApiModelProperty(value = "阅读到的章节")
+    @ApiModelProperty(value="阅读到的章节",name="chapterUrl",dataType="String")
     private String chapterUrl;
 
-    @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
+    @ApiModelProperty(value="更新时间",name="updateTime",dataType="LocalDateTime")
+    private LocalDateTime updateTime;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -57,19 +59,19 @@ public class ReadLog implements Serializable {
         this.chapterUrl = chapterUrl;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

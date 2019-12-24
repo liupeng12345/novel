@@ -1,50 +1,53 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="Reply")
 public class Reply implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "回复目标")
-    private Integer targetId;
+    @ApiModelProperty(value="回复目标",name="targetId",dataType="Long")
+    private Long targetId;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date creatTime;
+    @ApiModelProperty(value="创建时间",name="creatTime",dataType="LocalDateTime")
+    private LocalDateTime creatTime;
 
-    @ApiModelProperty(value = "操作设备")
+    @ApiModelProperty(value="操作设备",name="operatingEquipment",dataType="String")
     private String operatingEquipment;
 
-    @ApiModelProperty(value = "操作者")
-    private Integer operator;
+    @ApiModelProperty(value="操作者",name="operator",dataType="Long")
+    private Long operator;
 
-    @ApiModelProperty(value = "回复内容")
+    @ApiModelProperty(value="回复内容",name="content",dataType="String")
     private String content;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getTargetId() {
+    public Long getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(Integer targetId) {
+    public void setTargetId(Long targetId) {
         this.targetId = targetId;
     }
 
-    public Date getCreatTime() {
+    public LocalDateTime getCreatTime() {
         return creatTime;
     }
 
-    public void setCreatTime(Date creatTime) {
+    public void setCreatTime(LocalDateTime creatTime) {
         this.creatTime = creatTime;
     }
 
@@ -56,11 +59,11 @@ public class Reply implements Serializable {
         this.operatingEquipment = operatingEquipment;
     }
 
-    public Integer getOperator() {
+    public Long getOperator() {
         return operator;
     }
 
-    public void setOperator(Integer operator) {
+    public void setOperator(Long operator) {
         this.operator = operator;
     }
 

@@ -1,39 +1,43 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="BookTicket")
 public class BookTicket implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    private Integer userId;
+    @ApiModelProperty(value="",name="userId",dataType="Long")
+    private Long userId;
 
-    @ApiModelProperty(value = "书券数量")
-    private Integer number;
+    @ApiModelProperty(value="书券数量",name="number",dataType="Long")
+    private Long number;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getNumber() {
+    public Long getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Long number) {
         this.number = number;
     }
 

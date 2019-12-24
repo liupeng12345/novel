@@ -16,10 +16,14 @@ public class NovelShelfRowServiceImpl implements NovelShelfRowService {
     private NovelShelfRowMapper novelShelfRowMapper;
 
     @Override
-    public List<NovelShelfRow> getRowsByShelfId(Integer shelfId) {
+    public List<NovelShelfRow> getRowsByShelfId(Long shelfId) {
         NovelShelfRowExample novelShelfRowExample = new NovelShelfRowExample();
         NovelShelfRowExample.Criteria shelfRowExampleCriteria = novelShelfRowExample.createCriteria();
         shelfRowExampleCriteria.andNovelShelfIdEqualTo(shelfId);
         return novelShelfRowMapper.selectByExample(novelShelfRowExample);
+    }
+
+    @Override
+    public void addRow(NovelShelfRow novelShelfRow) {
     }
 }

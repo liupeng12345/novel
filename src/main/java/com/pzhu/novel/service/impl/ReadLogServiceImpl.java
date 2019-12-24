@@ -32,7 +32,7 @@ public class ReadLogServiceImpl implements ReadLogService {
     }
 
     @Override
-    public List<ReadLogDTO> query(Integer userId) {
+    public List<ReadLogDTO> query(Long userId) {
         ReadLogExample readLogExample = new ReadLogExample();
         ReadLogExample.Criteria criteria = readLogExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
@@ -49,7 +49,7 @@ public class ReadLogServiceImpl implements ReadLogService {
     }
 
     @Override
-    public void delete(Integer readLogId) {
+    public void delete(Long readLogId) {
         readLogMapper.deleteByPrimaryKey(readLogId);
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PermissionMapper {
-    int countByExample(PermissionExample example);
+    long countByExample(PermissionExample example);
 
     int deleteByExample(PermissionExample example);
 

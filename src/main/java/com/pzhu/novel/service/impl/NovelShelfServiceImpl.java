@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -45,8 +45,8 @@ public class NovelShelfServiceImpl implements NovelShelfService {
 
         //为书架 添加必要属性
         novelShelf.setOwner(username);
-        novelShelf.setCreateTime(new Date());
-        novelShelf.setUpdateTime(new Date());
+        novelShelf.setCreateTime(LocalDateTime.now());
+        novelShelf.setUpdateTime(LocalDateTime.now());
         novelShelfMapper.insertSelective(novelShelf);
     }
 
@@ -72,7 +72,7 @@ public class NovelShelfServiceImpl implements NovelShelfService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public NovelShelfDTO delete(Integer shelfId) {
+    public NovelShelfDTO delete(Long shelfId) {
         novelShelfRowMapper.deleteByPrimaryKey(shelfId);
         return null;
     }

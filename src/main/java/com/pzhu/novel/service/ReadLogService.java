@@ -8,9 +8,9 @@ import java.util.List;
 public interface ReadLogService {
     void add(ReadLog readLog);
 
-    List<ReadLogDTO> query(Integer userId);
+    List<ReadLogDTO> query(Long userId);
 
-    void delete(Integer readLogId);
+    void delete(Long readLogId);
 
     void update(ReadLog readLog);
 }

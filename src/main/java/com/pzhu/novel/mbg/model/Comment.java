@@ -1,45 +1,48 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="Comment")
 public class Comment implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "操作设备")
+    @ApiModelProperty(value="操作设备",name="operatingEquipment",dataType="String")
     private String operatingEquipment;
 
-    @ApiModelProperty(value = "0是小说评论，1是章节评论")
-    private Byte type;
+    @ApiModelProperty(value="0是小说评论，1是章节评论",name="type",dataType="Boolean")
+    private Boolean type;
 
-    @ApiModelProperty(value = "评论目标id")
+    @ApiModelProperty(value="评论目标id",name="targetId",dataType="String")
     private String targetId;
 
-    @ApiModelProperty(value = "操作者")
-    private Integer operator;
+    @ApiModelProperty(value="操作者",name="operator",dataType="Long")
+    private Long operator;
 
-    @ApiModelProperty(value = "富文本内容")
+    @ApiModelProperty(value="富文本内容",name="content",dataType="String")
     private String content;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
@@ -51,11 +54,11 @@ public class Comment implements Serializable {
         this.operatingEquipment = operatingEquipment;
     }
 
-    public Byte getType() {
+    public Boolean getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Boolean type) {
         this.type = type;
     }
 
@@ -67,11 +70,11 @@ public class Comment implements Serializable {
         this.targetId = targetId;
     }
 
-    public Integer getOperator() {
+    public Long getOperator() {
         return operator;
     }
 
-    public void setOperator(Integer operator) {
+    public void setOperator(Long operator) {
         this.operator = operator;
     }
 

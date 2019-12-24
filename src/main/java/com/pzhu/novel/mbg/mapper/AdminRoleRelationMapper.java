@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AdminRoleRelationMapper {
-    int countByExample(AdminRoleRelationExample example);
+    long countByExample(AdminRoleRelationExample example);
 
     int deleteByExample(AdminRoleRelationExample example);
 

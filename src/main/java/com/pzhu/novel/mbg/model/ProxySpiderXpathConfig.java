@@ -1,42 +1,45 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
+@ApiModel(value="ProxySpiderXpathConfig")
 public class ProxySpiderXpathConfig implements Serializable {
-    private Integer id;
+    @ApiModelProperty(value="",name="id",dataType="Long")
+    private Long id;
 
-    @ApiModelProperty(value = "代理站点")
+    @ApiModelProperty(value="代理站点",name="website",dataType="String")
     private String website;
 
-    @ApiModelProperty(value = "代理ip地址")
+    @ApiModelProperty(value="代理ip地址",name="url",dataType="String")
     private String url;
 
-    @ApiModelProperty(value = "ip列表")
+    @ApiModelProperty(value="ip列表",name="ipList",dataType="String")
     private String ipList;
 
-    @ApiModelProperty(value = "是否合并 ip和端口")
+    @ApiModelProperty(value="是否合并 ip和端口",name="merge",dataType="Boolean")
     private Boolean merge;
 
-    @ApiModelProperty(value = "ip信息")
+    @ApiModelProperty(value="ip信息",name="ip",dataType="String")
     private String ip;
 
-    @ApiModelProperty(value = "端口信息")
+    @ApiModelProperty(value="端口信息",name="port",dataType="String")
     private String port;
 
-    @ApiModelProperty(value = "请求间隔(单位：s)")
+    @ApiModelProperty(value="请求间隔(单位：s)",name="sleep",dataType="String")
     private String sleep;
 
-    @ApiModelProperty(value = "查询页数")
+    @ApiModelProperty(value="查询页数",name="page",dataType="String")
     private String page;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

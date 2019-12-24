@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface NovelSpiderXpathConfigMapper {
-    int countByExample(NovelSpiderXpathConfigExample example);
+    long countByExample(NovelSpiderXpathConfigExample example);
 
     int deleteByExample(NovelSpiderXpathConfigExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(NovelSpiderXpathConfig record);
 
@@ -18,7 +18,7 @@ public interface NovelSpiderXpathConfigMapper {
 
     List<NovelSpiderXpathConfig> selectByExample(NovelSpiderXpathConfigExample example);
 
-    NovelSpiderXpathConfig selectByPrimaryKey(Integer id);
+    NovelSpiderXpathConfig selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") NovelSpiderXpathConfig record, @Param("example") NovelSpiderXpathConfigExample example);
 

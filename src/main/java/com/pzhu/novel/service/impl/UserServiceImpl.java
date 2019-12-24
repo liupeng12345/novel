@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         if (userDTO != null) {
             adminExample = new AdminExample();
             AdminExample.Criteria criteria = adminExample.createCriteria();
-            criteria.andUsernameLike("%"+userDTO.getUsername()+"%");
+            criteria.andUsernameLike("%" + userDTO.getUsername() + "%");
         }
         Page<Admin> admins = (Page<Admin>) adminMapper.selectByExample(adminExample);
         Page<UserDTO> userDTOS = new Page<>();
@@ -82,15 +82,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public int delete(Long userId) {
         Admin user = adminMapper.selectByPrimaryKey(userId);
-        user.setStatus(0);
+        // 禁用
+        user.setStatus(false);
         return adminMapper.updateByPrimaryKeySelective(user);
     }
+
     @Override
     public Admin register(Admin adminParam) {
         Admin Admin = new Admin();
         BeanUtils.copyProperties(adminParam, Admin);
-        Admin.setCreateTime(new Date());
-        Admin.setStatus(1);
+        Admin.setCreateTime(LocalDateTime.now());
+        // 启用
+        Admin.setStatus(true);
         //查询是否有相同用户名的用户
         AdminExample example = new AdminExample();
         example.createCriteria().andUsernameEqualTo(Admin.getUsername());

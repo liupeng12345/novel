@@ -1,28 +1,32 @@
 package com.pzhu.novel.mbg.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@ApiModel(value="Role")
 public class Role implements Serializable {
+    @ApiModelProperty(value="",name="id",dataType="Long")
     private Long id;
 
-    @ApiModelProperty(value = "名称")
+    @ApiModelProperty(value="名称",name="name",dataType="String")
     private String name;
 
-    @ApiModelProperty(value = "描述")
+    @ApiModelProperty(value="描述",name="description",dataType="String")
     private String description;
 
-    @ApiModelProperty(value = "后台用户数量")
-    private Integer adminCount;
+    @ApiModelProperty(value="后台用户数量",name="adminCount",dataType="Long")
+    private Long adminCount;
 
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @ApiModelProperty(value="创建时间",name="createTime",dataType="LocalDateTime")
+    private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "启用状态：0->禁用；1->启用")
-    private Integer status;
+    @ApiModelProperty(value="启用状态：0->禁用；1->启用",name="status",dataType="Long")
+    private Long status;
 
-    private Integer sort;
+    @ApiModelProperty(value="",name="sort",dataType="Long")
+    private Long sort;
 
     private static final long serialVersionUID = 1L;
 
@@ -50,35 +54,35 @@ public class Role implements Serializable {
         this.description = description;
     }
 
-    public Integer getAdminCount() {
+    public Long getAdminCount() {
         return adminCount;
     }
 
-    public void setAdminCount(Integer adminCount) {
+    public void setAdminCount(Long adminCount) {
         this.adminCount = adminCount;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getStatus() {
+    public Long getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 
-    public Integer getSort() {
+    public Long getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
+    public void setSort(Long sort) {
         this.sort = sort;
     }
 

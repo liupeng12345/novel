@@ -47,7 +47,7 @@ public class NovelShelfController {
 
     @DeleteMapping("{shelfId}")
     @ApiOperation("删除书架")
-    public CommonResult deleteShelf(@PathVariable("shelfId") Integer shelfId) {
+    public CommonResult deleteShelf(@PathVariable("shelfId") Long shelfId) {
         NovelShelfDTO novelShelfDTO = novelShelfService.delete(shelfId);
         return CommonResult.success(novelShelfDTO);
     }
@@ -60,10 +60,20 @@ public class NovelShelfController {
 
     }
 
-    @GetMapping("/row/{shelfId}")
+    @GetMapping("/{shelfId}/row")
     @ApiOperation("查询书架下的书架行")
-    public CommonResult getNovelShelf(@PathVariable("shelfId") Integer shelfId) {
+    public CommonResult getNovelShelf(@PathVariable("shelfId") Long shelfId) {
         List<NovelShelfRow> novelShelfRows = novelShelfRowService.getRowsByShelfId(shelfId);
         return CommonResult.success(novelShelfRows);
+    }
+
+    @PostMapping("/{shelfId}/row/{novelId}")
+    @ApiOperation("添加小说到书架")
+    public CommonResult addRowToShelf(@PathVariable("shelfId") Long shelfId, @PathVariable("novelId") String novelId) {
+        NovelShelfRow novelShelfRow = new NovelShelfRow();
+        novelShelfRow.setNovelShelfId(shelfId);
+        novelShelfRow.setNovelId(novelId);
+        novelShelfRowService.addRow(novelShelfRow);
+        return CommonResult.success(novelShelfRow);
     }
 }

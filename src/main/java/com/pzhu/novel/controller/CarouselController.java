@@ -24,7 +24,7 @@ public class CarouselController {
     }
 
     @GetMapping("/{carouselId}")
-    public CommonResult getCarouselById(@PathVariable("carouselId") Integer carouselId) {
+    public CommonResult getCarouselById(@PathVariable("carouselId") Long carouselId) {
         Carousel carousel = carouselService.getCarouselById(carouselId);
         return CommonResult.success(carousel);
     }
@@ -36,7 +36,7 @@ public class CarouselController {
     }
 
     @DeleteMapping("/{carouselId}")
-    public CommonResult delete(@PathVariable("carouselId") Integer carouselId) {
+    public CommonResult delete(@PathVariable("carouselId") Long carouselId) {
         carouselService.delete(carouselId);
         return CommonResult.success(carouselId);
     }
