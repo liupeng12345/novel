@@ -1,14 +1,13 @@
 package com.pzhu.novel.service.impl;
 
-import java.util.List;
-
 import com.github.pagehelper.PageHelper;
 import com.pzhu.novel.mbg.mapper.NovelSpiderXpathConfigMapper;
 import com.pzhu.novel.mbg.model.NovelSpiderXpathConfig;
 import com.pzhu.novel.mbg.model.NovelSpiderXpathConfigExample;
 import com.pzhu.novel.service.NovelSpiderXpathConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 刘鹏 liupeng
@@ -17,8 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class NovelSpiderXpathConfigServiceImpl implements NovelSpiderXpathConfigService {
 
-    @Autowired
-    private NovelSpiderXpathConfigMapper novelSpiderXpathConfigMapper;
+    private final NovelSpiderXpathConfigMapper novelSpiderXpathConfigMapper;
+
+    public NovelSpiderXpathConfigServiceImpl(NovelSpiderXpathConfigMapper novelSpiderXpathConfigMapper) {
+        this.novelSpiderXpathConfigMapper = novelSpiderXpathConfigMapper;
+    }
 
     @Override
     public List<NovelSpiderXpathConfig> findPage(Integer pageNum, Integer pageSize, NovelSpiderXpathConfig novelSpiderXpathConfig) {

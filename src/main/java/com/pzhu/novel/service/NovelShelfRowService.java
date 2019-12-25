@@ -8,4 +8,6 @@ public interface NovelShelfRowService {
     List<NovelShelfRow> getRowsByShelfId(Long shelfId);
 
     void addRow(NovelShelfRow novelShelfRow);
+
+    void deleteRowOfShelf(Long rowId);
 }

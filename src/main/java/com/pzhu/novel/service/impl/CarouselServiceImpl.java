@@ -3,7 +3,6 @@ package com.pzhu.novel.service.impl;
 import com.pzhu.novel.mbg.mapper.CarouselMapper;
 import com.pzhu.novel.mbg.model.Carousel;
 import com.pzhu.novel.service.CarouselService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class CarouselServiceImpl implements CarouselService {
 
-    @Autowired
-    private CarouselMapper carouselMapper;
+    private final CarouselMapper carouselMapper;
+
+    public CarouselServiceImpl(CarouselMapper carouselMapper) {
+        this.carouselMapper = carouselMapper;
+    }
 
     @Override
     public List<Carousel> queryCarousel() {

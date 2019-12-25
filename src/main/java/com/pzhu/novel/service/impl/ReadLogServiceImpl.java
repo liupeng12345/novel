@@ -7,7 +7,6 @@ import com.pzhu.novel.mbg.model.ReadLogExample;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
 import com.pzhu.novel.service.ReadLogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +18,11 @@ public class ReadLogServiceImpl implements ReadLogService {
 
     private final ReadLogMapper readLogMapper;
 
-    @Autowired
-    private NovelDocumnetRepository novelDocumnetRepository;
+    private final NovelDocumnetRepository novelDocumnetRepository;
 
-    public ReadLogServiceImpl(ReadLogMapper readLogMapper) {
+    public ReadLogServiceImpl(ReadLogMapper readLogMapper, NovelDocumnetRepository novelDocumnetRepository) {
         this.readLogMapper = readLogMapper;
+        this.novelDocumnetRepository = novelDocumnetRepository;
     }
 
     @Override

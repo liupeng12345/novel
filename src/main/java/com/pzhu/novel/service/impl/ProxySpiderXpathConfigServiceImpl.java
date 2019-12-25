@@ -1,14 +1,13 @@
 package com.pzhu.novel.service.impl;
 
-import java.util.List;
-
 import com.github.pagehelper.PageHelper;
 import com.pzhu.novel.mbg.mapper.ProxySpiderXpathConfigMapper;
 import com.pzhu.novel.mbg.model.ProxySpiderXpathConfig;
 import com.pzhu.novel.mbg.model.ProxySpiderXpathConfigExample;
 import com.pzhu.novel.service.ProxySpiderXpathConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 刘鹏 liupeng
@@ -17,8 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProxySpiderXpathConfigServiceImpl implements ProxySpiderXpathConfigService {
 
-    @Autowired
-    private ProxySpiderXpathConfigMapper proxySpiderXpathConfigMapper;
+    private final ProxySpiderXpathConfigMapper proxySpiderXpathConfigMapper;
+
+    public ProxySpiderXpathConfigServiceImpl(ProxySpiderXpathConfigMapper proxySpiderXpathConfigMapper) {
+        this.proxySpiderXpathConfigMapper = proxySpiderXpathConfigMapper;
+    }
 
     @Override
     public void insert(ProxySpiderXpathConfig proxySpiderXpathConfig) {

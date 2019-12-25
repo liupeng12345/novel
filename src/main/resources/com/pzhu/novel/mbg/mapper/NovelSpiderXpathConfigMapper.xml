@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzhu.novel.mbg.mapper.NovelSpiderXpathConfigMapper">
+  <resultMap id="BaseResultMap" type="com.pzhu.novel.mbg.model.NovelSpiderXpathConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="website_name" jdbcType="VARCHAR" property="websiteName" />
+    <result column="website_url" jdbcType="VARCHAR" property="websiteUrl" />
+    <result column="website_img" jdbcType="VARCHAR" property="websiteImg" />
+    <result column="search_url" jdbcType="VARCHAR" property="searchUrl" />
+    <result column="search_info" jdbcType="VARCHAR" property="searchInfo" />
+    <result column="novel_type" jdbcType="VARCHAR" property="novelType" />
+    <result column="novel_author" jdbcType="VARCHAR" property="novelAuthor" />
+    <result column="word_count" jdbcType="VARCHAR" property="wordCount" />
+    <result column="novel_img_url" jdbcType="VARCHAR" property="novelImgUrl" />
+    <result column="novel_description" jdbcType="VARCHAR" property="novelDescription" />
+    <result column="novel_latest_chapter" jdbcType="VARCHAR" property="novelLatestChapter" />
+    <result column="novel_latest_chapter_url" jdbcType="VARCHAR" property="novelLatestChapterUrl" />
+    <result column="novel_status" jdbcType="VARCHAR" property="novelStatus" />
+    <result column="novel_last_update_time" jdbcType="VARCHAR" property="novelLastUpdateTime" />
+    <result column="novel_chapters_url" jdbcType="VARCHAR" property="novelChaptersUrl" />
+    <result column="chapter_list_info" jdbcType="VARCHAR" property="chapterListInfo" />
+    <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
+    <result column="chapter_url" jdbcType="VARCHAR" property="chapterUrl" />
+    <result column="content_info" jdbcType="VARCHAR" property="contentInfo" />
+    <result column="content_previous_page" jdbcType="VARCHAR" property="contentPreviousPage" />
+    <result column="content_next_page" jdbcType="VARCHAR" property="contentNextPage" />
+    <result column="novel_name" jdbcType="VARCHAR" property="novelName" />
+    <result column="novel_url" jdbcType="VARCHAR" property="novelUrl" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, website_name, website_url, website_img, search_url, search_info, novel_type, 
+    novel_author, word_count, novel_img_url, novel_description, novel_latest_chapter, 
+    novel_latest_chapter_url, novel_status, novel_last_update_time, novel_chapters_url, 
+    chapter_list_info, chapter_name, chapter_url, content_info, content_previous_page, 
+    content_next_page, novel_name, novel_url, code
+  </sql>
+  <select id="selectByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from novel_spider_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from novel_spider_xpath_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from novel_spider_xpath_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfigExample">
+    delete from novel_spider_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into novel_spider_xpath_config (website_name, website_url, website_img, 
+      search_url, search_info, novel_type, 
+      novel_author, word_count, novel_img_url, 
+      novel_description, novel_latest_chapter, novel_latest_chapter_url, 
+      novel_status, novel_last_update_time, novel_chapters_url, 
+      chapter_list_info, chapter_name, chapter_url, 
+      content_info, content_previous_page, content_next_page, 
+      novel_name, novel_url, code
+      )
+    values (#{websiteName,jdbcType=VARCHAR}, #{websiteUrl,jdbcType=VARCHAR}, #{websiteImg,jdbcType=VARCHAR}, 
+      #{searchUrl,jdbcType=VARCHAR}, #{searchInfo,jdbcType=VARCHAR}, #{novelType,jdbcType=VARCHAR}, 
+      #{novelAuthor,jdbcType=VARCHAR}, #{wordCount,jdbcType=VARCHAR}, #{novelImgUrl,jdbcType=VARCHAR}, 
+      #{novelDescription,jdbcType=VARCHAR}, #{novelLatestChapter,jdbcType=VARCHAR}, #{novelLatestChapterUrl,jdbcType=VARCHAR}, 
+      #{novelStatus,jdbcType=VARCHAR}, #{novelLastUpdateTime,jdbcType=VARCHAR}, #{novelChaptersUrl,jdbcType=VARCHAR}, 
+      #{chapterListInfo,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, #{chapterUrl,jdbcType=VARCHAR}, 
+      #{contentInfo,jdbcType=VARCHAR}, #{contentPreviousPage,jdbcType=VARCHAR}, #{contentNextPage,jdbcType=VARCHAR}, 
+      #{novelName,jdbcType=VARCHAR}, #{novelUrl,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfig">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into novel_spider_xpath_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="websiteName != null">
+        website_name,
+      </if>
+      <if test="websiteUrl != null">
+        website_url,
+      </if>
+      <if test="websiteImg != null">
+        website_img,
+      </if>
+      <if test="searchUrl != null">
+        search_url,
+      </if>
+      <if test="searchInfo != null">
+        search_info,
+      </if>
+      <if test="novelType != null">
+        novel_type,
+      </if>
+      <if test="novelAuthor != null">
+        novel_author,
+      </if>
+      <if test="wordCount != null">
+        word_count,
+      </if>
+      <if test="novelImgUrl != null">
+        novel_img_url,
+      </if>
+      <if test="novelDescription != null">
+        novel_description,
+      </if>
+      <if test="novelLatestChapter != null">
+        novel_latest_chapter,
+      </if>
+      <if test="novelLatestChapterUrl != null">
+        novel_latest_chapter_url,
+      </if>
+      <if test="novelStatus != null">
+        novel_status,
+      </if>
+      <if test="novelLastUpdateTime != null">
+        novel_last_update_time,
+      </if>
+      <if test="novelChaptersUrl != null">
+        novel_chapters_url,
+      </if>
+      <if test="chapterListInfo != null">
+        chapter_list_info,
+      </if>
+      <if test="chapterName != null">
+        chapter_name,
+      </if>
+      <if test="chapterUrl != null">
+        chapter_url,
+      </if>
+      <if test="contentInfo != null">
+        content_info,
+      </if>
+      <if test="contentPreviousPage != null">
+        content_previous_page,
+      </if>
+      <if test="contentNextPage != null">
+        content_next_page,
+      </if>
+      <if test="novelName != null">
+        novel_name,
+      </if>
+      <if test="novelUrl != null">
+        novel_url,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="websiteName != null">
+        #{websiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteUrl != null">
+        #{websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteImg != null">
+        #{websiteImg,jdbcType=VARCHAR},
+      </if>
+      <if test="searchUrl != null">
+        #{searchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="searchInfo != null">
+        #{searchInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="novelType != null">
+        #{novelType,jdbcType=VARCHAR},
+      </if>
+      <if test="novelAuthor != null">
+        #{novelAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="novelImgUrl != null">
+        #{novelImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="novelDescription != null">
+        #{novelDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLatestChapter != null">
+        #{novelLatestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLatestChapterUrl != null">
+        #{novelLatestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="novelStatus != null">
+        #{novelStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLastUpdateTime != null">
+        #{novelLastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="novelChaptersUrl != null">
+        #{novelChaptersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterListInfo != null">
+        #{chapterListInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterName != null">
+        #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterUrl != null">
+        #{chapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contentInfo != null">
+        #{contentInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="contentPreviousPage != null">
+        #{contentPreviousPage,jdbcType=VARCHAR},
+      </if>
+      <if test="contentNextPage != null">
+        #{contentNextPage,jdbcType=VARCHAR},
+      </if>
+      <if test="novelName != null">
+        #{novelName,jdbcType=VARCHAR},
+      </if>
+      <if test="novelUrl != null">
+        #{novelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfigExample" resultType="java.lang.Long">
+    select count(*) from novel_spider_xpath_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update novel_spider_xpath_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.websiteName != null">
+        website_name = #{record.websiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.websiteUrl != null">
+        website_url = #{record.websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.websiteImg != null">
+        website_img = #{record.websiteImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.searchUrl != null">
+        search_url = #{record.searchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.searchInfo != null">
+        search_info = #{record.searchInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelType != null">
+        novel_type = #{record.novelType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelAuthor != null">
+        novel_author = #{record.novelAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordCount != null">
+        word_count = #{record.wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelImgUrl != null">
+        novel_img_url = #{record.novelImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelDescription != null">
+        novel_description = #{record.novelDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelLatestChapter != null">
+        novel_latest_chapter = #{record.novelLatestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelLatestChapterUrl != null">
+        novel_latest_chapter_url = #{record.novelLatestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelStatus != null">
+        novel_status = #{record.novelStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelLastUpdateTime != null">
+        novel_last_update_time = #{record.novelLastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelChaptersUrl != null">
+        novel_chapters_url = #{record.novelChaptersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterListInfo != null">
+        chapter_list_info = #{record.chapterListInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterName != null">
+        chapter_name = #{record.chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chapterUrl != null">
+        chapter_url = #{record.chapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentInfo != null">
+        content_info = #{record.contentInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentPreviousPage != null">
+        content_previous_page = #{record.contentPreviousPage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentNextPage != null">
+        content_next_page = #{record.contentNextPage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelName != null">
+        novel_name = #{record.novelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.novelUrl != null">
+        novel_url = #{record.novelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update novel_spider_xpath_config
+    set id = #{record.id,jdbcType=INTEGER},
+      website_name = #{record.websiteName,jdbcType=VARCHAR},
+      website_url = #{record.websiteUrl,jdbcType=VARCHAR},
+      website_img = #{record.websiteImg,jdbcType=VARCHAR},
+      search_url = #{record.searchUrl,jdbcType=VARCHAR},
+      search_info = #{record.searchInfo,jdbcType=VARCHAR},
+      novel_type = #{record.novelType,jdbcType=VARCHAR},
+      novel_author = #{record.novelAuthor,jdbcType=VARCHAR},
+      word_count = #{record.wordCount,jdbcType=VARCHAR},
+      novel_img_url = #{record.novelImgUrl,jdbcType=VARCHAR},
+      novel_description = #{record.novelDescription,jdbcType=VARCHAR},
+      novel_latest_chapter = #{record.novelLatestChapter,jdbcType=VARCHAR},
+      novel_latest_chapter_url = #{record.novelLatestChapterUrl,jdbcType=VARCHAR},
+      novel_status = #{record.novelStatus,jdbcType=VARCHAR},
+      novel_last_update_time = #{record.novelLastUpdateTime,jdbcType=VARCHAR},
+      novel_chapters_url = #{record.novelChaptersUrl,jdbcType=VARCHAR},
+      chapter_list_info = #{record.chapterListInfo,jdbcType=VARCHAR},
+      chapter_name = #{record.chapterName,jdbcType=VARCHAR},
+      chapter_url = #{record.chapterUrl,jdbcType=VARCHAR},
+      content_info = #{record.contentInfo,jdbcType=VARCHAR},
+      content_previous_page = #{record.contentPreviousPage,jdbcType=VARCHAR},
+      content_next_page = #{record.contentNextPage,jdbcType=VARCHAR},
+      novel_name = #{record.novelName,jdbcType=VARCHAR},
+      novel_url = #{record.novelUrl,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfig">
+    update novel_spider_xpath_config
+    <set>
+      <if test="websiteName != null">
+        website_name = #{websiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteUrl != null">
+        website_url = #{websiteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteImg != null">
+        website_img = #{websiteImg,jdbcType=VARCHAR},
+      </if>
+      <if test="searchUrl != null">
+        search_url = #{searchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="searchInfo != null">
+        search_info = #{searchInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="novelType != null">
+        novel_type = #{novelType,jdbcType=VARCHAR},
+      </if>
+      <if test="novelAuthor != null">
+        novel_author = #{novelAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        word_count = #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="novelImgUrl != null">
+        novel_img_url = #{novelImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="novelDescription != null">
+        novel_description = #{novelDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLatestChapter != null">
+        novel_latest_chapter = #{novelLatestChapter,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLatestChapterUrl != null">
+        novel_latest_chapter_url = #{novelLatestChapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="novelStatus != null">
+        novel_status = #{novelStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="novelLastUpdateTime != null">
+        novel_last_update_time = #{novelLastUpdateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="novelChaptersUrl != null">
+        novel_chapters_url = #{novelChaptersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterListInfo != null">
+        chapter_list_info = #{chapterListInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterName != null">
+        chapter_name = #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="chapterUrl != null">
+        chapter_url = #{chapterUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contentInfo != null">
+        content_info = #{contentInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="contentPreviousPage != null">
+        content_previous_page = #{contentPreviousPage,jdbcType=VARCHAR},
+      </if>
+      <if test="contentNextPage != null">
+        content_next_page = #{contentNextPage,jdbcType=VARCHAR},
+      </if>
+      <if test="novelName != null">
+        novel_name = #{novelName,jdbcType=VARCHAR},
+      </if>
+      <if test="novelUrl != null">
+        novel_url = #{novelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pzhu.novel.mbg.model.NovelSpiderXpathConfig">
+    update novel_spider_xpath_config
+    set website_name = #{websiteName,jdbcType=VARCHAR},
+      website_url = #{websiteUrl,jdbcType=VARCHAR},
+      website_img = #{websiteImg,jdbcType=VARCHAR},
+      search_url = #{searchUrl,jdbcType=VARCHAR},
+      search_info = #{searchInfo,jdbcType=VARCHAR},
+      novel_type = #{novelType,jdbcType=VARCHAR},
+      novel_author = #{novelAuthor,jdbcType=VARCHAR},
+      word_count = #{wordCount,jdbcType=VARCHAR},
+      novel_img_url = #{novelImgUrl,jdbcType=VARCHAR},
+      novel_description = #{novelDescription,jdbcType=VARCHAR},
+      novel_latest_chapter = #{novelLatestChapter,jdbcType=VARCHAR},
+      novel_latest_chapter_url = #{novelLatestChapterUrl,jdbcType=VARCHAR},
+      novel_status = #{novelStatus,jdbcType=VARCHAR},
+      novel_last_update_time = #{novelLastUpdateTime,jdbcType=VARCHAR},
+      novel_chapters_url = #{novelChaptersUrl,jdbcType=VARCHAR},
+      chapter_list_info = #{chapterListInfo,jdbcType=VARCHAR},
+      chapter_name = #{chapterName,jdbcType=VARCHAR},
+      chapter_url = #{chapterUrl,jdbcType=VARCHAR},
+      content_info = #{contentInfo,jdbcType=VARCHAR},
+      content_previous_page = #{contentPreviousPage,jdbcType=VARCHAR},
+      content_next_page = #{contentNextPage,jdbcType=VARCHAR},
+      novel_name = #{novelName,jdbcType=VARCHAR},
+      novel_url = #{novelUrl,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

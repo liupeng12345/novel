@@ -12,7 +12,6 @@ import com.pzhu.novel.service.Novelservice;
 import com.pzhu.novel.vo.ChapterVO;
 import com.pzhu.novel.vo.NovelContent;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -39,18 +38,21 @@ public class NovelserviceImpl implements Novelservice {
 
     private static final Integer CONTENT_DEPTH = 3;
 
-    @Autowired
-    private NovelDocumnetRepository novelDocumnetRepository;
+    private final NovelDocumnetRepository novelDocumnetRepository;
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
 
 
-    @Autowired
-    private RabbitSender rabbitSender;
+    private final RabbitSender rabbitSender;
+
+    public NovelserviceImpl(NovelDocumnetRepository novelDocumnetRepository, MongoTemplate mongoTemplate, StringRedisTemplate stringRedisTemplate, RabbitSender rabbitSender) {
+        this.novelDocumnetRepository = novelDocumnetRepository;
+        this.mongoTemplate = mongoTemplate;
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.rabbitSender = rabbitSender;
+    }
 
     @Override
     public List<NovelDocumnet> getNovels() {

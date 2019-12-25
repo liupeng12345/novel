@@ -9,7 +9,6 @@ import com.pzhu.novel.mbg.model.NovelShelf;
 import com.pzhu.novel.mbg.model.NovelShelfExample;
 import com.pzhu.novel.mbg.model.NovelShelfRow;
 import com.pzhu.novel.service.NovelShelfService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -27,13 +26,13 @@ public class NovelShelfServiceImpl implements NovelShelfService {
 
     private final NovelShelfRowMapper novelShelfRowMapper;
 
-    @Autowired
-    private ReadLogMapper readLogMapper;
+    private final ReadLogMapper readLogMapper;
 
-    public NovelShelfServiceImpl(NovelShelfMapper novelShelfMapper, NovelShelfDao novelShelfDao, NovelShelfRowMapper novelShelfRowMapper) {
+    public NovelShelfServiceImpl(NovelShelfMapper novelShelfMapper, NovelShelfDao novelShelfDao, NovelShelfRowMapper novelShelfRowMapper, ReadLogMapper readLogMapper) {
         this.novelShelfMapper = novelShelfMapper;
         this.novelShelfDao = novelShelfDao;
         this.novelShelfRowMapper = novelShelfRowMapper;
+        this.readLogMapper = readLogMapper;
     }
 
     @Override
