@@ -1,7 +1,9 @@
 package com.pzhu.novel.controller;
 
+import com.pzhu.novel.annotations.LoginLog;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.dto.AdminLoginParam;
+import com.pzhu.novel.dto.UserDTO;
 import com.pzhu.novel.mbg.model.Admin;
 import com.pzhu.novel.mbg.model.Permission;
 import com.pzhu.novel.service.AdminService;
@@ -9,6 +11,7 @@ import com.pzhu.novel.service.UserService;
 import com.pzhu.novel.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +56,7 @@ public class AdminController {
 
     @ApiOperation(value = "登录以后返回token")
     @PostMapping(value = "/login")
+    @LoginLog
     public CommonResult login(@RequestBody AdminLoginParam AdminLoginParam, BindingResult result) {
         String token = userService.login(AdminLoginParam.getUsername(), AdminLoginParam.getPassword());
         if (token == null) {
@@ -72,15 +76,17 @@ public class AdminController {
 
     @ApiOperation("获取当前登录者信息")
     @GetMapping(value = "/info")
-    public CommonResult<Admin> getAdminInfo(HttpServletRequest request) {
+    public CommonResult<UserDTO> getAdminInfo(HttpServletRequest request) {
+        UserDTO userDTO = new UserDTO();
         Admin admin = new Admin();
         String authHeader = request.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());
             String userName = jwtTokenUtil.getUserNameFromToken(authToken);
             admin = adminService.getAdminByUsername(userName);
+            BeanUtils.copyProperties(admin, userDTO);
         }
-        return CommonResult.success(admin);
+        return CommonResult.success(userDTO);
     }
 
 
