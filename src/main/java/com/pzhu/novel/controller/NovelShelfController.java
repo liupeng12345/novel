@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -73,6 +74,7 @@ public class NovelShelfController {
         NovelShelfRow novelShelfRow = new NovelShelfRow();
         novelShelfRow.setNovelShelfId(shelfId);
         novelShelfRow.setNovelId(novelId);
+        novelShelfRow.setCreateTime(LocalDateTime.now());
         novelShelfRowService.addRow(novelShelfRow);
         return CommonResult.success(novelShelfRow);
     }

@@ -36,6 +36,9 @@ public class NovelserviceImpl implements Novelservice {
     private static final String FUN1 = "1";
     private static final String FUN2 = "2";
     private static final String SEARCH_KEY_PREFIX = "novel:";
+
+    private static final Integer CONTENT_DEPTH = 3;
+
     @Autowired
     private NovelDocumnetRepository novelDocumnetRepository;
 
@@ -149,12 +152,11 @@ public class NovelserviceImpl implements Novelservice {
 //                client.sendMessages(chaptersUrl);
 //                spiderTcpClientPool.closeClient(client);
             }
-            Thread.sleep(1000);
+            Thread.sleep(100);
             return findChapters(chaptersUrl);
         }
         List<ChapterVO> chapterVOS = JSON.parseArray(chapterListStrJsonStr, ChapterVO.class);
         return chapterVOS;
-
     }
 
     @Override
@@ -164,23 +166,19 @@ public class NovelserviceImpl implements Novelservice {
         String key = contentUrl;
         String contentJsonStr = stringRedisTemplate.opsForValue().get(key.replace("/", ":"));
         if (StringUtils.isBlank(contentJsonStr)) {
-            String valueJson = JSON.toJSONString(contentUrl);
-            String contentUrlLock = contentUrl + "lock";
-            Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson);
-            if (isLock) {
-                //没有请求过
-                stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
-                contentUrl = "content" + contentUrl;
-//                SpiderTcpClient client = spiderTcpClientPool.getClient();
-//                client.sendMessages(contentUrl);
-//                spiderTcpClientPool.closeClient(client);
-                rabbitSender.sendMessage(contentUrl);
-            }
+            sendSpiderMessage(key, "content");
             Thread.sleep(1000);
             return findContent(key);
         }
-        NovelContent novelContent = JSON.parseObject(contentJsonStr, NovelContent.class);
-        return novelContent;
+        try {
+            NovelContent novelContent = JSON.parseObject(contentJsonStr, NovelContent.class);
+            checkUrl(novelContent.getNextPage(), CONTENT_DEPTH);
+            return novelContent;
+        } catch (Exception e) {
+            System.out.println("sdfsdf");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -272,5 +270,33 @@ public class NovelserviceImpl implements Novelservice {
         return optional.isPresent() ? optional.get() : null;
     }
 
+    private void checkUrl(String key, Integer number) throws IOException, InterruptedException {
+        if (number > 0) {
+            String contentJsonStr = stringRedisTemplate.opsForValue().get(key.replace("/", ":"));
+            if (StringUtils.isBlank(contentJsonStr)) {
+                sendSpiderMessage(key, "content");
+            } else {
+                NovelContent novelContent = JSON.parseObject(contentJsonStr, NovelContent.class);
+                checkUrl(novelContent.getNextPage(), --number);
+            }
+        }
+
+    }
+
+    /**
+     * @param url 爬虫路径
+     * @param key 区分使用的关键字
+     */
+    private void sendSpiderMessage(String url, String key) {
+        String valueJson = JSON.toJSONString(url);
+        String contentUrlLock = url + "lock";
+        Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson);
+        if (isLock) {
+            //没有请求过
+            stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
+            key = key + url;
+            rabbitSender.sendMessage(key);
+        }
+    }
 
 }

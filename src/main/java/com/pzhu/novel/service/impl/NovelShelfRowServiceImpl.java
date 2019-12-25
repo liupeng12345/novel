@@ -25,5 +25,6 @@ public class NovelShelfRowServiceImpl implements NovelShelfRowService {
 
     @Override
     public void addRow(NovelShelfRow novelShelfRow) {
+        novelShelfRowMapper.insertSelective(novelShelfRow);
     }
 }
