@@ -21,6 +21,19 @@ public class RabbitMqConfig {
     }
 
     /**
+     * 小说内容缓存处理交换机
+     *
+     * @return
+     */
+    @Bean("contentDirect")
+    DirectExchange contentCacheDirect() {
+        return (DirectExchange) ExchangeBuilder
+                .directExchange(QueueEnum.QUEUE_NOVEL_CONTENT_CACHE.getExchange())
+                .durable(true)
+                .build();
+    }
+
+    /**
      * readLog 交换机
      */
     @Bean("readLogDirect")
@@ -40,6 +53,18 @@ public class RabbitMqConfig {
     public Queue spiderQueue() {
         return QueueBuilder
                 .durable(QueueEnum.QUEUE_SPIDER_CANCEL.getName())
+                .build();
+    }
+
+    /**
+     * 小说内容缓存队列
+     *
+     * @return
+     */
+    @Bean("novelContentCacheQueue")
+    public Queue ContentQueue() {
+        return QueueBuilder
+                .durable(QueueEnum.QUEUE_NOVEL_CONTENT_CACHE.getName())
                 .build();
     }
 
@@ -65,7 +90,7 @@ public class RabbitMqConfig {
      * 将消息队列和交换机绑定
      */
     @Bean("spiderBinding")
-    public Binding spiderBinding(@Qualifier("spiderQueue") Queue spiderQueue,@Qualifier("spiderDirect") DirectExchange spiderDirect) {
+    public Binding spiderBinding(@Qualifier("spiderQueue") Queue spiderQueue, @Qualifier("spiderDirect") DirectExchange spiderDirect) {
         return BindingBuilder
                 .bind(spiderQueue)
                 .to(spiderDirect)
@@ -76,7 +101,7 @@ public class RabbitMqConfig {
      * 将 readLog 交换机和  readLog insert队列绑定
      */
     @Bean("readLogInsertBinding")
-    public Binding readLogInsertBinding(@Qualifier("readLogInsertQueue") Queue readLogInsertQueue,@Qualifier("readLogDirect") DirectExchange readLogDirect) {
+    public Binding readLogInsertBinding(@Qualifier("readLogInsertQueue") Queue readLogInsertQueue, @Qualifier("readLogDirect") DirectExchange readLogDirect) {
         return BindingBuilder
                 .bind(readLogInsertQueue)
                 .to(readLogDirect)
@@ -85,11 +110,22 @@ public class RabbitMqConfig {
     }
 
     @Bean("readLogUpdateBinding")
-    public Binding readLogUpdateBinding(@Qualifier("readLogUpdateQueue") Queue readLogUpdateQueue,@Qualifier("readLogDirect") DirectExchange readLogDirect) {
+    public Binding readLogUpdateBinding(@Qualifier("readLogUpdateQueue") Queue readLogUpdateQueue, @Qualifier("readLogDirect") DirectExchange readLogDirect) {
         return BindingBuilder
                 .bind(readLogUpdateQueue)
                 .to(readLogDirect)
                 .with(QueueEnum.QUEUE_READ_LOG_UPDATE.getRouteKey());
+    }
+
+    /**
+     * 绑定队列和交换机
+     */
+    @Bean("contentUrlBinding")
+    public Binding contentUrlBinding(@Qualifier("novelContentCacheQueue") Queue novelContentCacheQueue, @Qualifier("contentDirect") DirectExchange contentCacheDirect) {
+        return BindingBuilder
+                .bind(novelContentCacheQueue)
+                .to(contentCacheDirect)
+                .with(QueueEnum.QUEUE_NOVEL_CONTENT_CACHE.getRouteKey());
     }
 
 

@@ -40,13 +40,7 @@ public class ReadLogAspect {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         System.out.println(authentication.getName());
-        //获取注解里的值
-        System.out.println("--------------------++++++" + readLog.type().getType());
-
-
         Object[] args = pjp.getArgs();
-
-
         String type = readLog.type().getType();
         if (StringUtils.equals(UPDATE, type)) {
             rabbitSender.sendReadLogUpdate((String) args[0], username);

@@ -26,13 +26,19 @@ public class RabbitSender {
         LOGGER.info("send delay message orderId:{}", message);
     }
 
-    public void sendReadLogInsert(String url, String  userName) {
+
+    public void sendContentCache(String message) {
+        rabbitTemplate.convertAndSend(QueueEnum.QUEUE_NOVEL_CONTENT_CACHE.getExchange()
+                , QueueEnum.QUEUE_NOVEL_CONTENT_CACHE.getRouteKey(), message.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public void sendReadLogInsert(String url, String userName) {
         QueueEnum readLogInsertQueue = QueueEnum.QUEUE_READ_LOG_INSERT;
         String msg = url + "," + userName;
         rabbitTemplate.convertAndSend(readLogInsertQueue.getExchange(), readLogInsertQueue.getRouteKey(), msg.getBytes(StandardCharsets.UTF_8));
     }
 
-    public void sendReadLogUpdate(String url, String  userName) {
+    public void sendReadLogUpdate(String url, String userName) {
         QueueEnum readLogInsertQueue = QueueEnum.QUEUE_READ_LOG_UPDATE;
         String msg = url + "," + userName;
         rabbitTemplate.convertAndSend(readLogInsertQueue.getExchange(), readLogInsertQueue.getRouteKey(), msg.getBytes(StandardCharsets.UTF_8));

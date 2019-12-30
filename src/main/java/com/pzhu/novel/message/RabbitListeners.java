@@ -1,15 +1,18 @@
 package com.pzhu.novel.message;
 
+import com.alibaba.fastjson.JSON;
 import com.pzhu.novel.mbg.mapper.AdminMapper;
 import com.pzhu.novel.mbg.mapper.ReadLogMapper;
 import com.pzhu.novel.mbg.model.Admin;
 import com.pzhu.novel.mbg.model.AdminExample;
 import com.pzhu.novel.mbg.model.ReadLog;
 import com.pzhu.novel.mbg.model.ReadLogExample;
+import com.pzhu.novel.nosql.mongodb.document.NovelContentDocument;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
+import com.pzhu.novel.nosql.mongodb.repository.NovelContentDocumentRepository;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -23,17 +26,29 @@ public class RabbitListeners {
 
     private static final String readLogUpdateQueue = "novel.readLog.update";
 
-    @Autowired
-    private AdminMapper adminMapper;
+    private static final String contentQueue = "novel.content.direct";
 
-    @Autowired
-    private ReadLogMapper readLogMapper;
+    private final AdminMapper adminMapper;
 
-    @Autowired
-    private NovelDocumnetRepository novelDocumnetRepository;
+    private final ReadLogMapper readLogMapper;
+
+    private final NovelDocumnetRepository novelDocumnetRepository;
+
+    private final NovelContentDocumentRepository novelContentDocumentRepository;
+
+    private final StringRedisTemplate stringRedisTemplate;
 
 
-    @RabbitListener(queues = readLogInsertQueue)
+    public RabbitListeners(AdminMapper adminMapper, ReadLogMapper readLogMapper, NovelDocumnetRepository novelDocumnetRepository, NovelContentDocumentRepository novelContentDocumentRepository, StringRedisTemplate stringRedisTemplate) {
+        this.adminMapper = adminMapper;
+        this.readLogMapper = readLogMapper;
+        this.novelDocumnetRepository = novelDocumnetRepository;
+        this.novelContentDocumentRepository = novelContentDocumentRepository;
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
+
+
+    @RabbitListener(queues = readLogInsertQueue, concurrency = "8")
     public void receiverReadLogInsertMsg(String msg) {
         String[] info = msg.split(",");
         String url = info[0];
@@ -65,7 +80,7 @@ public class RabbitListeners {
         readLogMapper.insert(readLog);
     }
 
-    @RabbitListener(queues = readLogUpdateQueue)
+    @RabbitListener(queues = readLogUpdateQueue, concurrency = "8")
     public void receiverReadLogUpdateMsg(String msg) {
         String[] info = msg.split(",");
         String url = info[0];
@@ -89,6 +104,18 @@ public class RabbitListeners {
             }
         });
 
+    }
+
+    @RabbitListener(queues = contentQueue)
+    public void receiverContentCache(String novelUrl) {
+        // 获取所有章节内容
+        List<NovelContentDocument> contentDocumentList = novelContentDocumentRepository.findAllByNovelUrl(novelUrl);
+        // 放入 redis
+        contentDocumentList.forEach(novelContentDocument -> {
+            String key = novelContentDocument.getContentUrl().replace("/", ":");
+            // 放入缓存
+            stringRedisTemplate.opsForValue().set(key, JSON.toJSONString(novelContentDocument.getContentInfo()));
+        });
     }
 
 }

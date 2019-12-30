@@ -13,7 +13,9 @@ public enum QueueEnum {
      */
     QUEUE_SPIDER_CANCEL("novel.spider.direct", "novel.spider.cancel", "novel.spider.cancel"),
     QUEUE_READ_LOG_INSERT("novel.readLog.direct", "novel.readLog.insert", "insert"),
-    QUEUE_READ_LOG_UPDATE("novel.readLog.direct", "novel.readLog.update", "update");
+    QUEUE_READ_LOG_UPDATE("novel.readLog.direct", "novel.readLog.update", "update"),
+    QUEUE_NOVEL_CONTENT_CACHE("novel.content.direct", "novel.content.cache", "cache");
+
     /**
      * 交换名称
      */

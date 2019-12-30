@@ -6,7 +6,11 @@ import com.pzhu.novel.annotations.ReadLog;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.enums.ReadLogType;
 import com.pzhu.novel.message.RabbitSender;
+import com.pzhu.novel.nosql.mongodb.document.NovelChapterListDocument;
+import com.pzhu.novel.nosql.mongodb.document.NovelContentDocument;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
+import com.pzhu.novel.nosql.mongodb.repository.NovelChapterListDocumentRepository;
+import com.pzhu.novel.nosql.mongodb.repository.NovelContentDocumentRepository;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
 import com.pzhu.novel.service.Novelservice;
 import com.pzhu.novel.vo.ChapterVO;
@@ -40,6 +44,10 @@ public class NovelserviceImpl implements Novelservice {
 
     private final NovelDocumnetRepository novelDocumnetRepository;
 
+    private final NovelChapterListDocumentRepository novelChapterListDocumentRepository;
+
+    private final NovelContentDocumentRepository novelContentDocumentRepository;
+
     private final MongoTemplate mongoTemplate;
 
     private final StringRedisTemplate stringRedisTemplate;
@@ -47,11 +55,13 @@ public class NovelserviceImpl implements Novelservice {
 
     private final RabbitSender rabbitSender;
 
-    public NovelserviceImpl(NovelDocumnetRepository novelDocumnetRepository, MongoTemplate mongoTemplate, StringRedisTemplate stringRedisTemplate, RabbitSender rabbitSender) {
+    public NovelserviceImpl(NovelDocumnetRepository novelDocumnetRepository, MongoTemplate mongoTemplate, StringRedisTemplate stringRedisTemplate, RabbitSender rabbitSender, NovelChapterListDocumentRepository novelChapterListDocumentRepository, NovelContentDocumentRepository novelContentDocumentRepository) {
         this.novelDocumnetRepository = novelDocumnetRepository;
         this.mongoTemplate = mongoTemplate;
         this.stringRedisTemplate = stringRedisTemplate;
         this.rabbitSender = rabbitSender;
+        this.novelChapterListDocumentRepository = novelChapterListDocumentRepository;
+        this.novelContentDocumentRepository = novelContentDocumentRepository;
     }
 
     @Override
@@ -142,6 +152,13 @@ public class NovelserviceImpl implements Novelservice {
         String chapterListStrJsonStr = stringRedisTemplate.opsForValue().get(chaptersUrl.replace("/", ":"));
         if (StringUtils.isBlank(chapterListStrJsonStr)) {
             //如果为空，代表redis中没有
+            // 查询mongodb
+            NovelChapterListDocument novelChapterListDocument = novelChapterListDocumentRepository.findAllByNovelUrl(chaptersUrl);
+            if (novelChapterListDocument != null) {
+                String chapterListJson = novelChapterListDocument.getChapterList();
+                List<ChapterVO> chapterVOS = JSON.parseArray(chapterListJson, ChapterVO.class);
+                return chapterVOS;
+            }
             String valueJson = JSON.toJSONString(chaptersUrl);
             String chaptersUrlLock = chaptersUrl + "lock";
             Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(chaptersUrlLock.replace("/", ":"), valueJson);
@@ -150,9 +167,6 @@ public class NovelserviceImpl implements Novelservice {
                 stringRedisTemplate.expire(chaptersUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
                 String tchaptersUrl = "chapter" + chaptersUrl;
                 rabbitSender.sendMessage(tchaptersUrl);
-//                SpiderTcpClient client = spiderTcpClientPool.getClient();
-//                client.sendMessages(chaptersUrl);
-//                spiderTcpClientPool.closeClient(client);
             }
             Thread.sleep(100);
             return findChapters(chaptersUrl);
@@ -164,10 +178,19 @@ public class NovelserviceImpl implements Novelservice {
     @Override
     @ReadLog(type = ReadLogType.UPDATE)
     public NovelContent findContent(String contentUrl) throws IOException, InterruptedException {
+        if (!contentUrl.endsWith("html")) {
+            return null;
+        }
         //请求过
         String key = contentUrl;
         String contentJsonStr = stringRedisTemplate.opsForValue().get(key.replace("/", ":"));
         if (StringUtils.isBlank(contentJsonStr)) {
+            // 查询数据库
+            NovelContentDocument novelContentDocument = novelContentDocumentRepository.findAllByContentUrl(contentUrl);
+            if (novelContentDocument != null) {
+                NovelContent contentInfo = novelContentDocument.getContentInfo();
+                return contentInfo;
+            }
             sendSpiderMessage(key, "content");
             Thread.sleep(1000);
             return findContent(key);
@@ -177,7 +200,6 @@ public class NovelserviceImpl implements Novelservice {
             checkUrl(novelContent.getNextPage(), CONTENT_DEPTH);
             return novelContent;
         } catch (Exception e) {
-            System.out.println("sdfsdf");
             e.printStackTrace();
         }
         return null;
@@ -209,7 +231,6 @@ public class NovelserviceImpl implements Novelservice {
                 Aggregation.project("website"),
                 Aggregation.group("website"),
                 Aggregation.project("website")
-
         );
         AggregationResults<JSONObject> results = mongoTemplate.aggregate(agg, NovelDocumnet.class, JSONObject.class);
         List<String> types = new ArrayList<>(results.getMappedResults().size());
@@ -273,6 +294,9 @@ public class NovelserviceImpl implements Novelservice {
     }
 
     private void checkUrl(String key, Integer number) throws IOException, InterruptedException {
+        if (!key.endsWith("html")) {
+            return;
+        }
         if (number > 0) {
             String contentJsonStr = stringRedisTemplate.opsForValue().get(key.replace("/", ":"));
             if (StringUtils.isBlank(contentJsonStr)) {
@@ -292,7 +316,7 @@ public class NovelserviceImpl implements Novelservice {
     private void sendSpiderMessage(String url, String key) {
         String valueJson = JSON.toJSONString(url);
         String contentUrlLock = url + "lock";
-        Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson);
+        Boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(contentUrlLock.replace("/", ":"), valueJson, 30 * 60, TimeUnit.SECONDS);
         if (isLock) {
             //没有请求过
             stringRedisTemplate.expire(contentUrlLock.replace("/", ":"), 30 * 60, TimeUnit.SECONDS);
