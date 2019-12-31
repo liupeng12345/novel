@@ -36,17 +36,19 @@ public class LoginLogAspect {
 
     @Around("LoginLog()")
     public Object around(ProceedingJoinPoint pjp) {
+        Object proceed = null;
+        try {
+            proceed = pjp.proceed();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Loginlog loginlog = new Loginlog();
         loginlog.setTime(LocalDateTime.now());
         loginlog.setUsername(username);
         loginlogMapper.insertSelective(loginlog);
-        try {
-            return pjp.proceed();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            return null;
-        }
+        return proceed;
     }
 }

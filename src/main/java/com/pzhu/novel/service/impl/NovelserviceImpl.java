@@ -189,6 +189,7 @@ public class NovelserviceImpl implements Novelservice {
             NovelContentDocument novelContentDocument = novelContentDocumentRepository.findAllByContentUrl(contentUrl);
             if (novelContentDocument != null) {
                 NovelContent contentInfo = novelContentDocument.getContentInfo();
+                rabbitSender.sendContentCache(contentUrl);
                 return contentInfo;
             }
             sendSpiderMessage(key, "content");
