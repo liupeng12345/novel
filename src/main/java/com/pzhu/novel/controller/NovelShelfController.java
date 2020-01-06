@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -68,14 +70,19 @@ public class NovelShelfController {
         return CommonResult.success(novelShelfRows);
     }
 
-    @PostMapping("/{shelfId}/row/{novelId}")
+    @PostMapping("/{shelfIds}/row/{novelId}")
     @ApiOperation("添加小说到书架")
-    public CommonResult addRowToShelf(@PathVariable("shelfId") Long shelfId, @PathVariable("novelId") String novelId) {
-        NovelShelfRow novelShelfRow = new NovelShelfRow();
-        novelShelfRow.setNovelShelfId(shelfId);
-        novelShelfRow.setNovelId(novelId);
-        novelShelfRow.setCreateTime(LocalDateTime.now());
-        novelShelfRowService.addRow(novelShelfRow);
-        return CommonResult.success(novelShelfRow);
+    public CommonResult addRowToShelf(@PathVariable("shelfIds") String shelfIdsStr, @PathVariable("novelId") String novelId) {
+        String[] shelfIds = shelfIdsStr.split(",");
+        List<NovelShelfRow> novelShelfRowList = new ArrayList<>();
+        Arrays.asList(shelfIds).forEach(shelfId -> {
+            NovelShelfRow novelShelfRow = new NovelShelfRow();
+            novelShelfRow.setNovelShelfId(Long.valueOf(shelfId));
+            novelShelfRow.setNovelId(novelId);
+            novelShelfRow.setCreateTime(LocalDateTime.now());
+            novelShelfRowService.addRow(novelShelfRow);
+            novelShelfRowList.add(novelShelfRow);
+        });
+        return CommonResult.success(novelShelfRowList);
     }
 }

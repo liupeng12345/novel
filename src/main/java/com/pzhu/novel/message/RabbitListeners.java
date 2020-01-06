@@ -11,6 +11,7 @@ import com.pzhu.novel.nosql.mongodb.document.NovelContentDocument;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.nosql.mongodb.repository.NovelContentDocumentRepository;
 import com.pzhu.novel.nosql.mongodb.repository.NovelDocumnetRepository;
+import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -48,7 +49,7 @@ public class RabbitListeners {
     }
 
 
-    @RabbitListener(queues = readLogInsertQueue, concurrency = "8")
+    @RabbitListener(queuesToDeclare = @Queue(readLogInsertQueue), concurrency = "8")
     public void receiverReadLogInsertMsg(String msg) {
         String[] info = msg.split(",");
         String url = info[0];
@@ -80,7 +81,7 @@ public class RabbitListeners {
         readLogMapper.insert(readLog);
     }
 
-    @RabbitListener(queues = readLogUpdateQueue, concurrency = "8")
+    @RabbitListener(queuesToDeclare = @Queue(readLogUpdateQueue), concurrency = "8")
     public void receiverReadLogUpdateMsg(String msg) {
         String[] info = msg.split(",");
         String url = info[0];
@@ -106,7 +107,7 @@ public class RabbitListeners {
 
     }
 
-    @RabbitListener(queues = contentQueue)
+    @RabbitListener(queuesToDeclare = @Queue(contentQueue))
     public void receiverContentCache(String novelUrl) {
         // 获取所有章节内容
         List<NovelContentDocument> contentDocumentList = novelContentDocumentRepository.findAllByNovelUrl(novelUrl);

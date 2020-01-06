@@ -1,0 +1,49 @@
+version: '3'
+services:
+  # 指定服务名称
+  mysql:
+    # 指定服务使用的镜像
+    image: mysql:5.7
+    # 指定容器名称
+    container_name: mysql
+    # 指定服务运行的端口
+    ports:
+      - 3306:3306
+    # 指定容器中需要挂载的文件
+    volumes:
+      - /mydata/mysql/log:/var/log/mysql
+      - /mydata/mysql/data:/var/lib/mysql
+      - /mydata/mysql/conf:/etc/mysql
+    # 指定容器的环境变量
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  redis:
+    image: redis:4.0
+    container_name: redis
+    ports:
+    - 6379:6379
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+    - 5672:5672
+    - 15672:15672
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+    - 27017:27017
+  # 指定服务名称
+  novel:
+    # 指定服务使用的镜像
+    image: novel/novel:0.0.1-SNAPSHOT
+    # 指定容器名称
+    container_name: novel
+    # 指定服务运行的端口
+    ports:
+      - 8099:8099
+    # 指定容器中需要挂载的文件
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /mydata/app/mall-tiny-docker-compose/logs:/var/logs
+
