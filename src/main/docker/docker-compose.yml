@@ -39,6 +39,11 @@ services:
     image: novel:latest
     # 指定容器名称
     container_name: novel
+    links:
+      - mysql
+      - mongo
+      - rabbitmq
+      - redis
     # 指定服务运行的端口
     ports:
       - 8099:8099
