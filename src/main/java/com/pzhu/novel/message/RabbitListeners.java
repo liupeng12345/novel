@@ -61,7 +61,9 @@ public class RabbitListeners {
         AdminExample.Criteria criteria = adminExample.createCriteria();
         criteria.andUsernameEqualTo(userName);
         List<Admin> admins = adminMapper.selectByExample(adminExample);
-
+        if (admins.isEmpty()) {
+            return;
+        }
         //判断阅读记录是否存在
         ReadLogExample readLogExample = new ReadLogExample();
         ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
@@ -91,7 +93,9 @@ public class RabbitListeners {
         AdminExample.Criteria criteria = adminExample.createCriteria();
         criteria.andUsernameEqualTo(userName);
         List<Admin> admins = adminMapper.selectByExample(adminExample);
-
+        if (admins.isEmpty()) {
+            return;
+        }
         ReadLogExample readLogExample = new ReadLogExample();
         ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
         readLogCriteria.andUserIdEqualTo(admins.get(0).getId());

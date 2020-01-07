@@ -1,0 +1,50 @@
+server:
+  port: 8099
+
+spring:
+  datasource:
+    url: jdbc:mysql://dev:3306/novel?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: novel
+  redis:
+    host: dev # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: # Redis服务器连接密码（默认为空）
+    timeout: 3000ms # 连接超时时间（毫秒）
+  rabbitmq:
+    host: 127.0.0.1 # rabbitmq的连接地址
+    port: 5672 # rabbitmq的连接端口号
+    virtual-host: /novel # rabbitmq的虚拟host
+    username: guest # rabbitmq的用户名
+    password: guest # rabbitmq的密码
+    publisher-confirms: true #如果对异步消息需要回调必须设置为trues
+
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+
+jwt:
+  tokenHeader: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: Bearer
+
+
+serchServe:
+  ip: 127.0.0.1
+  port: 9999
+  poolsize: 5
+logging:
+  level:
+    com.pzhu.novel.mbg.mapper: debug
+
+
