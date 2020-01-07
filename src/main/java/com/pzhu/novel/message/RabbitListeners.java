@@ -51,63 +51,72 @@ public class RabbitListeners {
 
     @RabbitListener(queuesToDeclare = @Queue(readLogInsertQueue), concurrency = "8")
     public void receiverReadLogInsertMsg(String msg) {
-        String[] info = msg.split(",");
-        String url = info[0];
-        String userName = info[1];
-        // 查找小说信息
-        NovelDocumnet novel = novelDocumnetRepository.findAllByChaptersUrlEquals(url).get(0);
-        // 查找用户信息
-        AdminExample adminExample = new AdminExample();
-        AdminExample.Criteria criteria = adminExample.createCriteria();
-        criteria.andUsernameEqualTo(userName);
-        List<Admin> admins = adminMapper.selectByExample(adminExample);
-        if (admins.isEmpty()) {
-            return;
+        try {
+            String[] info = msg.split(",");
+            String url = info[0];
+            String userName = info[1];
+            // 查找小说信息
+            NovelDocumnet novel = novelDocumnetRepository.findAllByChaptersUrlEquals(url).get(0);
+            // 查找用户信息
+            AdminExample adminExample = new AdminExample();
+            AdminExample.Criteria criteria = adminExample.createCriteria();
+            criteria.andUsernameEqualTo(userName);
+            List<Admin> admins = adminMapper.selectByExample(adminExample);
+            if (admins.isEmpty()) {
+                return;
+            }
+            //判断阅读记录是否存在
+            ReadLogExample readLogExample = new ReadLogExample();
+            ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
+            readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
+            readLogCriteria.andNovelIdEqualTo(novel.get_id());
+            List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
+            if (readLogList.size() > 0) {
+                // 不进行日志录入
+                System.out.println("已经进入日志");
+                return;
+            }
+            ReadLog readLog = new ReadLog();
+            readLog.setUserId(admins.get(0).getId());
+            readLog.setNovelId(novel.get_id());
+            readLog.setCreateTime(LocalDateTime.now());
+            readLog.setUpdateTime(LocalDateTime.now());
+            readLogMapper.insert(readLog);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //判断阅读记录是否存在
-        ReadLogExample readLogExample = new ReadLogExample();
-        ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
-        readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
-        readLogCriteria.andNovelIdEqualTo(novel.get_id());
-        List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
-        if (readLogList.size() > 0) {
-            // 不进行日志录入
-            System.out.println("已经进入日志");
-            return;
-        }
-        ReadLog readLog = new ReadLog();
-        readLog.setUserId(admins.get(0).getId());
-        readLog.setNovelId(novel.get_id());
-        readLog.setCreateTime(LocalDateTime.now());
-        readLog.setUpdateTime(LocalDateTime.now());
-        readLogMapper.insert(readLog);
+
     }
 
     @RabbitListener(queuesToDeclare = @Queue(readLogUpdateQueue), concurrency = "8")
     public void receiverReadLogUpdateMsg(String msg) {
-        String[] info = msg.split(",");
-        String url = info[0];
-        String userName = info[1];
-        // 查找用户信息
-        AdminExample adminExample = new AdminExample();
-        AdminExample.Criteria criteria = adminExample.createCriteria();
-        criteria.andUsernameEqualTo(userName);
-        List<Admin> admins = adminMapper.selectByExample(adminExample);
-        if (admins.isEmpty()) {
-            return;
-        }
-        ReadLogExample readLogExample = new ReadLogExample();
-        ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
-        readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
-        List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
-        readLogList.forEach(readLog -> {
-            Optional<NovelDocumnet> optional = novelDocumnetRepository.findById(readLog.getNovelId());
-            if (url.contains(optional.get().getChaptersUrl())) {
-                readLog.setChapterUrl(url);
-                readLog.setUpdateTime(LocalDateTime.now());
-                readLogMapper.updateByPrimaryKeySelective(readLog);
+        try {
+            String[] info = msg.split(",");
+            String url = info[0];
+            String userName = info[1];
+            // 查找用户信息
+            AdminExample adminExample = new AdminExample();
+            AdminExample.Criteria criteria = adminExample.createCriteria();
+            criteria.andUsernameEqualTo(userName);
+            List<Admin> admins = adminMapper.selectByExample(adminExample);
+            if (admins.isEmpty()) {
+                return;
             }
-        });
+            ReadLogExample readLogExample = new ReadLogExample();
+            ReadLogExample.Criteria readLogCriteria = readLogExample.createCriteria();
+            readLogCriteria.andUserIdEqualTo(admins.get(0).getId());
+            List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
+            readLogList.forEach(readLog -> {
+                Optional<NovelDocumnet> optional = novelDocumnetRepository.findById(readLog.getNovelId());
+                if (url.contains(optional.get().getChaptersUrl())) {
+                    readLog.setChapterUrl(url);
+                    readLog.setUpdateTime(LocalDateTime.now());
+                    readLogMapper.updateByPrimaryKeySelective(readLog);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
