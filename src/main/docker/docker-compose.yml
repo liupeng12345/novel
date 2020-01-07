@@ -51,4 +51,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime
       - /data/app/novel/logs:/var/logs
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5g"
 
