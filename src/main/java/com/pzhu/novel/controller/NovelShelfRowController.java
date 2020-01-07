@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/novel/shelf/row")
+@RequestMapping("/api/novel/shelf/row")
 @Api(tags = "NovelShelfRowController", description = "书架接口")
 public class NovelShelfRowController {
 
@@ -27,4 +27,5 @@ public class NovelShelfRowController {
         novelShelfRowService.deleteRowOfShelf(rowId);
         return CommonResult.success(rowId);
     }
+
 }

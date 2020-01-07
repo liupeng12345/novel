@@ -2,6 +2,7 @@ package com.pzhu.novel.controller;
 
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.dto.NovelShelfDTO;
+import com.pzhu.novel.dto.NovelShelfRowDTO;
 import com.pzhu.novel.mbg.model.NovelShelf;
 import com.pzhu.novel.mbg.model.NovelShelfRow;
 import com.pzhu.novel.service.NovelShelfRowService;
@@ -66,8 +67,8 @@ public class NovelShelfController {
     @GetMapping("/{shelfId}/row")
     @ApiOperation("查询书架下的书架行")
     public CommonResult getNovelShelf(@PathVariable("shelfId") Long shelfId) {
-        List<NovelShelfRow> novelShelfRows = novelShelfRowService.getRowsByShelfId(shelfId);
-        return CommonResult.success(novelShelfRows);
+        List<NovelShelfRowDTO> novelShelfRowDTOS = novelShelfRowService.getRowsByShelfId(shelfId);
+        return CommonResult.success(novelShelfRowDTOS);
     }
 
     @PostMapping("/{shelfIds}/row/{novelId}")
