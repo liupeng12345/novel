@@ -33,6 +33,7 @@ public class ReadLogServiceImpl implements ReadLogService {
     @Override
     public List<ReadLogDTO> query(Long userId) {
         ReadLogExample readLogExample = new ReadLogExample();
+        readLogExample.setOrderByClause("update_time desc");
         ReadLogExample.Criteria criteria = readLogExample.createCriteria();
         criteria.andUserIdEqualTo(userId);
         List<ReadLog> readLogList = readLogMapper.selectByExample(readLogExample);
