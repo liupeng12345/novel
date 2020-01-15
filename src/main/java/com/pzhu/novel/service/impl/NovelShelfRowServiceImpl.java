@@ -68,6 +68,14 @@ public class NovelShelfRowServiceImpl implements NovelShelfRowService {
 
     @Override
     public void addRow(NovelShelfRow novelShelfRow) {
+        NovelShelfRowExample novelShelfRowExample = new NovelShelfRowExample();
+        NovelShelfRowExample.Criteria criteria = novelShelfRowExample.createCriteria();
+        criteria.andNovelIdEqualTo(novelShelfRow.getNovelId());
+        criteria.andNovelShelfIdEqualTo(novelShelfRow.getNovelShelfId());
+        List<NovelShelfRow> novelShelfRows = novelShelfRowMapper.selectByExample(novelShelfRowExample);
+        if (novelShelfRows != null || !novelShelfRows.isEmpty()) {
+            return; //书架去重
+        }
         novelShelfRowMapper.insertSelective(novelShelfRow);
     }
 
