@@ -73,10 +73,10 @@ public class NovelShelfRowServiceImpl implements NovelShelfRowService {
         criteria.andNovelIdEqualTo(novelShelfRow.getNovelId());
         criteria.andNovelShelfIdEqualTo(novelShelfRow.getNovelShelfId());
         List<NovelShelfRow> novelShelfRows = novelShelfRowMapper.selectByExample(novelShelfRowExample);
-        if (novelShelfRows != null || !novelShelfRows.isEmpty()) {
-            return; //书架去重
+        if (novelShelfRows.isEmpty()) {
+            novelShelfRowMapper.insertSelective(novelShelfRow);
         }
-        novelShelfRowMapper.insertSelective(novelShelfRow);
+
     }
 
     @Override
