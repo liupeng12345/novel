@@ -46,7 +46,7 @@
 
 ### 项目结构
 
-![avatar](.\doc\img\1.jpg)
+![avatar](./doc/img/1.jpg)
 
 ### winwdos 环境部署
 
