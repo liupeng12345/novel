@@ -9,6 +9,10 @@
 >5. python 3.7
 >6. mongodb
 
+### 访问地址
+
+> http://47.102.222.205/#/
+
 ### IDE 选择
 
 > 1. idea java代码开发
@@ -47,6 +51,36 @@
 ### 项目结构
 
 ![avatar](./doc/img/1.jpg)
+
+### 系统展示
+
+- 展示前端
+
+  - 首页
+
+    ![avatar](./doc/img/2.png)
+
+  - 搜索页
+
+    ![avatar](./doc/img/3.png)
+
+  - 章节页
+
+     ![avatar](./doc/img/4.png)
+
+  - 阅读页
+
+    ![avatar](./doc/img/5.png)
+
+    ![avatar](./doc/img/6.png)
+
+  - 书架
+
+    ![avatar](./doc/img/7.png)
+
+- 后台管理
+
+  ![avatar](./doc/img/8.png)
 
 ### winwdos 环境部署
 
