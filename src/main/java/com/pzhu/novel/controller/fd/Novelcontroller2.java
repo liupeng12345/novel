@@ -1,5 +1,6 @@
 package com.pzhu.novel.controller.fd;
 
+import com.pzhu.novel.common.api.CommonPage;
 import com.pzhu.novel.common.api.CommonResult;
 import com.pzhu.novel.nosql.mongodb.document.NovelDocumnet;
 import com.pzhu.novel.service.Novelservice;
@@ -7,6 +8,7 @@ import com.pzhu.novel.vo.ChapterVO;
 import com.pzhu.novel.vo.NovelContent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +41,17 @@ public class Novelcontroller2 {
     @ApiOperation("搜索小说")
     public CommonResult<List<NovelDocumnet>> findNovel(@PathVariable("fun") String fun, String key) throws IOException {
         return novelservice.search(fun, key);
+    }
+
+    @GetMapping("/fun/{fun}/{page}/{size}")
+    @ApiOperation("搜索小说")
+    public CommonPage findNovelPage(
+            @PathVariable("page") String page,
+            @PathVariable("size") String size,
+            @PathVariable("fun") String fun,
+            String key) throws IOException {
+        Page<NovelDocumnet> novelDocumnetPage = novelservice.searchPage(fun, key, page, size);
+        return CommonPage.restPage(novelDocumnetPage);
     }
 
     /**
@@ -122,6 +135,6 @@ public class Novelcontroller2 {
     @ApiOperation("根据小说Id查找小说")
     public CommonResult getNovelByNovelName(@PathVariable("novelId") String novelId) {
         NovelDocumnet novelDocumnet = novelservice.getNovelByNovelId(novelId);
-        return  CommonResult.success(novelDocumnet);
+        return CommonResult.success(novelDocumnet);
     }
 }

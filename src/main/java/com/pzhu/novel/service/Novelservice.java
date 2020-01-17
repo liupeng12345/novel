@@ -74,4 +74,6 @@ public interface Novelservice {
     List<NovelDocumnet> getTypeByTypeName(String typeName);
 
     NovelDocumnet getNovelByNovelId(String novelId);
+
+    Page<NovelDocumnet> searchPage(String fun, String key, String page, String size);
 }

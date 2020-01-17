@@ -44,6 +44,10 @@
 >  > 1. scarpy
 >  > 2. xpath
 
+### 项目结构
+
+![avatar](doc\img\1.jpg)
+
 ### winwdos 环境部署
 
 - spring-boot 端口：8099

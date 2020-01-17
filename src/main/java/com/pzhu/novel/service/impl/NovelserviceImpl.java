@@ -275,7 +275,7 @@ public class NovelserviceImpl implements Novelservice {
         }
         //1. 查mongo
         if (StringUtils.equals(FUN1, fun)) {
-            novels = novelDocumnetRepository.findAllByAuthorIsLikeOrNameIsLike(key, key);
+            novels = novelDocumnetRepository.findAllByAuthorIsLikeOrNameIsLike(key, key, PageRequest.of(0, 20));
         } else {
             search(key);
             return CommonResult.success(null);
@@ -285,13 +285,18 @@ public class NovelserviceImpl implements Novelservice {
 
     @Override
     public List<NovelDocumnet> getTypeByTypeName(String typeName) {
-        return novelDocumnetRepository.findAllByTypeEquals(typeName);
+        return novelDocumnetRepository.findAllByTypeEquals(typeName, PageRequest.of(0, 20));
     }
 
     @Override
     public NovelDocumnet getNovelByNovelId(String novelId) {
         Optional<NovelDocumnet> optional = novelDocumnetRepository.findById(novelId);
         return optional.isPresent() ? optional.get() : null;
+    }
+
+    @Override
+    public Page<NovelDocumnet> searchPage(String fun, String key, String page, String size) {
+        return null;
     }
 
     private void checkUrl(String key, Integer number) throws IOException, InterruptedException {

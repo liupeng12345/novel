@@ -20,11 +20,11 @@ public interface NovelDocumnetRepository extends MongoRepository<NovelDocumnet, 
 
     List<NovelDocumnet> findTop12ByOrderByWordCountDesc();
 
-    List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLike(String s, String key);
+    List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLike(String s, String key, PageRequest page);
 
     List<NovelDocumnet> findAllByAuthorIsLikeOrNameIsLikeAndTypeEquals(String s, String key, String type);
 
-    List<NovelDocumnet> findAllByTypeEquals(String type);
+    List<NovelDocumnet> findAllByTypeEquals(String type, PageRequest of);
 
     List<NovelDocumnet> findAllByChaptersUrlEquals(String chapterUrl);
 
